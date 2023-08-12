@@ -1,22 +1,11 @@
 const express=require('express');
 const app = express()
 
-const morgan = require ('morgan')
+const puerto= 1990;
 
-app.set('puerto' , 1990);
-
-app.use(morgan('dev'))
-
-app.use(require('./ROUTES/routes'))
-app.use(require('./ROUTES/routesCategorias'))
-app.use(require('./ROUTES/routesClientes'))
-app.use(require('./routes/routesCompras'))
-app.use(require('./ROUTES/routesDetallesVenta'))
-app.use(require('./ROUTES/routesProductos'))
-app.use(require('./ROUTES/routesProveedores'))
-app.use(require('./ROUTES/routesVentas'))
+app.use(require('./routes/routes'))
 
 
-app.listen(app.get('puerto'), ()=>{
-    console.log('El servidor del proyecto final esta corriendo en el puerto', app.get('puerto'))
+app.listen(puerto,()=>{
+    console.log('server ON')
 })
