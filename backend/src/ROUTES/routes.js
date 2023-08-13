@@ -3,10 +3,13 @@ const router = express()
 const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
+const jwt= require('jsonwebtoken')
 
 router.get('/', (req,res)=>{
     res.send('El sistema es funcionando')
 })
+
+//ruta del registro de usuarios
  
 router.post('/registro',bodyParser.json(), (req,res)=>{
     console.log(req.body)
@@ -26,10 +29,79 @@ router.post('/registro',bodyParser.json(), (req,res)=>{
     
 
 })
+//ruta login con comparacion de datos con booleano
 
-router.post('/login', (req,res)=>{
-    res.send('Esto es el login')
+router.post('/login', bodyParser.json(), (req,res)=>{
+    const { user, pass } =req.body
+    mysqlConect.query('select user, pass, id_rol, concat_ws(" ", apellido, nombre) nombre_usuario from usuarios WHERE user=?', [user], (error, datos)=>{
+        if(!error){
+            if(datos.length>0){
+                let comparacion = bcrypt.compareSync(pass, datos[0].pass)
+                if(comparacion){
+                    jwt.sign({datos}, 'silicon', (error, token)=>{
+                        res.json({
+                            status:true,
+                            datos: datos[0],
+                            token: token
+                        })
+                    })
+        
+                }else{
+                    res.json({
+                        status:false,
+                        mensaje: "El password es incorrecto"
+                    })
+                }
+                console.log(comparacion)
+            }else{
+                res.json({
+                    status:false,
+                    mensaje: "No existe el usuario"
+                })
+            }
+
+            
+        }else{
+            res.json({
+                status:false,
+                mensaje: error
+            })
+        }
+    })
 })
 
+router.get('/usuarios', verificaToken , (req,res)=>{
+    jwt.verify(req.token, 'silicon' , (error, valido)=>{
+    if(!error){
+        mysqlConect.query('select * from usuarios', (error, registros)=>{
+            if(error){
+                console.log('Error en base de datos ', error)
+            }else{
+                res.json({
+                    status:true,
+                    mensaje: registros
+                })
+            }
+        })
+    }else{
+        res.json({
+            status:false,
+            mensaje: error
+        })
+    }
+    })
+   
+})
+
+function verificaToken(req, res, next){
+    const BearerHeader = req.headers['authorization']
+    if(typeof BearerHeader!=='undefined'){
+        const bearer =BearerHeader.split(" ")[1];
+        req.token=bearer;
+        next();
+    }else{
+        res.send('Se requiere un token')
+    }
+}
 
 module.exports= router;
