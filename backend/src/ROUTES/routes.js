@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')
 
+//listar modelos
 router.get('/', (req,res)=>{
     res.send('El sistema es funcionando')
 })
@@ -52,7 +53,7 @@ router.post('/login', bodyParser.json(), (req,res)=>{
                         mensaje: "El password es incorrecto"
                     })
                 }
-                console.log(comparacion)
+                
             }else{
                 res.json({
                     status:false,
@@ -92,6 +93,36 @@ router.get('/usuarios', verificaToken , (req,res)=>{
     })
    
 })
+
+router.get('/usuarios/:id_usuariio', verificaToken , (req,res)=>{
+    const{id_usuario}=req.params
+    jwt.verify(req.token, 'silicon' , (error, valido)=>{
+    if(!error){
+        mysqlConect.query('select * from usuarios where id_usuario=?', [id_usuario], (error, registros)=>{
+            if(error){
+                console.log('Error en base de datos ', error)
+            }else{
+                if(registros.length>0){
+                    res.json({
+                        status:true,
+                        datos: registros[0]
+                    })
+                }else{
+                    res.json({
+                        status:false,
+                        mensaje: "El parametro es inexistente"
+                    })
+                }
+               
+            }
+        })
+    }
+
+    })
+   
+})
+
+//Verificacion de tokens
 
 function verificaToken(req, res, next){
     const BearerHeader = req.headers['authorization']
