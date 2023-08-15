@@ -105,7 +105,7 @@ router.get('/usuarios/:id_usuariio', verificaToken , (req,res)=>{
                 if(registros.length>0){
                     res.json({
                         status:true,
-                        datos: registros[0]
+                        datos: registros
                     })
                 }else{
                     res.json({
