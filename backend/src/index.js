@@ -11,7 +11,6 @@ app.use(require('./routes/routes'))
 app.listen(app.get('puerto'), ()=>{
     console.log('Servidor ON en el puerto ', app.get('puerto'))
 })
-
 /* const puerto= 1990;
 
 app.use(require('./routes/routes'))

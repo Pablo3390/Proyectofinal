@@ -11,25 +11,63 @@ router.get('/', (req,res)=>{
 })
 
 //ruta del registro de usuarios
- 
-router.post('/registro',bodyParser.json(), (req,res)=>{
-    console.log(req.body)
-    const {apellido, nombre, dni, user, pass, correo, id_rol} =req.body
-    let hash= bcrypt.hashSync(pass, 10)
 
-    mysqlConect.query('insert into usuarios (apellido, nombre, dni, user, pass, correo, id_rol) values (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol], (error, result)=>{
+router.post('/registro', bodyParser.json() , (req , res)=>{
+    const {apellido, nombre , dni, user, pass, correo, id_rol} =req.body;
+   
+    let hash= bcrypt.hashSync(pass, 10);
+
+    if(!dni){
+        res.json({
+            status:false,
+            mensaje: "El DNI es un campo obligatorio"
+        })
+    }
+
+    mysqlConnect.query('SELECT * FROM usuarios WHERE user=?', [user], (error, usuarios)=>{
         if(error){
-            console.log('Error  ', error)
+            console.log('Error en la base de datos', error)
         }else{
-            res.json({
-                status:true,
-                mensaje: "El registro se grabo correctamente"
-            })
+            if(usuarios.length>0){
+                res.json({
+                    status:false,
+                    mensaje:"El nombre de usuario ya existe" 
+                })
+            }else{
+                mysqlConnect.query('INSERT INTO usuarios (apellido, nombre, dni, user, pass, correo, id_rol ) VALUES (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol ], (error, registros)=>{
+                    if(error){
+                        console.log('Error en la base de datos al momento de insertar ----> ', error)
+                    }else{
+                        res.json({
+                            status:true,
+                            mensaje: "El registro se grabo correctamente"
+                        })
+                    }
+                })
+            }
         }
     })
+})
+ 
+// router.post('/registro',bodyParser.json(), (req,res)=>{
+//     console.log(req.body)
+//     const {apellido, nombre, dni, user, pass, correo, id_rol} =req.body
+//     let hash= bcrypt.hashSync(pass, 10)
+
+//     mysqlConect.query('insert into usuarios (apellido, nombre, dni, user, pass, correo, id_rol) values (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol], (error, result)=>{
+//         if(error){
+//             console.log('Error  ', error)
+//         }else{
+//             res.json({
+//                 status:true,
+//                 mensaje: "El registro se grabo correctamente"
+//             })
+//         }
+//     })
     
 
-})
+// })
+
 //ruta login con comparacion de datos con booleano
 
 router.post('/login', bodyParser.json(), (req,res)=>{
@@ -135,4 +173,4 @@ function verificaToken(req, res, next){
     }
 }
 
-module.exports= router;
+module.exports= router; 
