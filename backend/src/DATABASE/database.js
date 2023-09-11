@@ -16,4 +16,6 @@ mysqlConect.connect(function(error){
     }
 })
 
+//holis, soy agus
+
 module.exports= mysqlConect;
