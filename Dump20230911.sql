@@ -31,6 +31,7 @@ CREATE TABLE `actividad` (
   `lugar` varchar(255) DEFAULT NULL,
   `participante` int DEFAULT NULL,
   `id_convenio` int NOT NULL,
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_actividad`),
   KEY `actividad_convenio_idx` (`id_convenio`),
   CONSTRAINT `actividad_convenio` FOREIGN KEY (`id_convenio`) REFERENCES `convenio` (`id_convenio`)
@@ -95,6 +96,7 @@ CREATE TABLE `organismo` (
   `id_organismo` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `id_tipo_organismo` int NOT NULL,
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_organismo`),
   KEY `id_tipo_organismo_idx` (`id_tipo_organismo`),
   CONSTRAINT `id_tipo_organismo` FOREIGN KEY (`id_tipo_organismo`) REFERENCES `tipo_organismo` (`id_tipo_organismo`)
@@ -145,6 +147,7 @@ CREATE TABLE `responsable` (
   `dni_responsable` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `id_organismo` int NOT NULL,
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`dni_responsable`),
   KEY `id_organismo_idx` (`id_organismo`),
   CONSTRAINT `id_organismo` FOREIGN KEY (`id_organismo`) REFERENCES `organismo` (`id_organismo`)
@@ -172,7 +175,7 @@ CREATE TABLE `roles` (
   `nombre` varchar(100) NOT NULL,
   `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,6 +184,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Pablo','A');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,6 +198,8 @@ DROP TABLE IF EXISTS `tipo_convenio`;
 CREATE TABLE `tipo_convenio` (
   `id_tipo_convenio` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `tipo_conveniocol` varchar(45) DEFAULT NULL,
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_tipo_convenio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -217,6 +223,7 @@ DROP TABLE IF EXISTS `tipo_organismo`;
 CREATE TABLE `tipo_organismo` (
   `id_tipo_organismo` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_tipo_organismo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -247,7 +254,9 @@ CREATE TABLE `usuarios` (
   `correo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `id_rol` int NOT NULL,
   `estado` enum('A','B') COLLATE latin1_bin NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`id_usuario`)
+  PRIMARY KEY (`id_usuario`),
+  KEY `id_roles_idx` (`id_rol`),
+  CONSTRAINT `id_rol` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -260,6 +269,14 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (1,'Pablo','Saucedo',35327089,'Psaucedo','$2b$10$zNfF.q3TwWq8x7crg2XRQuVtSqNBquOTMekIUHivriQxWR5D7BG8O','pablosaucedoa2@gmail.com',1,'A');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'gestiondeconvenios'
+--
+
+--
+-- Dumping routines for database 'gestiondeconvenios'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -270,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-30 19:14:10
+-- Dump completed on 2023-09-11 18:40:24
