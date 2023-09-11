@@ -17,5 +17,6 @@ mysqlConect.connect(function(error){
 })
 
 //holis, soy agus
+//holis, soy martin
 
 module.exports= mysqlConect;
