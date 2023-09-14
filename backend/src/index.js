@@ -19,3 +19,5 @@ app.use(require('./routes/routes'))
 app.listen(puerto,()=>{
     console.log('server ON')
 }) */
+
+app.use(require('./routes/routesConvenio'))
