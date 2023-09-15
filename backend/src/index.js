@@ -9,6 +9,7 @@ app.use(morgan('dev'))
 app.use(require('./routes/routes'));
 app.use(require('./ROUTES/routesOrganismo'))
 app.use(require('./routes/routesConvenio'))
+app.use(require('./routes/routesTipoConvenio'))
 
 app.listen(app.get('puerto'), ()=>{
     console.log('Servidor ON en el puerto ', app.get('puerto'))
