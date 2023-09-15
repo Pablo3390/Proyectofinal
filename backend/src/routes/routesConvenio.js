@@ -5,6 +5,18 @@ const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')
 
+//Lista de convenios
+
+router.get('/convenio', (req , res)=>{
+  mysqlConect.query('SELECT * FROM convenio', (error, registros)=>{
+      if(error){
+          console.log('Error en la base de datos', error)
+      }else{
+          res.json(registros)
+      }
+  })
+})
+
 // Endpoint para crear un nuevo convenio
 
 router.post('/convenio', bodyParser.json(), (req , res)=>{
@@ -102,13 +114,13 @@ router.put('/convenios/:id_convenio', bodyParser.json(), (req , res)=>{
           mensaje: "El organismo del convenio es un campo obligatorio"
       })
   }
-  mysqlConnect.query('SELECT * FROM convenios WHERE id_convenio=?', [id_convenio], (error, registros)=>{
+  mysqlConect.query('SELECT * FROM convenios WHERE id_convenio=?', [id_convenio], (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
       }else{
 
           if(registros.length>0){
-              mysqlConnect.query('UPDATE convenio SET nombre=?, utilidad=?, objeto=?, fecha_inicio=?, fecha_fin=?, clausula_peas=?, id_resolucion=?, idorganismo=?, id_tipo_convenio=?  WHERE id_convenio = ?', [nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio, id_convenio ], (error, registros)=>{
+              mysqlConect.query('UPDATE convenio SET nombre=?, utilidad=?, objeto=?, fecha_inicio=?, fecha_fin=?, clausula_peas=?, id_resolucion=?, idorganismo=?, id_tipo_convenio=?  WHERE id_convenio = ?', [nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio, id_convenio ], (error, registros)=>{
                   if(error){
                       console.log('Error en la base de datos', error)
                   }else{
@@ -139,7 +151,7 @@ router.delete('/convenio/:id_convenio', bodyParser.json(), (req , res)=>{
           console.log('Error en la base de datos', error)
       }else{
           if(registros.length>0){
-              mysqlConnect.query('UPDATE convenios SET estado = "B"  WHERE id_convenio = ?', [id_convenio], (error, registros)=>{
+              mysqlConect.query('UPDATE convenio SET estado = "B"  WHERE id_convenio = ?', [id_convenio], (error, registros)=>{
                   if(error){
                       console.log('Error en la base de datos', error)
                   }else{
