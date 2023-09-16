@@ -113,7 +113,7 @@ router.get('/usuarios', verificaToken , (req,res)=>{
    
 })
 
-router.get('/usuarios/:id_usuariio', verificaToken , (req,res)=>{
+router.get('/usuarios/:id_usuario', verificaToken , (req,res)=>{
     const{id_usuario}=req.params
     jwt.verify(req.token, 'silicon' , (error, valido)=>{
     if(!error){
