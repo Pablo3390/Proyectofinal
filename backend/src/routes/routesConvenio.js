@@ -123,7 +123,7 @@ router.put('/convenio/:id_convenio',bodyParser.json(), (req,res)=>{
         
         }else{
             if(registro.length>0){
-                mysqlConect.query('UPDATE convenio SET nombre=?, utilidad=?, objeto=?, fecha_inicio=?, fecha_fin=?, clausula_peas=?, id_resolucion=?, id_organismo=?, id_tipo_convenio=? WHERE id_convenio = ?', [nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio, id_convenio], (error, registro) =>{
+                mysqlConect.query('UPDATE convenio SET nombre=?, utilidad=?, objeto=?, fecha_inicio=?, fecha_fin=?, clausula_peas=?, id_resolucion=?, id_organismo=?, id_tipo_convenio=? WHERE id_convenio=?', [nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio, id_convenio], (error, registro) =>{
                     
                     if(error){
                                 console.log("Error en la base de datos", error)
