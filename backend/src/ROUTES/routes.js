@@ -48,25 +48,6 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
         }
     })
 })
- 
-// router.post('/registro',bodyParser.json(), (req,res)=>{
-//     console.log(req.body)
-//     const {apellido, nombre, dni, user, pass, correo, id_rol} =req.body
-//     let hash= bcrypt.hashSync(pass, 10)
-
-//     mysqlConect.query('insert into usuarios (apellido, nombre, dni, user, pass, correo, id_rol) values (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol], (error, result)=>{
-//         if(error){
-//             console.log('Error  ', error)
-//         }else{
-//             res.json({
-//                 status:true,
-//                 mensaje: "El registro se grabo correctamente"
-//             })
-//         }
-//     })
-    
-
-// })
 
 //ruta login con comparacion de datos con booleano
 
