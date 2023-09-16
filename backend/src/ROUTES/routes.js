@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express()
-const mysqlConect = require('../database/database');
+const mysqlconect = require('../database/database');
 const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')
@@ -24,7 +24,7 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
         })
     }
 
-    mysqlConnect.query('SELECT * FROM usuarios WHERE user=?', [user], (error, usuarios)=>{
+    mysqlconect.query('SELECT * FROM usuarios WHERE user=?', [user], (error, usuarios)=>{
         if(error){
             console.log('Error en la base de datos', error)
         }else{
@@ -34,7 +34,7 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
                     mensaje:"El nombre de usuario ya existe" 
                 })
             }else{
-                mysqlConnect.query('INSERT INTO usuarios (apellido, nombre, dni, user, pass, correo, id_rol ) VALUES (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol ], (error, registros)=>{
+                mysqlconect.query('INSERT INTO usuarios (apellido, nombre, dni, user, pass, correo, id_rol ) VALUES (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol ], (error, registros)=>{
                     if(error){
                         console.log('Error en la base de datos al momento de insertar ----> ', error)
                     }else{
@@ -53,7 +53,7 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
 
 router.post('/login', bodyParser.json(), (req,res)=>{
     const { user, pass } =req.body
-    mysqlConect.query('select user, pass, id_rol, concat_ws(" ", apellido, nombre) nombre_usuario from usuarios WHERE user=?', [user], (error, datos)=>{
+    mysqlconect.query('select user, pass, id_rol, concat_ws(" ", apellido, nombre) nombre_usuario from usuarios WHERE user=?', [user], (error, datos)=>{
         if(!error){
             if(datos.length>0){
                 let comparacion = bcrypt.compareSync(pass, datos[0].pass)
@@ -93,7 +93,7 @@ router.post('/login', bodyParser.json(), (req,res)=>{
 router.get('/usuarios', verificaToken , (req,res)=>{
     jwt.verify(req.token, 'silicon' , (error, valido)=>{
     if(!error){
-        mysqlConect.query('select * from usuarios', (error, registros)=>{
+        mysqlconect.query('select * from usuarios', (error, registros)=>{
             if(error){
                 console.log('Error en base de datos ', error)
             }else{
@@ -117,7 +117,7 @@ router.get('/usuarios/:id_usuariio', verificaToken , (req,res)=>{
     const{id_usuario}=req.params
     jwt.verify(req.token, 'silicon' , (error, valido)=>{
     if(!error){
-        mysqlConect.query('select * from usuarios where id_usuario=?', [id_usuario], (error, registros)=>{
+        mysqlconect.query('select * from usuarios where id_usuario=?', [id_usuario], (error, registros)=>{
             if(error){
                 console.log('Error en base de datos ', error)
             }else{
