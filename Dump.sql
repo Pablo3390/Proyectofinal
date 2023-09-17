@@ -63,17 +63,17 @@ CREATE TABLE `convenio` (
   `fecha_fin` date DEFAULT NULL,
   `clausula_peas` varchar(255) DEFAULT NULL,
   `estado` enum('A','B') NOT NULL DEFAULT 'A',
-  `id_resolucion` int NOT NULL,
   `id_organismo` int NOT NULL,
   `id_tipo_convenio` int NOT NULL,
+  `id_resolucion` int NOT NULL,
   PRIMARY KEY (`id_convenio`),
-  KEY `id_resolucion_idx` (`id_resolucion`),
-  KEY `id_tipo_convenio_idx` (`id_tipo_convenio`),
   KEY `id_organismo_idx` (`id_organismo`),
+  KEY `convenio_resolucion_idx` (`id_resolucion`),
+  KEY `convenio_tipo_convenio_idx` (`id_tipo_convenio`),
   CONSTRAINT `convenio_organismo` FOREIGN KEY (`id_organismo`) REFERENCES `organismo` (`id_organismo`),
   CONSTRAINT `convenio_resolucion` FOREIGN KEY (`id_resolucion`) REFERENCES `resolucion` (`id_resolucion`),
   CONSTRAINT `convenio_tipo_convenio` FOREIGN KEY (`id_tipo_convenio`) REFERENCES `tipo_convenio` (`id_tipo_convenio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,6 +82,7 @@ CREATE TABLE `convenio` (
 
 LOCK TABLES `convenio` WRITE;
 /*!40000 ALTER TABLE `convenio` DISABLE KEYS */;
+INSERT INTO `convenio` VALUES (1,'prueba3',NULL,NULL,NULL,NULL,NULL,'B',5,1,1);
 /*!40000 ALTER TABLE `convenio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,9 +99,9 @@ CREATE TABLE `organismo` (
   `id_tipo_organismo` int NOT NULL,
   `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_organismo`),
-  KEY `id_tipo_organismo_idx` (`id_tipo_organismo`),
-  CONSTRAINT `id_tipo_organismo` FOREIGN KEY (`id_tipo_organismo`) REFERENCES `tipo_organismo` (`id_tipo_organismo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `id_tipo_organismmo_idx` (`id_tipo_organismo`),
+  CONSTRAINT `id_tipo_organismmo` FOREIGN KEY (`id_tipo_organismo`) REFERENCES `tipo_organismo` (`id_tipo_organismo`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,6 +110,7 @@ CREATE TABLE `organismo` (
 
 LOCK TABLES `organismo` WRITE;
 /*!40000 ALTER TABLE `organismo` DISABLE KEYS */;
+INSERT INTO `organismo` VALUES (5,'1',1,'A');
 /*!40000 ALTER TABLE `organismo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,9 +124,10 @@ DROP TABLE IF EXISTS `resolucion`;
 CREATE TABLE `resolucion` (
   `id_resolucion` int NOT NULL AUTO_INCREMENT,
   `numero` int NOT NULL,
-  `ano` varchar(4) NOT NULL,
+  `ano` int NOT NULL,
+  `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_resolucion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +136,7 @@ CREATE TABLE `resolucion` (
 
 LOCK TABLES `resolucion` WRITE;
 /*!40000 ALTER TABLE `resolucion` DISABLE KEYS */;
+INSERT INTO `resolucion` VALUES (1,123,2023,'A');
 /*!40000 ALTER TABLE `resolucion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +179,7 @@ CREATE TABLE `roles` (
   `nombre` varchar(100) NOT NULL,
   `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +188,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Pablo','A');
+INSERT INTO `roles` VALUES (1,'administrador','A'),(2,'operario','A');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +205,7 @@ CREATE TABLE `tipo_convenio` (
   `tipo_conveniocol` varchar(45) DEFAULT NULL,
   `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_tipo_convenio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,6 +214,7 @@ CREATE TABLE `tipo_convenio` (
 
 LOCK TABLES `tipo_convenio` WRITE;
 /*!40000 ALTER TABLE `tipo_convenio` DISABLE KEYS */;
+INSERT INTO `tipo_convenio` VALUES (1,'Prueba22','Prueba8','A'),(2,'Prueba1','Prueba2','A'),(3,'Prueba33','Prueba3','B');
 /*!40000 ALTER TABLE `tipo_convenio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +230,7 @@ CREATE TABLE `tipo_organismo` (
   `nombre` varchar(255) NOT NULL,
   `estado` enum('A','B') NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_tipo_organismo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,6 +239,7 @@ CREATE TABLE `tipo_organismo` (
 
 LOCK TABLES `tipo_organismo` WRITE;
 /*!40000 ALTER TABLE `tipo_organismo` DISABLE KEYS */;
+INSERT INTO `tipo_organismo` VALUES (1,'prueba1','A');
 /*!40000 ALTER TABLE `tipo_organismo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +261,7 @@ CREATE TABLE `usuarios` (
   `id_rol` int NOT NULL,
   `estado` enum('A','B') COLLATE latin1_bin NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_usuario`),
-  KEY `id_roles_idx` (`id_rol`),
+  KEY `id_rol_idx` (`id_rol`),
   CONSTRAINT `id_rol` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -266,7 +272,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Pablo','Saucedo',35327089,'Psaucedo','$2b$10$zNfF.q3TwWq8x7crg2XRQuVtSqNBquOTMekIUHivriQxWR5D7BG8O','pablosaucedoa2@gmail.com',1,'A');
+INSERT INTO `usuarios` VALUES (1,'pablo','saucedo',35327089,'psaucedo','$2b$10$nPxRImYBEK3mnTVlnvTHCeORdxHtQX4C8ztmRZC/LfHoxagSpC8ze','psaucedo@gmail.com',1,'A'),(2,'Agustina','Munaretto',38327082,'amunaretto','$2b$10$PB91StjTXFOjRzx9GZr2MOknC7W9CYFEIlbUoC7BBTvqCvuKlqHDC','psaucedo@gmail.com',1,'A');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-11 18:40:24
+-- Dump completed on 2023-09-16 23:24:28
