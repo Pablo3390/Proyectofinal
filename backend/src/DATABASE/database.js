@@ -4,7 +4,7 @@ const mysqlConect= mysql.createConnection({
     host:'localhost',
     user: 'root',
     password: 'password',
-    database: 'gestiondeconvenios'
+    database: 'gestiondeconvenio'
 })
 
 mysqlConect.connect(function(error){
@@ -16,7 +16,5 @@ mysqlConect.connect(function(error){
     }
 })
 
-//holis, soy agus
-//holis, soy martin
 
 module.exports= mysqlConect;
