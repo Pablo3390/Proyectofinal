@@ -4,6 +4,7 @@ import { useState } from 'react'
 import './App.css'
 import { Menu } from './Menu'
 import { Home } from './Home'
+import { Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
     <>
         
       <Menu/>
-      <Home/>
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+      </Routes>
 
     </>
   )
