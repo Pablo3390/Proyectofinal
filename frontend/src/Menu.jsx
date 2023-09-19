@@ -2,20 +2,21 @@
 import React from "react";
 import reactLogo from './assets/react.svg'
 import './Menu.css';
+import { Link } from "react-router-dom";
 export function Menu(){
 
     return(
         <>
-             <a href="https://react.dev" target="_blank" rel="noreferrer">
+             
              <img src={reactLogo} className="logo react" alt="React logo" />
-             </a>
-
-             <div className="letra_menu">
+             <div>
                 <ul>
-                 <li>registro</li>
-                 <li>ingreso</li>
-                 </ul>
-              </div>
+                    <li><Link to="/">Home</Link></li>                    
+                    <li><Link to="/principal">Principal</Link></li>
+                    <li><Link to="/usuario">Usuario</Link></li>
+                    <li><Link to="/convenio">Convenio</Link></li>
+                </ul>
+             </div>
 
         </>
     )
