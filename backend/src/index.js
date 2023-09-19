@@ -11,7 +11,8 @@ app.use(require('./ROUTES/routesOrganismo'));
 app.use(require('./routes/routesConvenio'));
 app.use(require('./routes/routesTipoConvenio'));
 app.use(require('./ROUTES/routesTipoOrganismo'));
-app.use(require('./ROUTES/routesResolucion'))
+app.use(require('./ROUTES/routesResolucion'));
+app.use(require('./ROUTES/routesActividad'))
 
 app.listen(app.get('puerto'), ()=>{
     console.log('Servidor ON en el puerto ', app.get('puerto'))
