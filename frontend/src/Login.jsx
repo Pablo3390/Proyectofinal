@@ -14,7 +14,7 @@ const ingresar = async(event)=>{
 event.preventDefault();
 
 const usuario = await API.Login({user, pass})
-console.log(usuario);
+   
 if(usuario.status){
   window.localStorage.setItem('usuario',JSON.stringify(usuario.datos[0]) )
   window.localStorage.setItem('token', JSON.stringify(usuario.token))
@@ -52,12 +52,13 @@ return;
                       onChange={(event)=>setPass(event.target.value)}
                       className="form-control" 
                       id="floatingPass" 
-                      placeholder="Pass"/>
+                      placeholder="Pass"
+                      />
                       <label htmlFor="floatingPass">Contraseña</label>
                     </div>
-                    <button className="btn btn-primary" type="submit">Ingresar</button>
-                  
-                    <p className="Letra_roja"> En el caso de no tener cuenta <Link to="/registro">Registrarse</Link></p>
+
+                    <button className="btn btn-primary" type="submit" >Ingresar</button>                  
+                    <p className="mt-5 mb-3 text-body-secondary Letra_roja"> En el caso de no tener cuenta <Link to="/registro">Registrarse</Link></p>
                   </form>
               </main>
         </>
