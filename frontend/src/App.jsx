@@ -7,6 +7,7 @@ import { Home } from './Home'
 import { Route, Routes } from 'react-router-dom'
 import { Login } from './Login'
 import { Principal } from './Principal'
+import { Registro } from './Registro'
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/Login' element={<Login/>}></Route>
         <Route path='/Principal' element={<Principal/>}></Route>
+        <Route path='/Registro' element={<Registro/>}></Route>
+        
       </Routes>
 
     </>
