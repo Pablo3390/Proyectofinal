@@ -11,7 +11,6 @@ export async function Login(datos){
     }
 const respuesta = await fetch(`${URL}/login`, Options)
 const data= await respuesta.json()
-console.log(data)
 return data
 }
 

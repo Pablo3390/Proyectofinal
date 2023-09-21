@@ -47,7 +47,7 @@ return;
                     </div>
                     <div className="form-floating">
                       <input 
-                      type="pass" 
+                      type="password" 
                       value={pass}
                       onChange={(event)=>setPass(event.target.value)}
                       className="form-control" 
