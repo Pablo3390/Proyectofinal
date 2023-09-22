@@ -19,12 +19,11 @@ export async function Registro(datos){
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
-        Headers:{
+        headers: {
             'Content-Type': 'application/json',
         }
     }
-const respuesta = await fetch(`${URL}/registro`, Options)
-const data= await respuesta.json()
-console.log(data)
-return data
+    const respuesta = await fetch(`${URL}/registro`, Options)
+    const data= await respuesta.json()
+    return data
 }

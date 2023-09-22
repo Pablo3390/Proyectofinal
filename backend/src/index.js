@@ -25,7 +25,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(require('./routes/routes'));
+app.use(require('./ROUTES/routes'));
 app.use(require('./ROUTES/routesOrganismo'));
 app.use(require('./routes/routesConvenio'));
 app.use(require('./routes/routesTipoConvenio'));

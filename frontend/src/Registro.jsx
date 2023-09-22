@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import viteLogo from '/vite.svg'
 import { Link } from "react-router-dom";
+import * as API from './servicios/servicios'
 
 
 export function Registro(){
+
     const[apellido, setApellido] = useState('')
     const[nombre, setNombre] = useState('')
     const[dni, setDni] = useState('')
@@ -11,10 +13,24 @@ export function Registro(){
     const[pass, setPass] = useState('')
     const[correo, setCorreo] = useState('')
     const[id_rol, setIdrol] = useState('1')
+
+    const registro = async(event)=>{
+      event.preventDefault();      
+      const registro = await API.Registro({apellido, nombre, dni, user, pass, correo, id_rol})
+        console.log(registro)               
+        if(registro.status){
+          alert(registro.mensaje)      
+        
+         }else{
+          alert(registro.mensaje)
+         }
+        return;      
+      }
+
     return(
         <>
         <main className="form-signin w-100 m-auto">
-             <form>
+             <form onSubmit={registro}>
                 <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
                    <img src={viteLogo} className="logo" alt="Vite logo" />
                 </a>
@@ -26,10 +42,9 @@ export function Registro(){
                       value={apellido}
                       onChange={(event)=>setApellido(event.target.value)}
                       className="form-control" 
-                      id="floatingPass" 
-                      placeholder="Apellido"
+                      id="apellido" 
                       />
-                      <label htmlFor="floatingPass">Apellido</label>
+                      <label htmlFor="apellido">Apellido</label>
                     </div>
                     <div className="form-floating">
                     <input 
@@ -37,10 +52,9 @@ export function Registro(){
                       value={nombre}
                       onChange={(event)=>setNombre(event.target.value)}
                       className="form-control" 
-                      id="floatingPass" 
-                      placeholder="Nombre"
+                      id="nombre"
                       />
-                      <label htmlFor="floatingPass">Nombre</label>
+                      <label htmlFor="apellido">Nombre</label>
                       </div>
                       <div className="form-floating">
                     <input 
@@ -48,10 +62,9 @@ export function Registro(){
                       value={dni}
                       onChange={(event)=>setDni(event.target.value)}
                       className="form-control" 
-                      id="floatingPass" 
-                      placeholder="Dni"
+                      id="dni"
                       />
-                      <label htmlFor="floatingPass">Dni</label>               
+                      <label htmlFor="dni">Dni</label>               
                     
                     </div>
                     <div className="form-floating">
@@ -60,9 +73,9 @@ export function Registro(){
                       value={user}
                       onChange={(event)=>setUser(event.target.value)}
                       className="form-control" 
-                      id="floatingInput" 
-                      placeholder="email@gmail.com"/>
-                      <label htmlFor="floatingInput">Usuario</label>
+                      id="user" 
+                      />
+                      <label htmlFor="user">Usuario</label>
                     </div>
                     <div className="form-floating">
                     <input 
@@ -70,10 +83,10 @@ export function Registro(){
                       value={pass}
                       onChange={(event)=>setPass(event.target.value)}
                       className="form-control" 
-                      id="floatingPass" 
-                      placeholder="Pass"
+                      id="pass" 
+                      placeholder="pass"
                       />
-                      <label htmlFor="floatingPass">Contraseña</label>
+                      <label htmlFor="pass">Contraseña</label>
                     </div>
 
                     <div className="form-floating">
@@ -82,21 +95,10 @@ export function Registro(){
                       value={correo}
                       onChange={(event)=>setCorreo(event.target.value)}
                       className="form-control" 
-                      id="floatingInput" 
-                      placeholder="email@gmail.com"/>
-                      <label htmlFor="floatingInput">Correo</label>
-                    </div>
-                    <div className="form-floating">
-                      <input
-                      type="number" 
-                      value={id_rol}
-                      onChange={(event)=>setIdrol(event.target.value)}
-                      className="form-control" 
-                      id="floatingInput" 
-                      placeholder="rol"/>
-                      <label htmlFor="floatingInput">Rol</label>
-                    </div>
-
+                      id="correo" 
+                      />
+                      <label htmlFor="correo">Correo</label>
+                    </div>                  
                     <button className="btn btn-primary" type="submit" >Registrarse</button>                  
                     <p className="mt-5 mb-3 text-body-secondary Letra_roja"> En el caso de tener cuenta <Link to="/login">Ingresar</Link></p>
                   </form>
