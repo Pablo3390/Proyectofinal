@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express()
-const mysqlconect = require('../database/database');
+const mysqlconect = require('../DATABASE/database');
 const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')

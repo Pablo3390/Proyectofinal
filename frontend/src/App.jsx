@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Login } from './Login'
 import { Principal } from './Principal'
 import { Registro } from './Registro'
+import { Convenios } from './Convenios'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/Login' element={<Login/>}></Route>
         <Route path='/Principal' element={<Principal/>}></Route>
         <Route path='/Registro' element={<Registro/>}></Route>
+        <Route path='/Convenios' element={<Convenios/>}></Route>
         
       </Routes>
 

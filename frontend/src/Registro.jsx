@@ -19,7 +19,8 @@ export function Registro(){
       const registro = await API.Registro({apellido, nombre, dni, user, pass, correo, id_rol})
         console.log(registro)               
         if(registro.status){
-          alert(registro.mensaje)      
+          alert(registro.mensaje)   
+          window.location.href='/login'  
         
          }else{
           alert(registro.mensaje)
@@ -43,6 +44,7 @@ export function Registro(){
                       onChange={(event)=>setApellido(event.target.value)}
                       className="form-control" 
                       id="apellido" 
+                      placeholder="apellido"
                       />
                       <label htmlFor="apellido">Apellido</label>
                     </div>
@@ -53,6 +55,7 @@ export function Registro(){
                       onChange={(event)=>setNombre(event.target.value)}
                       className="form-control" 
                       id="nombre"
+                      placeholder="nombre"
                       />
                       <label htmlFor="apellido">Nombre</label>
                       </div>
@@ -63,6 +66,7 @@ export function Registro(){
                       onChange={(event)=>setDni(event.target.value)}
                       className="form-control" 
                       id="dni"
+                      placeholder="dni"
                       />
                       <label htmlFor="dni">Dni</label>               
                     
@@ -74,6 +78,7 @@ export function Registro(){
                       onChange={(event)=>setUser(event.target.value)}
                       className="form-control" 
                       id="user" 
+                      placeholder="user"
                       />
                       <label htmlFor="user">Usuario</label>
                     </div>
@@ -96,6 +101,7 @@ export function Registro(){
                       onChange={(event)=>setCorreo(event.target.value)}
                       className="form-control" 
                       id="correo" 
+                      placeholder="correo"
                       />
                       <label htmlFor="correo">Correo</label>
                     </div>                  

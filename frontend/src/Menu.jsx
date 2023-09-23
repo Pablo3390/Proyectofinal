@@ -14,7 +14,7 @@ export function Menu(){
                     <li><Link to="/">Home</Link></li>                    
                     <li><Link to="/principal">Principal</Link></li>
                     <li><Link to="/usuario">Usuario</Link></li>
-                    <li><Link to="/convenio">Convenio</Link></li>
+                    <li><Link to="/convenios">Convenios</Link></li>
                 </ul>
              </div>
 

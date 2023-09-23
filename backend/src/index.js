@@ -26,10 +26,11 @@ app.use(function (req, res, next) {
 });
 
 app.use(require('./ROUTES/routes'));
-app.use(require('./ROUTES/routesOrganismo'));
-app.use(require('./routes/routesConvenio'));
-app.use(require('./routes/routesTipoConvenio'));
-app.use(require('./ROUTES/routesTipoOrganismo'));
+app.use(require('./ROUTES/routesActividad'));
+app.use(require('./ROUTES/routesOrganismos'));
+app.use(require('./routes/routesConvenios'));
+app.use(require('./routes/routesTipoConvenios'));
+app.use(require('./ROUTES/routesTipoOrganismos'));
 app.use(require('./ROUTES/routesResolucion'));
 app.use(require('./ROUTES/routesActividad'))
 

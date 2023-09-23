@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../database/database');
+const mysqlConect = require('../DATABASE/database');
 const bodyParser = require('body-parser')
 
 
@@ -9,8 +9,8 @@ const bodyParser = require('body-parser')
 //URL: /organismo
 //Paramatro: no hay
 
-router.get('/organismo', (req, res)=>{
-    mysqlConect.query('select * from organismo', (error, registro)=>{
+router.get('/organismos', (req, res)=>{
+    mysqlConect.query('select * from organismos', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -24,9 +24,9 @@ router.get('/organismo', (req, res)=>{
 //URL: /organismo/:id_organismo
 //Paramatro: id_organismo
 
-router.get('/organismo/:id_organismo', (req, res)=>{
+router.get('/organismos/:id_organismo', (req, res)=>{
     const {id_organismo}=req.params 
-    mysqlConect.query('SELECT * FROM organismo WHERE id_organismo=?', [id_organismo], (error, registro)=>{
+    mysqlConect.query('SELECT * FROM organismos WHERE id_organismo=?', [id_organismo], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -40,8 +40,8 @@ router.get('/organismo/:id_organismo', (req, res)=>{
 //URL: /organismo_tiporg
 //Paramatro: no hay
 
-router.get('/organismo_tiporg', (req, res)=>{
-    mysqlConect.query('SELECT o.id_organismo, o.nombre Organismo, torg.id_tipo_organismo, torg.nombre Tipo_Organismo FROM gestiondeconvenios.organismo AS o INNER JOIN gestiondeconvenios.tipo_organismo AS torg', (error, registro)=>{
+router.get('/organismos_tiporg', (req, res)=>{
+    mysqlConect.query('SELECT o.id_organismo, o.nombre Organismos, torg.id_tipo_organismo, torg.nombre Tipo_Organismo FROM gestiondeconvenios.organismos AS o INNER JOIN gestiondeconvenios.tipo_organismo AS torg', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -56,7 +56,7 @@ router.get('/organismo_tiporg', (req, res)=>{
 //URL: /organismo
 //PARAMETROS: nombre, id_tipo_organismo
 
-router.post('/organismo',bodyParser.json(), (req,res)=>{ 
+router.post('/organismos',bodyParser.json(), (req,res)=>{ 
     const {nombre, id_tipo_organismo}=req.body
 
 //datos obligatorios
@@ -75,7 +75,7 @@ if(!id_tipo_organismo){
 }
 
 //si lo datos están completos, entonces:
-    mysqlConect.query('INSERT INTO organismo (`nombre`, `id_tipo_organismo`) VALUES (?, ?);', [nombre, id_tipo_organismo], (error, registro) =>{
+    mysqlConect.query('INSERT INTO organismos (`nombre`, `id_tipo_organismo`) VALUES (?, ?);', [nombre, id_tipo_organismo], (error, registro) =>{
         if(error){ // si hay un error entra acá
                     console.log("Error en la base de datos", error)
         }else{ 
@@ -89,7 +89,7 @@ if(!id_tipo_organismo){
 //Metodo PUT
 //URL: /organismo/:id_organismo
 //Parametros: id_organismo, nombre, id_tipo_organismo
-router.put('/organismo/:id_organismo',bodyParser.json(), (req,res)=>{ 
+router.put('/organismos/:id_organismo',bodyParser.json(), (req,res)=>{ 
     const {id_organismo}= req.params
     const {nombre, id_tipo_organismo}=req.body
 
@@ -108,13 +108,13 @@ router.put('/organismo/:id_organismo',bodyParser.json(), (req,res)=>{
     }
 
     //Si los demas datos están cargados correctamente, entonces:
-    mysqlConect.query('SELECT * FROM organismo WHERE id_organismo=?;', [id_organismo], (error, registro) =>{
+    mysqlConect.query('SELECT * FROM organismos WHERE id_organismo=?;', [id_organismo], (error, registro) =>{
         if(error){ // si hay un error entra acá
             console.log("Error en la base de datos", error)
         
         }else{ // si no hay error que me devuelve lo siguiente:
             if(registro.length>0){
-                mysqlConect.query('UPDATE organismo SET nombre=?, id_tipo_organismo=? WHERE id_organismo = ?', [nombre, id_tipo_organismo, id_organismo], (error, registro) =>{
+                mysqlConect.query('UPDATE organismos SET nombre=?, id_tipo_organismo=? WHERE id_organismo = ?', [nombre, id_tipo_organismo, id_organismo], (error, registro) =>{
                     
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
@@ -143,17 +143,17 @@ router.put('/organismo/:id_organismo',bodyParser.json(), (req,res)=>{
  //URL: /organismo/:id_organismo
  //Parametros: id_organismo
 
-router.delete('/organismo/:id_organismo',bodyParser.json(), (req,res)=>{ 
+router.delete('/organismos/:id_organismo',bodyParser.json(), (req,res)=>{ 
     const {id_organismo}= req.params
 
     
-    mysqlConect.query('SELECT * FROM organismo WHERE id_organismo=?;', [id_organismo], (error, registro) =>{
+    mysqlConect.query('SELECT * FROM organismos WHERE id_organismo=?;', [id_organismo], (error, registro) =>{
         if(error){ // si hay un error entra acá
             console.log("Error en la base de datos", error)
         
         }else{ // si no hay error que me devuelve lo siguiente
             if(registro.length>0){
-                mysqlConect.query('UPDATE organismo SET estado = "B" WHERE id_organismo = ?;', [id_organismo], (error, registro) =>{
+                mysqlConect.query('UPDATE organismos SET estado = "B" WHERE id_organismo = ?;', [id_organismo], (error, registro) =>{
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
                     }else{ 
