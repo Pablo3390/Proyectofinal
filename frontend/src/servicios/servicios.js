@@ -95,3 +95,17 @@ export async function deleteConvenios(id_convenio){
     console.log(data)
     return data
 }
+
+//Esta es mi funcion para agregar convenios
+export async function AddConvenios(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/convenios`, Options)
+    const data= await respuesta.json()
+    return data
+}

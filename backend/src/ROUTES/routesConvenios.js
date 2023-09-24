@@ -21,7 +21,7 @@ router.get('/convenios', (req , res)=>{
 
 router.post('/convenios', bodyParser.json(), (req , res)=>{
   
-  const { nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, estado, id_resolucion, id_organismo, id_tipo_convenio  }  = req.body
+  const { nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio  }  = req.body
   if(!nombre){
       res.json({
           status:false,
@@ -46,7 +46,7 @@ router.post('/convenios', bodyParser.json(), (req , res)=>{
           mensaje: "El tipo de convenio es un campo obligatorio"
       })
   }
-  mysqlConect.query('INSERT INTO convenios (nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, estado, id_resolucion, id_organismo, id_tipo_convenio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, estado, id_resolucion, id_organismo, id_tipo_convenio ], (error, registros)=>{
+  mysqlConect.query('INSERT INTO convenios (nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio ], (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
       }else{

@@ -2,6 +2,8 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import './Convenios.css';
+import { Link } from "react-router-dom";
+
 import * as API from './servicios/servicios'
 
 export function Convenios(){
@@ -13,13 +15,17 @@ export function Convenios(){
             e.preventDefault();
             console.log('El id que vamos a eliminar es el ', id_convenio)
             API.deleteConvenios(id_convenio);
-            API.getConvenios().then(setConvenios);
+            window.location.reload(true)
+
             
         }
     return(
         <>
         Aqui va el listado de Convenios
         <table>
+        <tr>
+                <td className="Letra_roja" colSpan="11" ><Link className="Borde_negro" to="/agregarConvenios">Agregar Convenios</Link></td>
+            </tr>
             <tr>
                 <td className="Letra_roja">Nombre</td>
                 <td className="Letra_roja">Utilidad</td>
