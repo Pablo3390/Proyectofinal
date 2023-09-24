@@ -9,8 +9,8 @@ const bodyParser = require('body-parser')
 //URL: /actividad
 //Paramatro: no hay
 
-router.get('/actividad', (req, res)=>{
-    mysqlConect.query('select * from actividad', (error, registro)=>{
+router.get('/actividades', (req, res)=>{
+    mysqlConect.query('select * from actividades', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -24,9 +24,9 @@ router.get('/actividad', (req, res)=>{
 //URL: /actividad/:id_actividad
 //Paramatro: id_actividad
 
-router.get('/actividad/:id_actividad', (req, res)=>{
+router.get('/actividades/:id_actividad', (req, res)=>{
     const {id_actividad}=req.params 
-    mysqlConect.query('SELECT * FROM actividad WHERE id_actividad=?', [id_actividad], (error, registro)=>{
+    mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?', [id_actividad], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -40,8 +40,8 @@ router.get('/actividad/:id_actividad', (req, res)=>{
 //URL: /actividad_convenio
 //Paramatro: no
 
-router.get('/actividad_convenio', (req, res)=>{
-    mysqlConect.query('SELECT a.id_actividad, a.nombre Actividad, c.nombre Convenio FROM gestiondeconvenio.actividad as a INNER JOIN gestiondeconvenio.convenio AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
+router.get('/actividades_convenio', (req, res)=>{
+    mysqlConect.query('SELECT a.id_actividad, a.nombre actividades, c.nombre Convenio FROM gestiondeconvenio.actividades as a INNER JOIN gestiondeconvenio.convenio AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -58,7 +58,7 @@ router.get('/actividad_convenio', (req, res)=>{
 //URL: /actividad
 //PARAMETROS: nombre, id_convenio
 
-router.post('/actividad',bodyParser.json(), (req,res)=>{ 
+router.post('/actividades',bodyParser.json(), (req,res)=>{ 
     const {nombre, id_convenio}=req.body
 
 //datos obligatorios
@@ -77,7 +77,7 @@ if(!id_convenio){
 }
 
 //si lo datos están completos, entonces:
-    mysqlConect.query('INSERT INTO actividad (`nombre`, `id_convenio`) VALUES (?, ?);', [nombre, id_convenio], (error, registro) =>{
+    mysqlConect.query('INSERT INTO actividades (`nombre`, `id_convenio`) VALUES (?, ?);', [nombre, id_convenio], (error, registro) =>{
         if(error){ // si hay un error entra acá
                     console.log("Error en la base de datos", error)
         }else{ 
@@ -91,7 +91,7 @@ if(!id_convenio){
 //Metodo PUT
 //URL: /actividad/:id_actividad
 //Parametros: id_actividad, nombre, id_convenio
-router.put('/actividad/:id_actividad',bodyParser.json(), (req,res)=>{ 
+router.put('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{ 
     const {id_actividad}= req.params
     const {nombre, id_convenio}=req.body
 
@@ -110,13 +110,13 @@ router.put('/actividad/:id_actividad',bodyParser.json(), (req,res)=>{
     }
 
     //Si los demas datos están cargados correctamente, entonces:
-    mysqlConect.query('SELECT * FROM actividad WHERE id_actividad=?;', [id_actividad], (error, registro) =>{
+    mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?;', [id_actividad], (error, registro) =>{
         if(error){ // si hay un error entra acá
             console.log("Error en la base de datos", error)
         
         }else{ // si no hay error que me devuelve lo siguiente:
             if(registro.length>0){
-                mysqlConect.query('UPDATE actividad SET nombre=?, id_convenio=? WHERE id_actividad = ?', [nombre, id_convenio, id_actividad], (error, registro) =>{
+                mysqlConect.query('UPDATE actividades SET nombre=?, id_convenio=? WHERE id_actividad = ?', [nombre, id_convenio, id_actividad], (error, registro) =>{
                     
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
@@ -145,17 +145,17 @@ router.put('/actividad/:id_actividad',bodyParser.json(), (req,res)=>{
  //URL: /actividad/:id_actividad
  //Parametros: id_actividad
 
-router.delete('/actividad/:id_actividad',bodyParser.json(), (req,res)=>{ 
+router.delete('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{ 
     const {id_actividad}= req.params
 
     
-    mysqlConect.query('SELECT * FROM actividad WHERE id_actividad=?;', [id_actividad], (error, registro) =>{
+    mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?;', [id_actividad], (error, registro) =>{
         if(error){ // si hay un error entra acá
             console.log("Error en la base de datos", error)
         
         }else{ // si no hay error que me devuelve lo siguiente
             if(registro.length>0){
-                mysqlConect.query('UPDATE actividad SET estado = "B" WHERE id_actividad = ?;', [id_actividad], (error, registro) =>{
+                mysqlConect.query('UPDATE actividades SET estado = "B" WHERE id_actividad = ?;', [id_actividad], (error, registro) =>{
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
                     }else{ 

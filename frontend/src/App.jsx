@@ -9,6 +9,9 @@ import { Login } from './Login'
 import { Principal } from './Principal'
 import { Registro } from './Registro'
 import { Convenios } from './Convenios'
+import { Actividades } from './Actividades'
+import { Organismos } from './Organismos'
+import { Resolucion } from './Resolucion'
 
 
 function App() {
@@ -25,6 +28,9 @@ function App() {
         <Route path='/Principal' element={<Principal/>}></Route>
         <Route path='/Registro' element={<Registro/>}></Route>
         <Route path='/Convenios' element={<Convenios/>}></Route>
+        <Route path='/Actividades' element={<Actividades/>}></Route>
+        <Route path='/Organismos' element={<Organismos/>}></Route>
+        <Route path='/Resolucion' element={<Resolucion/>}></Route>
         
       </Routes>
 

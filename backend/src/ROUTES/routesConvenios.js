@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')
 
-//Lista de convenios
+//Listar de convenios
 
 router.get('/convenios', (req , res)=>{
   mysqlConect.query('SELECT * FROM convenios', (error, registros)=>{

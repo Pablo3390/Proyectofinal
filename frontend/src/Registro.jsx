@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import viteLogo from '/vite.svg'
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ export function Registro(){
     const[user, setUser] = useState('')
     const[pass, setPass] = useState('')
     const[correo, setCorreo] = useState('')
+    // eslint-disable-next-line no-unused-vars
     const[id_rol, setIdrol] = useState('1')
 
     const registro = async(event)=>{

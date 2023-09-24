@@ -53,6 +53,20 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
 
 router.post('/login', bodyParser.json(), (req,res)=>{
     const { user, pass } =req.body
+    if(!user){
+        res.json({
+            status:false,
+            mensaje:"El usuario es un dato obligatorio para el login" 
+        })
+         return; 
+    }
+    if(!pass){
+        res.json({
+            status:false,
+            mensaje:"El password es un dato obligatorio para el login" 
+        }) 
+        return;
+    }
     mysqlconect.query('select user, pass, id_rol, concat_ws(" ", apellido, nombre) nombre_usuario from usuarios WHERE user=?', [user], (error, datos)=>{
         if(!error){
             if(datos.length>0){

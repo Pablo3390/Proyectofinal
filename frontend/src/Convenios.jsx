@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import './Convenios.css';
@@ -7,11 +8,17 @@ export function Convenios(){
     const [convenios, setConvenios] = useState([])
 
     useEffect(()=>{
-        API.getConvenios().then(setConvenios)}, []
-    )
+        API.getConvenios().then(setConvenios)}, [])
+        const eliminar =(e, id_convenio)=>{
+            e.preventDefault();
+            console.log('El id que vamos a eliminar es el ', id_convenio)
+            API.deleteConvenios(id_convenio);
+            API.getConvenios().then(setConvenios);
+            
+        }
     return(
         <>
-        Aqui va el listado de convenios
+        Aqui va el listado de Convenios
         <table>
             <tr>
                 <td className="Letra_roja">Nombre</td>
@@ -24,6 +31,7 @@ export function Convenios(){
                 <td className="Letra_roja">Id_tipo_convenio</td>
                 <td className="Letra_roja">Id_resolucion</td>
                 <td className="Letra_roja">Estado</td>
+                <td className="Letra_roja">#</td>
             </tr>
             {convenios.map((convenios)=>(
                 <tr>
@@ -37,6 +45,7 @@ export function Convenios(){
                 <td className="Borde_negro">{convenios.id_tipo_convenio}</td>
                 <td className="Borde_negro">{convenios.id_resolucion}</td>
                 <td className="Borde_negro">{convenios.estado}</td>
+                <td className="Borde_negro"><button onClick={(event)=>eliminar(event, convenios.id_convenio)} className="Boton_rojo">Eliminar</button></td>
             </tr>
             ))}
         </table>
