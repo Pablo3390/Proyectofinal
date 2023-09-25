@@ -82,7 +82,7 @@ export async function getResolucion(){
     return data
 }
 
-//Esta es mi funcion para listar las resoluciones
+//Esta es mi funcion para eliminar convenios
 export async function deleteConvenios(id_convenio){
     const Options={
         method:'DELETE',
@@ -107,5 +107,19 @@ export async function AddConvenios(datos){
     }
     const respuesta = await fetch(`${URL}/convenios`, Options)
     const data= await respuesta.json()
+    return data
+}
+
+//Esta es mi funcion para eliminar organismos
+export async function deleteOrganismos(id_organismo){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
     return data
 }

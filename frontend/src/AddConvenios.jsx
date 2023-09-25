@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
 export function AddConvenios(){
+    const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
     const [utilidad, setUtilidad] = useState('')
     const [objeto, setObjeto] = useState('')
@@ -15,11 +16,17 @@ export function AddConvenios(){
 
     const guardarConvenio = async(event)=>{
         event.preventDefault();
-        const respuesta = await API.AddConvenios({nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_organismo, id_tipo_convenio, id_resolucion})        
-        console.log('La respues es ', respuesta)
+        const respuesta = await API.AddConvenios({nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_organismo, id_tipo_convenio, id_resolucion})
+        if (respuesta.status){
+            setMensaje(respuesta.mensaje)
+            setTimeout(()=>{
+                setMensaje('')
+                    window.location.href='/convenios'
+            }, 2000)
+        }
         return;
         
-        }
+ }
     
     return(
         <>
@@ -27,6 +34,9 @@ export function AddConvenios(){
         
         <main className="form-signin w-100 m-auto">
              <form onSubmit={guardarConvenio}>
+                <div>
+                    {mensaje}
+                </div>
              <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
                     <div className="form-floating">
                       <input
