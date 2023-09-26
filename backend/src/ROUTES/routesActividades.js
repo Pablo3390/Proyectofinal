@@ -41,7 +41,7 @@ router.get('/actividades/:id_actividad', (req, res)=>{
 //Paramatro: no
 
 router.get('/actividades_convenio', (req, res)=>{
-    mysqlConect.query('SELECT a.id_actividad, a.nombre actividades, c.nombre Convenio FROM gestiondeconvenio.actividades as a INNER JOIN gestiondeconvenio.convenio AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
+    mysqlConect.query('SELECT a.id_actividad, a.nombre actividades, c.nombre Convenio FROM actividades as a INNER JOIN convenio AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
