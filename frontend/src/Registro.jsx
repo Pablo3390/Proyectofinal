@@ -95,7 +95,6 @@ export function Registro(){
                       />
                       <label htmlFor="pass">Contraseña</label>
                     </div>
-
                     <div className="form-floating">
                       <input
                       type="text" 

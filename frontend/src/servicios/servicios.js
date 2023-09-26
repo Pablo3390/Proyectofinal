@@ -123,3 +123,17 @@ export async function deleteOrganismos(id_organismo){
     console.log(data)
     return data
 }
+
+//Esta es mi funcion para agregar organismo
+export async function AddOrganismos(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/organismos`, Options)
+    const data= await respuesta.json()
+    return data
+}

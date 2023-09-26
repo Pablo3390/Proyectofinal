@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import './Organismos.css';
+import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
 
 
@@ -23,6 +24,9 @@ export function Organismos(){
         Esta es la pantalla de Organismos
 
         <table>
+        <tr>
+                <td className="Letra_roja" colSpan="4" ><Link className="Borde_negro" to="/agregarOrganismos">Agregar Organismo</Link></td>
+            </tr>
             <tr>
                 <td className="Letra_roja">Nombre</td>
                 <td className="Letra_roja">Id_tipo_organismo</td>
