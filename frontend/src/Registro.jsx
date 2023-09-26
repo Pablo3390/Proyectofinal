@@ -1,115 +1,179 @@
-// eslint-disable-next-line no-unused-vars
+// // eslint-disable-next-line no-unused-vars
+
 import React, { useState } from "react";
 import viteLogo from '/vite.svg'
 import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
 
-
 export function Registro(){
+    
+    const [apellido, setApellido]= useState('')
+    const [nombre, setNombre]= useState('')
+    const [dni, setDni]= useState('')
+    const [user, setUser]= useState('')
+    const [pass, setPass]= useState('')
+    const [nick, setNick]= useState('')
+    const [pass2, setPassDos]= useState('')
+    const [mensajeAlerta, setMensajeAlerta]= useState('')
+    const [mensajeAlertaNick, setMensajeAlertaNick]= useState('')
+    const [correo, setCorreo]= useState('')
+    const [id_rol, setIdRol]= useState('1')
 
-    const[apellido, setApellido] = useState('')
-    const[nombre, setNombre] = useState('')
-    const[dni, setDni] = useState('')
-    const[user, setUser] = useState('')
-    const[pass, setPass] = useState('')
-    const[correo, setCorreo] = useState('')
-    // eslint-disable-next-line no-unused-vars
-    const[id_rol, setIdrol] = useState('1')
+
 
     const registro = async(event)=>{
-      event.preventDefault();      
-      const registro = await API.Registro({apellido, nombre, dni, user, pass, correo, id_rol})
-        console.log(registro)               
+      event.preventDefault();
+      if(pass == pass2){
+        const registro = await API.Registro({apellido, user, nombre, dni, pass, correo, id_rol})
         if(registro.status){
-          alert(registro.mensaje)   
-          window.location.href='/login'  
-        
-         }else{
+           alert(registro.mensaje)
+           window.location.href='/login'
+        }else{
           alert(registro.mensaje)
-         }
-        return;      
+         
+        }
+       return;
+      }else{
+        setMensajeAlerta('Las contraseñas deben ser iguales.')
+        setTimeout(()=>{
+          setMensajeAlerta('')
+          setPassDos('')
+            
+            }, 2000)
       }
+    }
+
+    const validarNick = async(event)=>{
+          // event.preventDefault();
+          
+          const validacion = await API.ValidarNick({user})
+          console.log(validacion)
+            if(validacion.status){
+              setMensajeAlertaNick(validacion.mensaje)
+              setNick('')
+              setTimeout(()=>{
+                setMensajeAlertaNick('')
+                  setUser('')
+                  // setNick('')
+                  }, 5000)
+              // un icono rojo
+            }else{
+              // un icono lojo
+              setNick('ok')
+            }
+         
+    }
 
     return(
         <>
         <main className="form-signin w-100 m-auto">
-             <form onSubmit={registro}>
-                <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-                   <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                    <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
+              <form onSubmit={registro}>
+                  <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+                    <img src={viteLogo} className="logo" alt="Vite logo" />
+                  </a>
+                <h1 className="h3 mb-3 fw-normal">Por favor completar los datos</h1>
+                
+                <div className="form-floating">
+                  <input 
+                  type="text" 
+                  value={apellido}
+                  onChange={(event)=>setApellido(event.target.value)}
+                  className="form-control" 
+                  id="apellido" 
+                  />
+                  <label htmlFor="apellido">Apellido</label>
+                </div>
+                <div className="form-floating">
+                  <input 
+                  type="text" 
+                  value={nombre}
+                  onChange={(event)=>setNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  <label htmlFor="nombre">Nombre</label>
+                </div>
 
-                    <div className="form-floating">
-                    <input 
-                      type="text" 
-                      value={apellido}
-                      onChange={(event)=>setApellido(event.target.value)}
-                      className="form-control" 
-                      id="apellido" 
-                      placeholder="apellido"
-                      />
-                      <label htmlFor="apellido">Apellido</label>
-                    </div>
-                    <div className="form-floating">
-                    <input 
-                      type="text" 
-                      value={nombre}
-                      onChange={(event)=>setNombre(event.target.value)}
-                      className="form-control" 
-                      id="nombre"
-                      placeholder="nombre"
-                      />
-                      <label htmlFor="apellido">Nombre</label>
-                      </div>
-                      <div className="form-floating">
-                    <input 
-                      type="number" 
-                      value={dni}
-                      onChange={(event)=>setDni(event.target.value)}
-                      className="form-control" 
-                      id="dni"
-                      placeholder="dni"
-                      />
-                      <label htmlFor="dni">Dni</label>               
-                    
-                    </div>
-                    <div className="form-floating">
-                      <input
-                      type="text" 
-                      value={user}
-                      onChange={(event)=>setUser(event.target.value)}
-                      className="form-control" 
-                      id="user" 
-                      placeholder="user"
-                      />
-                      <label htmlFor="user">Usuario</label>
-                    </div>
-                    <div className="form-floating">
-                    <input 
-                      type="password" 
-                      value={pass}
-                      onChange={(event)=>setPass(event.target.value)}
-                      className="form-control" 
-                      id="pass" 
-                      placeholder="pass"
-                      />
-                      <label htmlFor="pass">Contraseña</label>
-                    </div>
-                    <div className="form-floating">
-                      <input
-                      type="text" 
-                      value={correo}
-                      onChange={(event)=>setCorreo(event.target.value)}
-                      className="form-control" 
-                      id="correo" 
-                      placeholder="correo"
-                      />
-                      <label htmlFor="correo">Correo</label>
-                    </div>                  
-                    <button className="btn btn-primary" type="submit" >Registrarse</button>                  
-                    <p className="mt-5 mb-3 text-body-secondary Letra_roja"> En el caso de tener cuenta <Link to="/login">Ingresar</Link></p>
-                  </form>
-              </main>
+                <div className="form-floating">
+                  <input 
+                  type="number" 
+                  value={dni}
+                  onChange={(event)=>setDni(event.target.value)}
+                  className="form-control" 
+                  id="dni" 
+                  />
+                  <label htmlFor="dni">DNI</label>
+                </div>
+                <div className="form-floating">
+                <input 
+                  type="email" 
+                  value={correo}
+                  onChange={(event)=>setCorreo(event.target.value)}
+                  className="form-control" 
+                  id="correo" 
+                  />
+                  <label htmlFor="correo">Correo</label>
+                </div>
+                
+                <div className="form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={user}
+                  onChange={(event)=>setUser(event.target.value)}
+                  onBlur={(event)=>validarNick(event.target.value)}
+                  className="form-control" 
+                  id="user" 
+                  />
+                  {
+                 nick? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="usuario">Usuario</label>
+                </div>
+                {
+                 mensajeAlertaNick? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNick}
+                </div>
+                :<></>
+                  }
+                <div className="form-floating">
+                  <input 
+                  required
+                  type="password" 
+                  value={pass}
+                  onChange={(event)=>setPass(event.target.value)}
+                  className="form-control" 
+                  id="pass" 
+                  />
+                  <label htmlFor="password">Password</label>
+                </div>
+                {
+                 mensajeAlerta? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlerta}
+                </div>
+              :<></>
+                  }
+                <div className="form-floating">
+                  <input 
+                  required
+                  type="password" 
+                  value={pass2}
+                  onChange={(event)=>setPassDos(event.target.value)}
+                  className="form-control" 
+                  id="pass2" 
+                  />
+                  <label htmlFor="password">Repita Password</label>
+                </div>
+                <button className="btn btn-primary" type="submit" >Registrarme</button>
+                <p className="mt-5 mb-3 text-body-secondary letra_roja"> En el caso de tener cuenta <Link to="/login">Ingresar</Link></p>
+              </form>
+          </main>
         </>
     )
 }

@@ -23,8 +23,8 @@ router.get('/convenios', (req , res)=>{
 //URL: conveniosss (CAMBIAR)
 //Paramatro: no
 
-router.get('/conveniosss', (req, res)=>{
-    mysqlConect.query('SELECT c.id_convenio, c.nombre Convenio, o.nombre Organismo, tconv.nombre Tipo_Convenio, re.numero N°_Resolucion FROM convenio AS c INNER JOIN organismo AS o ON c.id_organismo=o.id_organismo INNER JOIN tipo_convenio AS tconv ON c.id_tipo_convenio=tconv.id_tipo_convenio INNER JOIN resolucion AS re ON c.id_resolucion=re.id_resolucion', (error, registro)=>{
+router.get('/convenios', (req, res)=>{
+    mysqlConect.query('SELECT c.id_convenio, c.nombre Convenios, o.nombre Organismos, tconv.nombre Tipo_Convenio, re.numero N°_Resolucion FROM convenios AS c INNER JOIN organismos AS o ON c.id_organismo=o.id_organismo INNER JOIN tipo_convenio AS tconv ON c.id_tipo_convenio=tconv.id_tipo_convenio INNER JOIN resolucion AS re ON c.id_resolucion=re.id_resolucion', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{

@@ -14,6 +14,7 @@ import { Organismos } from './Organismos'
 import { Resolucion } from './Resolucion'
 import { AddConvenios } from './addConvenios'
 import { AddOrganismos } from './AddOrganismos'
+import { Tipoorganismos } from './TipoOrganismos'
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path='/Resolucion' element={<Resolucion/>}></Route>
         <Route path='/agregarconvenios' element={<AddConvenios/>}></Route>
         <Route path='/agregarorganismos' element={<AddOrganismos/>}></Route>
+        <Route path='/tipoorganismos' element={<Tipoorganismos/>}></Route>
         
       </Routes>
 

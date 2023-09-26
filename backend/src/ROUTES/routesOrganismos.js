@@ -41,7 +41,7 @@ router.get('/organismos/:id_organismo', (req, res)=>{
 //Paramatro: no hay
 
 router.get('/organismos_tiporg', (req, res)=>{
-    mysqlConect.query('SELECT o.id_organismo, o.nombre Organismos, torg.id_tipo_organismo, torg.nombre Tipo_Organismo FROM gestiondeconvenios.organismos AS o INNER JOIN gestiondeconvenios.tipo_organismo AS torg', (error, registro)=>{
+    mysqlConect.query('SELECT o.id_organismo, o.nombre Organismos, torg.id_tipo_organismo, torg.nombre Tipo_Organismo FROM gestiondeconvenio.organismos AS o INNER JOIN gestiondeconvenio.tipo_organismo AS torg', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -77,9 +77,15 @@ if(!id_tipo_organismo){
 //si lo datos están completos, entonces:
     mysqlConect.query('INSERT INTO organismos (`nombre`, `id_tipo_organismo`) VALUES (?, ?);', [nombre, id_tipo_organismo], (error, registro) =>{
         if(error){ // si hay un error entra acá
-                    console.log("Error en la base de datos", error)
+            res.json({
+                status:false,
+                mensaje: error
+            })
         }else{ 
-                    res.send ('El registro se realizó correctamente')
+            res.json({
+                status:true,
+                mensaje: "El registro se grabo correctamente"
+            })
         }
      })
     })

@@ -13,6 +13,21 @@ const respuesta = await fetch(`${URL}/login`, Options)
 const data= await respuesta.json()
 return data
 }
+//esta es mi funcion es para validar el nick
+export async function ValidarNick(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validarnick`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
 
 //Esta es mi funcion para registrarme
 export async function Registro(datos){
@@ -63,6 +78,19 @@ export async function getOrganismos(){
         }
     }
     const respuesta = await fetch(`${URL}/organismos`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+//Esta es mi funcion para listar los organmismos
+export async function getTipoorganismos(){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
     const data= await respuesta.json()
     console.log(data)
     return data

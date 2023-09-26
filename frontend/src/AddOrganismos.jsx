@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
 export function AddOrganismos(){
     const [mensaje, setMensaje] = useState('')
-    const [id_tipo_organismo, setIdtipoorganismo] = useState('')
     const [nombre, setNombre] = useState('')
-    const [organismos, setOrganismos] = useState([])
+    const [tipo_organismos, setTipoorganismos] = useState([])
+    const [id_tipo_organismo, setIdtipoorganismo] = useState('')
 
     useEffect(()=>{
-        API.getOrganismos().then(setOrganismos)
+        API.getTipoorganismos().then(setTipoorganismos)
     }, [] )
 
     const guardarOrganismo = async(event)=>{
@@ -30,9 +30,7 @@ export function AddOrganismos(){
 
     
     return(
-        <>
-        Aqui va el form agregar
-        
+        <>        
         <main className="form-signin w-100 m-auto">
              <form onSubmit={guardarOrganismo}>
                 <div>
@@ -51,7 +49,7 @@ export function AddOrganismos(){
                     <div className="form-floating">
                       
                       <select onChange={(event)=>setIdtipoorganismo(event.target.value)} className="form-control">
-                      {organismos.map((o)=>(
+                      {tipo_organismos.map((o)=>(
                         <option value={o.id_tipo_organismo}>{o.nombre}</option>
 
                         ))}

@@ -56,9 +56,15 @@ if(!nombre){
 //si lo datos están completos, entonces:
     mysqlConect.query('INSERT INTO tipo_organismos (`nombre`) VALUES (?);', [nombre], (error, registro) =>{
         if(error){ // si hay un error entra acá
-                    console.log("Error en la base de datos", error)
+            res.json({
+                status:false,
+                mensaje: error
+            })
         }else{ 
-                    res.send ('El registro se realizó correctamente')
+            res.json({
+                status:true,
+                mensaje: "El registro se grabo correctamente"
+            })
         }
      })
     })

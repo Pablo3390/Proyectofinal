@@ -30,12 +30,12 @@ export function Convenios(){
                 <td className="Letra_roja">Nombre</td>
                 <td className="Letra_roja">Utilidad</td>
                 <td className="Letra_roja">Objeto</td>
-                <td className="Letra_roja">Fecha_inicio</td>
-                <td className="Letra_roja">Fecha_fin</td>
-                <td className="Letra_roja">Clausula_peas</td>
-                <td className="Letra_roja">Id_organismo</td>
-                <td className="Letra_roja">Id_tipo_convenio</td>
-                <td className="Letra_roja">Id_resolucion</td>
+                <td className="Letra_roja">Fecha de inicio</td>
+                <td className="Letra_roja">Fecha de fin</td>
+                <td className="Letra_roja">Clausula peas</td>
+                <td className="Letra_roja">Organismo</td>
+                <td className="Letra_roja">Tipo de convenio</td>
+                <td className="Letra_roja">Resolucion</td>
                 <td className="Letra_roja">Estado</td>
                 <td className="Letra_roja">#</td>
             </tr>

@@ -18,6 +18,7 @@ export function Menu(){
                     <li><Link to="/actividades">Actividades</Link></li>
                     <li><Link to="/organismos">Organismos</Link></li>
                     <li><Link to="/resolucion">Resolucion</Link></li>
+                    <li><Link to="/tipoorganismos">TipoOrganismos</Link></li>
                 </ul>
              </div>
 
