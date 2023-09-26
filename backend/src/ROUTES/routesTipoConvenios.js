@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../DATABASE/database');
+const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
 
 //Lista de tipo_convenio

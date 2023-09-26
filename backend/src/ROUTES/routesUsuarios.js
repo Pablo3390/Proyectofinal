@@ -1,5 +1,5 @@
 const express = require('express');
-const mysqlConnect = require('../DATABASE/database')
+const mysqlConnect = require('../database/database')
 const bodyParser = require('body-parser');
 const router = express()
 const jwt = require('jsonwebtoken')
