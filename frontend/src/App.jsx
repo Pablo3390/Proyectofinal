@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Login } from './Login'
 import { Principal } from './Principal'
 import { Registro } from './Registro'
+
 import { Convenios } from './componentes/convenios/Convenios'
 import { Actividades } from './componentes/actividades/Actividades'
 import { Organismos } from './componentes/organismos/Organismos'
