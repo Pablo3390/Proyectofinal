@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import * as API from './servicios/servicios'
+import * as API from '../../servicios/servicios'
 export function AddOrganismos(){
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
@@ -50,6 +50,7 @@ export function AddOrganismos(){
                       
                       <select onChange={(event)=>setIdtipoorganismo(event.target.value)} className="form-control">
                       {tipo_organismos.map((o)=>(
+                      
                         <option value={o.id_tipo_organismo}>{o.nombre}</option>
 
                         ))}

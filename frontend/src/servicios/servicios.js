@@ -82,7 +82,7 @@ export async function getOrganismos(){
     console.log(data)
     return data
 }
-//Esta es mi funcion para listar los organmismos
+//Esta es mi funcion para listar los tipo de organmismos
 export async function getTipoorganismos(){
     const Options={
         method:'GET',
@@ -91,6 +91,32 @@ export async function getTipoorganismos(){
         }
     }
     const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+//Esta es mi funcion para agregar lo tipos de organismo
+export async function AddTipoorganismos(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
+    const data= await respuesta.json()
+    return data
+}
+//Esta es mi funcion para eliminar los tipos de organismo
+export async function deleteTipoorganismos(id_tipo_organismo){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
     const data= await respuesta.json()
     console.log(data)
     return data
@@ -107,6 +133,34 @@ export async function getResolucion(){
     const respuesta = await fetch(`${URL}/resolucion`, Options)
     const data= await respuesta.json()
     console.log(data)
+    return data
+}
+
+
+//Esta es mi funcion para eliminar resoluciones
+export async function deleteResolucion(id_resolucion){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+//Esta es mi funcion para agregar convenios
+export async function AddResolucion(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/resolucion`, Options)
+    const data= await respuesta.json()
     return data
 }
 

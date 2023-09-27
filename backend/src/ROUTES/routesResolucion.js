@@ -25,7 +25,7 @@ router.get('/resolucion', (req, res)=>{
 //Paramatro: id_resolucion
 
 router.get('/resolucion:id_resolucion', (req, res)=>{
-    const {id_tipo_organismo}=req.params 
+    const {id_resolucion}=req.params 
     mysqlConect.query('SELECT * FROM resolucion WHERE id_resolucion=?', [id_resolucion], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -63,9 +63,15 @@ if(!ano){
 //si lo datos están completos, entonces:
     mysqlConect.query('INSERT INTO resolucion (`numero`, `ano` ) VALUES (?, ?);', [numero, ano], (error, registro) =>{
         if(error){ // si hay un error entra acá
-                    console.log("Error en la base de datos", error)
+            res.json({
+                status:false,
+                mensaje: error
+            })
         }else{ 
-                    res.send ('El registro se realizó correctamente')
+            res.json({
+                status:true,
+                mensaje: "El registro se grabo correctamente"
+            })
         }
      })
     })

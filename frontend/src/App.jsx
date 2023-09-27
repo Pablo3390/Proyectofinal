@@ -8,13 +8,15 @@ import { Route, Routes } from 'react-router-dom'
 import { Login } from './Login'
 import { Principal } from './Principal'
 import { Registro } from './Registro'
-import { Convenios } from './Convenios'
-import { Actividades } from './Actividades'
-import { Organismos } from './Organismos'
-import { Resolucion } from './Resolucion'
-import { AddConvenios } from './addConvenios'
-import { AddOrganismos } from './AddOrganismos'
-import { Tipoorganismos } from './TipoOrganismos'
+import { Convenios } from './componentes/convenios/Convenios'
+import { Actividades } from './componentes/actividades/Actividades'
+import { Organismos } from './componentes/organismos/Organismos'
+import { Resolucion } from './componentes/resolucion/Resolucion'
+import { AddConvenios } from './componentes/convenios/AddConvenios'
+import { AddOrganismos } from './componentes/organismos//AddOrganismos'
+import { Tipoorganismos } from './componentes/tipo-organismo/TipoOrganismos'
+import { AddTipoorganismos } from './componentes/tipo-organismo/AddTipoOrganismos'
+import { AddResolucion } from './componentes/resolucion/AddResolucion'
 
 
 
@@ -39,6 +41,8 @@ function App() {
         <Route path='/agregarconvenios' element={<AddConvenios/>}></Route>
         <Route path='/agregarorganismos' element={<AddOrganismos/>}></Route>
         <Route path='/tipoorganismos' element={<Tipoorganismos/>}></Route>
+        <Route path='/agregartipoorganismos' element={<AddTipoorganismos/>}></Route>
+        <Route path='/agregarresolucion' element={<AddResolucion/>}></Route>
         
       </Routes>
 

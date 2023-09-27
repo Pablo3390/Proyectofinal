@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import './Actividades.css';
-import * as API from './servicios/servicios'
+import * as API from '../../servicios/servicios'
 
 
 export function Actividades(){

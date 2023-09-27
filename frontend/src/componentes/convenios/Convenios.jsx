@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import './Convenios.css';
 import { Link } from "react-router-dom";
 
-import * as API from './servicios/servicios'
+import * as API from '../../servicios/servicios'
 
 export function Convenios(){
     const [convenios, setConvenios] = useState([])
@@ -21,7 +21,6 @@ export function Convenios(){
         }
     return(
         <>
-        Aqui va el listado de Convenios
         <table>
         <tr>
                 <td className="Letra_roja" colSpan="11" ><Link className="Borde_negro" to="/agregarConvenios">Agregar Convenios</Link></td>

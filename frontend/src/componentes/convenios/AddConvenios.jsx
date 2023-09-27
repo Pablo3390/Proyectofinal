@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import * as API from './servicios/servicios'
+import * as API from '../../servicios/servicios'
 export function AddConvenios(){
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')

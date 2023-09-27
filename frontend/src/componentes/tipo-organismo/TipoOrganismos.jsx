@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import './Organismos.css';
+import './TipoOrganismos.css';
 import { Link } from "react-router-dom";
-import * as API from './servicios/servicios'
+import * as API from '../../servicios/servicios'
 
 
 export function Tipoorganismos(){
