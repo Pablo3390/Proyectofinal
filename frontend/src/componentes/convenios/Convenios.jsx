@@ -4,26 +4,38 @@ import React, { useEffect, useState } from "react";
 import './Convenios.css';
 import { Link } from "react-router-dom";
 
+
 import * as API from '../../servicios/servicios'
 
 export function Convenios(){
     const [convenios, setConvenios] = useState([])
+    const [mensaje, setMensaje] = useState('')
 
     useEffect(()=>{
         API.getConvenios().then(setConvenios)}, [])
-        const eliminar =(e, id_convenio)=>{
+        const cambiar_estado = async (e, id_convenio, estado_actual)=>{
             e.preventDefault();
-            console.log('El id que vamos a eliminar es el ', id_convenio)
-            API.deleteConvenios(id_convenio);
-            window.location.reload(true)
+            const actualizar = (estado_actual=="A")?"B":"A";
+            console.log(actualizar)
+            const respuesta= await API.ActualizarEstadoConvenios(id_convenio, {actualizar});
+            if (respuesta.status){
+                setMensaje(respuesta.mensaje)
+                setTimeout(()=>{
+                    setMensaje('')
+                        window.location.href='/convenios'
+                }, 1000)
+            }
 
             
         }
     return(
         <>
+        <div>
+            {mensaje}
+        </div>
         <table>
         <tr>
-                <td className="Letra_roja" colSpan="11" ><Link className="Borde_negro" to="/agregarConvenios">Agregar Convenios</Link></td>
+                <td className="Letra_roja" colSpan="12" ><Link className="Borde_negro" to="/agregarConvenios">Agregar Convenios</Link></td>
             </tr>
             <tr>
                 <td className="Letra_roja">Nombre</td>
@@ -36,7 +48,8 @@ export function Convenios(){
                 <td className="Letra_roja">Tipo de convenio</td>
                 <td className="Letra_roja">Resolucion</td>
                 <td className="Letra_roja">Estado</td>
-                <td className="Letra_roja">#</td>
+                <td colSpan="2" className="Letra_roja">Acciones</td>
+                
             </tr>
             {convenios.map((convenios)=>(
                 <tr>
@@ -50,7 +63,14 @@ export function Convenios(){
                 <td className="Borde_negro">{convenios.id_tipo_convenio}</td>
                 <td className="Borde_negro">{convenios.id_resolucion}</td>
                 <td className="Borde_negro">{convenios.estado}</td>
-                <td className="Borde_negro"><button onClick={(event)=>eliminar(event, convenios.id_convenio)} className="Boton_rojo">Eliminar</button></td>
+                <td className="Borde_negro"><Link to={`/editConvenios/${convenios.id_convenio} `}><button className="Boton_verde">Editar</button></Link></td>
+                {(convenios.estado=="A")?
+                <td className="Borde_negro"><button onClick={(event)=>cambiar_estado(event, convenios.id_convenio, convenios.estado)} className="Boton_rojo">Dar De Baja</button></td>
+                :
+                <td className="Borde_negro"><button onClick={(event)=>cambiar_estado(event, convenios.id_convenio, convenios.estado)} className="Boton_azul">Dar De Alta</button></td>
+                
+                 }
+                
             </tr>
             ))}
         </table>

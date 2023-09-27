@@ -55,6 +55,76 @@ export async function getConvenios(){
     console.log(data)
     return data
 }
+//Esta es mi funcion para listar los convenios
+export async function getConveniosByID(id_convenio){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//Esta es mi funcion para editar los convenios
+export async function EditConvenios(datos, id_convenio){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+//Esta es mi funcion para eliminar convenios
+export async function deleteConvenios(id_convenio){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+//Esta es mi funcion para actualizar convenios
+export async function ActualizarEstadoConvenios(id_convenio, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+
+//Esta es mi funcion para agregar convenios
+export async function AddConvenios(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/convenios`, Options)
+    const data= await respuesta.json()
+    return data
+}
 //Esta es mi funcion para listar las actividades
 export async function getActividades(){
     const Options={
@@ -159,38 +229,12 @@ export async function AddResolucion(datos){
             'Content-Type': 'application/json',
         }
     }
-    const respuesta = await fetch(`${URL}/resolucion`, Options)
+    const respuesta = await fetch(`${URL}/resolucion`, Options)  
     const data= await respuesta.json()
     return data
 }
 
-//Esta es mi funcion para eliminar convenios
-export async function deleteConvenios(id_convenio){
-    const Options={
-        method:'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
 
-//Esta es mi funcion para agregar convenios
-export async function AddConvenios(datos){
-    const Options={
-        method:'POST',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/convenios`, Options)
-    const data= await respuesta.json()
-    return data
-}
 
 //Esta es mi funcion para eliminar organismos
 export async function deleteOrganismos(id_organismo){

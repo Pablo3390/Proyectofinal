@@ -167,19 +167,20 @@ router.put('/convenios/:id_convenio',bodyParser.json(), (req,res)=>{
 //Borrado logico por id
 
 router.delete('/convenios/:id_convenio', bodyParser.json(), (req , res)=>{
+  const {actualizar} = req.body
   const { id_convenio } = req.params
   mysqlConect.query('SELECT * FROM convenios WHERE id_convenio=?', [id_convenio], (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
       }else{
           if(registros.length>0){
-              mysqlConect.query('UPDATE convenios SET estado = "B"  WHERE id_convenio = ?', [id_convenio], (error, registros)=>{
+              mysqlConect.query('UPDATE convenios SET estado = ?  WHERE id_convenio = ?', [actualizar, id_convenio], (error, registros)=>{
                   if(error){
                       console.log('Error en la base de datos', error)
                   }else{
                       res.json({
                           status:true,
-                          mensaje:"El registro " +id_convenio+ " se dio de baja correctamente" 
+                          mensaje:"El cambio de estado se realizo correctamente" 
                       })
                   }
               })
