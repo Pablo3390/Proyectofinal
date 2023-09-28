@@ -13,6 +13,7 @@ const respuesta = await fetch(`${URL}/login`, Options)
 const data= await respuesta.json()
 return data
 }
+
 //esta es mi funcion es para validar el nick
 export async function ValidarNick(dato){
     

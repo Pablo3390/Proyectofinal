@@ -89,39 +89,40 @@ router.post('/login', bodyParser.json(), (req,res)=>{
         }) 
         return;
     }
-    mysqlconect.query('select user, pass, id_rol, concat_ws(" ", apellido, nombre) nombre_usuario from usuarios WHERE user=?', [user], (error, datos)=>{
-        if(!error){
-            if(datos.length>0){
-                let comparacion = bcrypt.compareSync(pass, datos[0].pass)
-                if(comparacion){
-                    jwt.sign({datos}, 'silicon', (error, token)=>{
+
+    mysqlconect.query('SELECT * FROM usuarios WHERE user=?', [user], (error, usuario)=>{
+        if(error){
+            console.log('Error en la base de datos', error)
+        }else{
+            if(usuario.length>0){
+                console.log('estado de la comparacion', usuario[0].pass)
+                 const comparacion= bcrypt.compareSync(pass, usuario[0].pass)   
+                 console.log('estado de la comparacion', comparacion)
+                 if(comparacion)  {
+
+                    // vamos a generar el token
+                    jwt.sign({usuario}, 'siliconKey', (error, token)=>{
+
                         res.json({
-                            status:true,
-                            datos: datos[0],
+                            status: true,
+                            datos: usuario,
                             token: token
-                        })
+                        }) 
                     })
-        
-                }else{
+
+                    
+                 }else{
                     res.json({
                         status:false,
-                        mensaje: "La contraseña es incorrecta"
-                    })
-                }
-                
+                        mensaje:"La contraseña es incorrecta" 
+                    }) 
+                 }
             }else{
                 res.json({
                     status:false,
-                    mensaje: "El usuario no existe"
-                })
+                    mensaje:"El usuario NO EXISTE" 
+                }) 
             }
-
-            
-        }else{
-            res.json({
-                status:false,
-                mensaje: error
-            })
         }
     })
 })
