@@ -59,9 +59,9 @@ export function Convenios(){
                 <td className="Borde_negro">{convenios.fecha_inicio}</td>
                 <td className="Borde_negro">{convenios.fecha_fin}</td>
                 <td className="Borde_negro">{convenios.clausula_peas}</td>
-                <td className="Borde_negro">{convenios.id_organismo}</td>
-                <td className="Borde_negro">{convenios.id_tipo_convenio}</td>
-                <td className="Borde_negro">{convenios.id_resolucion}</td>
+                <td className="Borde_negro">{convenios.organismos}</td>
+                <td className="Borde_negro">{convenios.tipo_convenios}</td>
+                <td className="Borde_negro">{convenios.resolucion}</td>
                 <td className="Borde_negro">{convenios.estado}</td>
                 <td className="Borde_negro"><Link to={`/editConvenios/${convenios.id_convenio} `}><button className="Boton_verde">Editar</button></Link></td>
                 {(convenios.estado=="A")?

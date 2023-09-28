@@ -8,7 +8,7 @@ const jwt= require('jsonwebtoken')
 //Listar de convenios
 
 router.get('/convenios', (req , res)=>{
-  mysqlConect.query('SELECT * FROM convenios', (error, registros)=>{
+  mysqlConect.query('SELECT  c.id_convenio, c.nombre, c.utilidad, c.objeto, c.fecha_inicio, c.fecha_fin, c.clausula_peas, o.nombre organismos, tc.nombre tipo_convenios, r.numero resolucion, c.estado  FROM convenios AS c INNER JOIN organismos AS o ON o.id_organismo=c.id_organismo LEFT JOIN tipo_convenios AS tc ON tc.id_tipo_convenio=c.id_tipo_convenio LEFT JOIN resolucion AS r ON r.id_resolucion=c.id_resolucion', (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
       }else{
@@ -23,15 +23,15 @@ router.get('/convenios', (req , res)=>{
 //URL: conveniosss (CAMBIAR)
 //Paramatro: no
 
-router.get('/convenios', (req, res)=>{
-    mysqlConect.query('SELECT c.id_convenio, c.nombre Convenios, o.nombre Organismos, tconv.nombre Tipo_Convenio, re.numero N°_Resolucion FROM convenios AS c INNER JOIN organismos AS o ON c.id_organismo=o.id_organismo INNER JOIN tipo_convenio AS tconv ON c.id_tipo_convenio=tconv.id_tipo_convenio INNER JOIN resolucion AS re ON c.id_resolucion=re.id_resolucion', (error, registro)=>{
-        if(error){
-            console.log('Hay un error en la base de datos', error)
-        }else{
-            res.json(registro)
-        }
-    })
-})
+// router.get('/convenios', (req, res)=>{
+//     mysqlConect.query('SELECT c.id_convenio, c.nombre AS Convenios, o.nombre AS Organismos, tconv.nombre AS Tipo_Convenios, re.numero AS N°_Resolucion, c.objeto, c.fecha_inicio, c.fecha_fin, c.clausula_peas, c.estado FROM convenios AS c INNER JOIN organismos AS o ON c.id_organismo = o.id_organismo INNER JOIN tipo_convenios AS tconv ON c.id_tipo_convenio = tconv.id_tipo_convenio INNER JOIN resolucion AS re ON c.id_resolucion = re.id_resolucion ORDER BY c.id_convenio ASC;    ', (error, registros)=>{
+//         if(error){
+//             console.log('Hay un error en la base de datos', error)
+//         }else{
+//             res.json(registros)
+//         }
+//     })
+// })
 
 // Endpoint para crear un nuevo convenio
 

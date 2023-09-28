@@ -51,7 +51,7 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
 
 //ruta menu
 
-router.get('/menu/:id_rol',verificarToken, (req , res)=>{
+router.get('/menu/:id_rol',verificaToken, (req , res)=>{
     const { id_rol } = req.params;
     jwt.verify(req.token, 'silicon', (error, valido)=>{
         if(error){
