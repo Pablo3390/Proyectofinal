@@ -49,6 +49,28 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
     })
 })
 
+//ruta menu
+
+router.get('/menu/:id_rol',verificarToken, (req , res)=>{
+    const { id_rol } = req.params;
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
+            mysqlConnect.query('SELECT * FROM menu WHERE id_rol=?', [id_rol], (error, registros)=>{
+                if(error){
+                    console.log('Error en la base de datos', error)
+                }else{
+                    res.json({
+                        status:true,
+                        menu:registros 
+                    })
+                }
+            })
+        }
+    })
+})
+
 //ruta login con comparacion de datos con booleano
 
 router.post('/login', bodyParser.json(), (req,res)=>{
