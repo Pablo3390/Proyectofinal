@@ -14,8 +14,7 @@ const [mitoken, setToken]= useState('')
 
 const ingresar = async(event)=>{
 event.preventDefault();
-const usuario = await API.Login({user, pass})
-console.log(usuario);   
+const usuario = await API.Login({user, pass})  
 if(usuario.status){
   setToken(usuario.token)
   window.localStorage.setItem('usuario',JSON.stringify(usuario.datos[0]) )

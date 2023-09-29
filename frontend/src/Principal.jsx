@@ -7,9 +7,9 @@ export function Principal(){
     useEffect(()=>{
         const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'));
         if(usuarioLogueado){
-            console.log(usuarioLogueado.apellido)
             setUsuario(usuarioLogueado)
-
+        }else{
+            window.location.href='/'
         }
       },[])
 

@@ -57,7 +57,7 @@ router.get('/menu/:id_rol',verificaToken, (req , res)=>{
         if(error){
             res.sendStatus(403);
         }else{
-            mysqlConnect.query('SELECT * FROM menu WHERE id_rol=?', [id_rol], (error, registros)=>{
+            mysqlconect.query('SELECT * FROM menu WHERE id_rol=?', [id_rol], (error, registros)=>{
                 if(error){
                     console.log('Error en la base de datos', error)
                 }else{

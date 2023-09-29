@@ -264,3 +264,15 @@ export async function AddOrganismos(datos){
     const data= await respuesta.json()
     return data
 }
+
+export async function getMenuByRol(id_rol){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/menu/${id_rol}`, Options)
+    const data= await respuesta.json()
+    return data
+}
