@@ -7,21 +7,43 @@ import * as API from '../../servicios/servicios'
 
 export function Organismos(){
     const [organismos, setOrganismos] = useState([])
+    const [mensaje, setMensaje] = useState('')
 
     useEffect(()=>{
-        API.getOrganismos().then(setOrganismos)
-    }, [] )
-    const eliminar =(e, id_organismo)=>{
-        e.preventDefault();
-        console.log('El id que vamos a eliminar es el ', id_organismo)
-        API.deleteOrganismos(id_organismo);
-        window.location.reload(true)
+        API.getOrganismos().then(setOrganismos)}, [])
+        const cambiar_estado = async (e, id_organismo, estado_actual)=>{
+            e.preventDefault();
+            const actualizar = (estado_actual=="A")?"B":"A";
+            console.log(actualizar)
+            const respuesta= await API.ActualizarEstadoOrganismos(id_organismo, {actualizar});
+            if (respuesta.status){
+                setMensaje(respuesta.mensaje)
+                setTimeout(()=>{
+                    setMensaje('')
+                        window.location.href='/organismos'
+                }, 1000)
+            }
+
+            
+        }
+
+    // useEffect(()=>{
+    //     API.getOrganismos().then(setOrganismos)
+    // }, [] )
+    // const eliminar =(e, id_organismo)=>{
+    //     e.preventDefault();
+    //     console.log('El id que vamos a eliminar es el ', id_organismo)
+    //     API.deleteOrganismos(id_organismo);
+    //     window.location.reload(true)
 
         
-    }
+    // }
     return(
         <>
         Esta es la pantalla de Organismos
+        <div>
+            {mensaje}
+        </div>
 
         <table>
         <tr>
@@ -31,7 +53,7 @@ export function Organismos(){
                 <td className="Letra_roja">Nombre</td>
                 <td className="Letra_roja">Id_tipo_organismo</td>
                 <td className="Letra_roja">Estado</td>
-                <td className="Letra_roja">#</td>
+                <td colSpan="2" className="Letra_roja">Acciones</td>
             </tr>
             {organismos.map((organismos)=>(
                 // eslint-disable-next-line react/jsx-key
@@ -39,7 +61,12 @@ export function Organismos(){
                 <td className="Borde_negro">{organismos.nombre}</td>
                 <td className="Borde_negro">{organismos.id_tipo_organismo}</td>
                 <td className="Borde_negro">{organismos.estado}</td>
-                <td className="Borde_negro"><button onClick={(event)=>eliminar(event, organismos.id_organismo)} className="Boton_rojo">Eliminar</button></td>
+                {(organismos.estado=="A")?
+                <td className="Borde_negro"><button onClick={(event)=>cambiar_estado(event, organismos.id_organismo, organismos.estado)} className="Boton_rojo">Dar De Baja</button></td>
+                :
+                <td className="Borde_negro"><button onClick={(event)=>cambiar_estado(event, organismos.id_organismo, organismos.estado)} className="Boton_azul">Dar De Alta</button></td>
+                
+                 }
             
             </tr>
             ))}

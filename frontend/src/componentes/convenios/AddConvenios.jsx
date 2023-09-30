@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
 export function AddConvenios(){
@@ -13,6 +14,11 @@ export function AddConvenios(){
     const [id_organismo, setIdorganismo] = useState('')
     const [id_tipo_convenio, setIdtipoconvenio] = useState('')
     const [id_resolucion, setIdresolucion] = useState('')
+    const [resolucion, setResolucion] = useState([])
+
+    useEffect(()=>{
+      API.getResolucion().then(setResolucion)
+  }, [] )
 
     const guardarConvenio = async(event)=>{
         event.preventDefault();
@@ -111,13 +117,14 @@ export function AddConvenios(){
                       <label htmlFor="floatingInput">Id de tipo de convenio</label>
                     </div>
                     <div className="form-floating">
-                      <input
-                      type="number" 
-                      value={id_resolucion}
-                      onChange={(event)=>setIdresolucion(event.target.value)}
-                      className="form-control" 
-                      placeholder="id_resolucion"/>
-                      <label htmlFor="floatingInput">Id de recolucion</label>
+                      
+                      <select onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">
+                      {resolucion.map((r)=>(
+                      
+                        <option value={r.id_resolucion}>{r.numero}</option>
+
+                        ))}
+                      </select>
                     </div>
 
                     <button className="btn btn-primary" type="submit" >Guardar</button>

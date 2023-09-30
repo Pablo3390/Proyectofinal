@@ -153,6 +153,20 @@ export async function getOrganismos(){
     console.log(data)
     return data
 }
+
+export async function ActualizarEstadoOrganismos(id_organismo, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
 //Esta es mi funcion para listar los tipo de organmismos
 export async function getTipoorganismos(){
     const Options={

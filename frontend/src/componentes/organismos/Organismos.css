@@ -5,3 +5,15 @@
 .Borde_negro{
     border: 2px solid black;
 }
+.Boton_rojo{
+    background: red;
+    border: 2px solid black;
+}
+.Boton_verde{
+    background: greenyellow;
+    border: 2px solid black;
+}
+.Boton_azul{
+    background: skyblue;
+    border: 2px solid black;
+}

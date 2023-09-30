@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 
 import * as API from '../../servicios/servicios'
+import { Menu } from "../../Menu";
 
 export function Convenios(){
     const [convenios, setConvenios] = useState([])
@@ -30,6 +31,7 @@ export function Convenios(){
         }
     return(
         <>
+        <Menu/>
         <div>
             {mensaje}
         </div>
