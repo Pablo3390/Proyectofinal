@@ -51,17 +51,17 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
 
 //ruta menu
 
+
 router.get('/menu/:id_rol',verificaToken, (req , res)=>{
     const { id_rol } = req.params;
     jwt.verify(req.token, 'silicon', (error, valido)=>{
         if(error){
-            res.sendStatus(403);
         }else{
             mysqlconect.query('SELECT * FROM menu WHERE id_rol=?', [id_rol], (error, registros)=>{
                 if(error){
                     console.log('Error en la base de datos', error)
                 }else{
-                    res.json({
+                    res.json({ 
                         status:true,
                         menu:registros 
                     })
@@ -101,7 +101,7 @@ router.post('/login', bodyParser.json(), (req,res)=>{
                  if(comparacion)  {
 
                     // vamos a generar el token
-                    jwt.sign({usuario}, 'siliconKey', (error, token)=>{
+                    jwt.sign({usuario}, 'silicon', (error, token)=>{
 
                         res.json({
                             status: true,
@@ -204,14 +204,25 @@ router.post('/validarnick', bodyParser.json() , (req , res)=>{
 //Verificacion de tokens
 
 function verificaToken(req, res, next){
-    const BearerHeader = req.headers['authorization']
-    if(typeof BearerHeader!=='undefined'){
-        const bearer =BearerHeader.split(" ")[1];
-        req.token=bearer;
-        next();
+    const bearer= req.headers['authorization'];
+    if(typeof bearer!=='undefined'){
+        const token =bearer.split(" ")[1]
+        req.token= token;
+        next()
     }else{
-        res.send('Se requiere un token')
+        res.send('Debe contener un token')
     }
-}
+ }
+
+// function verificaToken(req, res, next){
+//     const BearerHeader = req.headers['authorization']
+//     if(typeof BearerHeader!=='undefined'){
+//         const bearer =BearerHeader.split(" ")[1];
+//         req.token=bearer;
+//         next();
+//     }else{
+//         res.send('Se requiere un token')
+//     }
+// }
 
 module.exports= router; 

@@ -16,7 +16,6 @@ export function Principal(){
     return(
         <>
         <Menu/>
-        Esta es mi pantalla principal
         </>
     )
 }

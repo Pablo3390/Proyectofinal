@@ -266,13 +266,15 @@ export async function AddOrganismos(datos){
 }
 
 export async function getMenuByRol(id_rol){
-    const Options={
-        method:'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/menu/${id_rol}`, Options)
-    const data= await respuesta.json()
-    return data
+    const token = JSON.parse(localStorage.getItem('token'));
+   const Options={
+       method:'GET',
+       headers: {
+           'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+       }
+   }
+   const respuesta = await fetch(`${URL}/menu/${id_rol}`, Options)
+   const data= await respuesta.json();
+   return data;
 }
