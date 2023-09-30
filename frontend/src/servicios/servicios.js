@@ -154,6 +154,32 @@ export async function getOrganismos(){
     return data
 }
 
+export async function getOrganismosByID(id_organismo){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+export async function EditOrganismos(datos, id_organismo){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
 export async function ActualizarEstadoOrganismos(id_organismo, actualizar){
     const Options={
         method:'DELETE',

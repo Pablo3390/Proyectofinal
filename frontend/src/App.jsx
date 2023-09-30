@@ -15,10 +15,9 @@ import { Organismos } from './componentes/organismos/Organismos'
 import { Resolucion } from './componentes/resolucion/Resolucion'
 import { AddConvenios } from './componentes/convenios/AddConvenios'
 import { AddOrganismos } from './componentes/organismos//AddOrganismos'
-import { Tipoorganismos } from './componentes/tipo-organismo/TipoOrganismos'
-import { AddTipoorganismos } from './componentes/tipo-organismo/AddTipoOrganismos'
 import { AddResolucion } from './componentes/resolucion/AddResolucion'
 import { EditConvenios } from './componentes/convenios/EditConvenios'
+import { EditOrganismos } from './componentes/organismos/EditOrganismos'
 
 
 
@@ -42,10 +41,9 @@ function App() {
         <Route path='/Resolucion' element={<Resolucion/>}></Route>
         <Route path='/agregarconvenios' element={<AddConvenios/>}></Route>
         <Route path='/agregarorganismos' element={<AddOrganismos/>}></Route>
-        <Route path='/tipoorganismos' element={<Tipoorganismos/>}></Route>
-        <Route path='/agregartipoorganismos' element={<AddTipoorganismos/>}></Route>
         <Route path='/agregarresolucion' element={<AddResolucion/>}></Route>
         <Route path='/editconvenios/:id_convenio' element={<EditConvenios/>}></Route>
+        <Route path='/editorganismos/:id_organismo' element={<EditOrganismos/>}></Route>
       </Routes>
 
     </>

@@ -26,18 +26,6 @@ export function Organismos(){
 
             
         }
-
-    // useEffect(()=>{
-    //     API.getOrganismos().then(setOrganismos)
-    // }, [] )
-    // const eliminar =(e, id_organismo)=>{
-    //     e.preventDefault();
-    //     console.log('El id que vamos a eliminar es el ', id_organismo)
-    //     API.deleteOrganismos(id_organismo);
-    //     window.location.reload(true)
-
-        
-    // }
     return(
         <>
         Esta es la pantalla de Organismos
@@ -47,7 +35,7 @@ export function Organismos(){
 
         <table>
         <tr>
-                <td className="Letra_roja" colSpan="4" ><Link className="Borde_negro" to="/agregarOrganismos">Agregar Organismo</Link></td>
+                <td className="Letra_roja" colSpan="5" ><Link className="Borde_negro" to="/agregarOrganismos">Agregar Organismo</Link></td>
             </tr>
             <tr>
                 <td className="Letra_roja">Nombre</td>
@@ -61,6 +49,7 @@ export function Organismos(){
                 <td className="Borde_negro">{organismos.nombre}</td>
                 <td className="Borde_negro">{organismos.id_tipo_organismo}</td>
                 <td className="Borde_negro">{organismos.estado}</td>
+                <td className="Borde_negro"><Link to={`/editOrganismos/${organismos.id_organismo} `}><button className="Boton_verde">Editar</button></Link></td>
                 {(organismos.estado=="A")?
                 <td className="Borde_negro"><button onClick={(event)=>cambiar_estado(event, organismos.id_organismo, organismos.estado)} className="Boton_rojo">Dar De Baja</button></td>
                 :
