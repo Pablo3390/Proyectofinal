@@ -126,6 +126,7 @@ export async function AddConvenios(datos){
     const data= await respuesta.json()
     return data
 }
+
 //Esta es mi funcion para listar las actividades
 export async function getActividades(){
     const Options={
@@ -139,6 +140,67 @@ export async function getActividades(){
     console.log(data)
     return data
 }
+
+//Esta es mi funcion para agregar ACTIVIDADES
+export async function AddActividades(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades`, Options)
+    const data= await respuesta.json()
+    return data
+}
+
+//Esta es mi funcion para actualizar actividades
+export async function ActualizarEstadoActividades(id_actividad, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//Esta es mi funcion para listar las actividades
+export async function getActividadesByID(id_actividad){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//Esta es mi funcion para editar las actividades
+export async function EditActividades(datos, id_actividad){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+
+
 
 //Esta es mi funcion para listar los organmismos
 export async function getOrganismos(){

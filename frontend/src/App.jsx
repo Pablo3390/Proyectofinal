@@ -18,6 +18,8 @@ import { AddOrganismos } from './componentes/organismos//AddOrganismos'
 import { AddResolucion } from './componentes/resolucion/AddResolucion'
 import { EditConvenios } from './componentes/convenios/EditConvenios'
 import { EditOrganismos } from './componentes/organismos/EditOrganismos'
+import { AddActividades } from './componentes/actividades/AddActividades'
+import { EditActividades } from './componentes/actividades/EditActividades'
 
 
 
@@ -44,6 +46,8 @@ function App() {
         <Route path='/agregarresolucion' element={<AddResolucion/>}></Route>
         <Route path='/editconvenios/:id_convenio' element={<EditConvenios/>}></Route>
         <Route path='/editorganismos/:id_organismo' element={<EditOrganismos/>}></Route>
+        <Route path='/agregaractividades' element={<AddActividades/>}></Route>
+        <Route path='/editactividades/:id_actividad' element={<EditActividades/>}></Route>
       </Routes>
 
     </>
