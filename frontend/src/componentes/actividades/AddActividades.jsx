@@ -35,7 +35,6 @@ export function AddActividades(){
     
     return(
         <>
-        Aqui va el form agregar
         
         <main className="form-signin w-100 m-auto">
              <form onSubmit={guardarActividades}>
@@ -105,7 +104,7 @@ export function AddActividades(){
                     */}
 
                     <button className="btn btn-primary" type="submit" >Guardar</button>
-                    <Link to="/actividades" >Volver</Link>                  
+                    <Link className="btn btn-primary" to="/actividades" >Volver</Link>                  
                   </form>
               </main>
         </>

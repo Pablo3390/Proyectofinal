@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import './Resolucion.css';
 import * as API from '../../servicios/servicios'
 import { Link } from "react-router-dom";
+import { Menu } from "../../Menu";
 
 
 export function Resolucion(){
     const [resolucion, setResolucion] = useState([])
+    // eslint-disable-next-line no-unused-vars
+    const [mensaje, setMensaje] = useState('')
 
     useEffect(()=>{
         API.getResolucion().then(setResolucion)}, [])
@@ -23,6 +26,10 @@ export function Resolucion(){
 
     return(
         <>
+         <Menu/>
+         <div>
+            {mensaje}
+        </div>
 
         <table>
         <tr>

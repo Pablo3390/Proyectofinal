@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import './Organismos.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
-
+import { Menu } from "../../Menu";
 
 export function Organismos(){
     const [organismos, setOrganismos] = useState([])
@@ -28,7 +28,7 @@ export function Organismos(){
         }
     return(
         <>
-        Esta es la pantalla de Organismos
+        <Menu/>
         <div>
             {mensaje}
         </div>

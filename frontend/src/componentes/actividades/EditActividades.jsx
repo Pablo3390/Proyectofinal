@@ -107,7 +107,7 @@ export function EditActividades(){
                     </div>
 
                     <button className="btn btn-primary" type="submit" >Guardar Edicion</button>
-                    <Link to="/actividades" >Volver</Link>                  
+                    <Link className="btn btn-primary" to="/actividades" >Volver</Link>                  
                   </form>
               </main>
         </>
