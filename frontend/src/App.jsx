@@ -20,6 +20,9 @@ import { EditConvenios } from './componentes/convenios/EditConvenios'
 import { EditOrganismos } from './componentes/organismos/EditOrganismos'
 import { AddActividades } from './componentes/actividades/AddActividades'
 import { EditActividades } from './componentes/actividades/EditActividades'
+import { TipoOrganismos } from './componentes/tipoorganismos/TipoOrganismos'
+import { AddTipoorganismos } from './componentes/tipoorganismos/AddTipoOrganismos'
+import { EditTipoorganismos } from './componentes/tipoorganismos/EditTipoOrganismos'
 
 
 
@@ -48,6 +51,9 @@ function App() {
         <Route path='/editorganismos/:id_organismo' element={<EditOrganismos/>}></Route>
         <Route path='/agregaractividades' element={<AddActividades/>}></Route>
         <Route path='/editactividades/:id_actividad' element={<EditActividades/>}></Route>
+        <Route path='/Tipoorganismos' element={<TipoOrganismos/>}></Route>
+        <Route path='/agregartipoorganismos' element={<AddTipoorganismos/>}></Route>
+        <Route path='/edittipoorganismos/:id_tipo_organismo' element={<EditTipoorganismos/>}></Route>
       </Routes>
 
     </>

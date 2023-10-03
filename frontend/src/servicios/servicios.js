@@ -127,6 +127,9 @@ export async function AddConvenios(datos){
     return data
 }
 
+
+
+//FUNCIONES DE ACTIVIDADES
 //Esta es mi funcion para listar las actividades
 export async function getActividades(){
     const Options={
@@ -201,7 +204,7 @@ export async function EditActividades(datos, id_actividad){
 
 
 
-
+//FUNCIONES DE ORGANISMOS
 //Esta es mi funcion para listar los organmismos
 export async function getOrganismos(){
     const Options={
@@ -255,7 +258,11 @@ export async function ActualizarEstadoOrganismos(id_organismo, actualizar){
     console.log(data)
     return data
 }
-//Esta es mi funcion para listar los tipo de organmismos
+
+
+
+//FUNCIONES DE TIPO ORGANISMOS
+//listar tipos de organismos
 export async function getTipoorganismos(){
     const Options={
         method:'GET',
@@ -268,7 +275,8 @@ export async function getTipoorganismos(){
     console.log(data)
     return data
 }
-//Esta es mi funcion para agregar lo tipos de organismo
+
+// agregar Tipos organismos
 export async function AddTipoorganismos(datos){
     const Options={
         method:'POST',
@@ -281,10 +289,25 @@ export async function AddTipoorganismos(datos){
     const data= await respuesta.json()
     return data
 }
-//Esta es mi funcion para eliminar los tipos de organismo
-export async function deleteTipoorganismos(id_tipo_organismo){
+
+//listar tipos organismos por ID
+export async function getTipoorganismosByID(id_tipo_organismo){
     const Options={
-        method:'DELETE',
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//editar tipo organismos
+export async function EditTipoorganismos(datos, id_tipo_organismo){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
         }
@@ -295,6 +318,24 @@ export async function deleteTipoorganismos(id_tipo_organismo){
     return data
 }
 
+//Esta es mi funcion para eliminar los tipos de organismo
+
+/*export async function deleteTipoOrganismos(id_tipo_organismo){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}*/
+
+
+
+//FUNCIONES DE RESOLUCIONES
 //Esta es mi funcion para listar las resoluciones
 export async function getResolucion(){
     const Options={
