@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
 
@@ -10,6 +12,11 @@ export function AddActividades(){
     const [lugar, setLugar] = useState('')
     const [participante, setParticipante] = useState('')
     const [id_convenio, setIdconvenio] = useState('')
+    const [convenios, setConvenios] = useState([])
+
+    useEffect(()=>{
+      API.getConvenios().then(setConvenios)
+  }, [] )
 
  
     const guardarActividades = async(event)=>{
@@ -77,7 +84,16 @@ export function AddActividades(){
                       <label htmlFor="floatingInput">Participante</label>
                     </div>
 
-                    <div className="form-floating">
+                    <select onChange={(event)=>setIdconvenio(event.target.value)} className="form-control">
+                      {convenios.map((a)=>(
+                      
+                        <option value={a.id_convenio}>{a.nombre}</option>
+
+                        ))}
+                      </select>
+
+
+                    {/* <div className="form-floating">
                       <input
                       type="number" 
                       value={id_convenio}
@@ -86,7 +102,7 @@ export function AddActividades(){
                       placeholder="id_convenio"/>
                       <label htmlFor="floatingInput">Id de la Actividades</label>
                     </div>
-                   
+                    */}
 
                     <button className="btn btn-primary" type="submit" >Guardar</button>
                     <Link to="/actividades" >Volver</Link>                  

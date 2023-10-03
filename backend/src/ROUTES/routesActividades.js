@@ -147,6 +147,7 @@ router.put('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{
 
 router.delete('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{ 
     const {id_actividad}= req.params
+    const {actualizar} = req.body
 
     
     mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?;', [id_actividad], (error, registro) =>{
@@ -155,13 +156,13 @@ router.delete('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{
         
         }else{ // si no hay error que me devuelve lo siguiente
             if(registro.length>0){
-                mysqlConect.query('UPDATE actividades SET estado = "B" WHERE id_actividad = ?;', [id_actividad], (error, registro) =>{
+                mysqlConect.query('UPDATE actividades SET estado = ? WHERE id_actividad = ?;', [actualizar, id_actividad], (error, registro) =>{
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
                     }else{ 
                         res.json({
                             status: true,
-                            mensaje: 'El registro '+id_actividad+ ' se dió de BAJA correctamente'
+                            mensaje: "El cambio de estado se realizo correctamente" 
                         })
                                 
                     }

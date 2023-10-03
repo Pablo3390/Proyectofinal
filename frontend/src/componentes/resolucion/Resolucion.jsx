@@ -10,6 +10,7 @@ export function Resolucion(){
 
     useEffect(()=>{
         API.getResolucion().then(setResolucion)}, [])
+        // eslint-disable-next-line no-unused-vars
         const eliminar =(e, id_resolucion)=>{
             e.preventDefault();
             console.log('El id que vamos a eliminar es el ', id_resolucion)
@@ -31,7 +32,7 @@ export function Resolucion(){
                 <td className="Letra_roja">Numero</td>
                 <td className="Letra_roja">Año</td>
                 <td className="Letra_roja">Estado</td>
-                <td className="Letra_roja">#</td>
+                {/* <td className="Letra_roja">#</td> */}
             </tr>
             {resolucion.map((resolucion)=>(
                 // eslint-disable-next-line react/jsx-key
@@ -39,7 +40,7 @@ export function Resolucion(){
                 <td className="Borde_negro">{resolucion.numero}</td>
                 <td className="Borde_negro">{resolucion.ano}</td>
                 <td className="Borde_negro">{resolucion.estado}</td>
-                <td className="Borde_negro"><button onClick={(event)=>eliminar(event, resolucion.id_resolucion)} className="Boton_rojo">Eliminar</button></td>
+                {/* <td className="Borde_negro"><button onClick={(event)=>eliminar(event, resolucion.id_resolucion)} className="Boton_rojo">Eliminar</button></td> */}
             
             </tr>
             ))}

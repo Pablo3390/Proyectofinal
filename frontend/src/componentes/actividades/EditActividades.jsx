@@ -24,7 +24,6 @@ export function EditActividades(){
     const traer_datos = async(event)=>{
       const datos_actividades= await API.getActividadesByID(id_actividad);
       setNombre(datos_actividades.nombre)
-      setUtilidad(datos_actividades.utilidad)
       setFecha(datos_actividades.fecha)
       setLugar(datos_actividades.lugar)
       setParticipante(datos_actividades.participante)

@@ -41,7 +41,7 @@ export function Actividades(){
         <table>
 
         <tr>
-                <td className="Letra_roja" colSpan="12" ><Link className="Borde_negro" to="/agregarActividades">Agregar Actividades</Link></td>
+                <td className="Letra_roja" colSpan="8" ><Link className="Borde_negro" to="/agregarActividades">Agregar Actividades</Link></td>
             </tr>
            
             <tr>
@@ -51,6 +51,7 @@ export function Actividades(){
                 <td className="Letra_roja">Participante</td>
                 <td className="Letra_roja">Id_convenio</td>
                 <td className="Letra_roja">Estado</td>
+                <td colSpan="2"  className="Letra_roja">Acciones</td>
             </tr>
 
             
@@ -62,6 +63,7 @@ export function Actividades(){
                 <td className="Borde_negro">{actividades.participante}</td>
                 <td className="Borde_negro">{actividades.id_convenio}</td>
                 <td className="Borde_negro">{actividades.estado}</td>
+                <td className="Borde_negro"><Link to={`/editactividades/${actividades.id_actividad} `}><button className="Boton_verde">Editar</button></Link></td>
                 {(actividades.estado=="A")?
                 <td className="Borde_negro"><button onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)} className="Boton_rojo">Dar De Baja</button></td>
                 :
