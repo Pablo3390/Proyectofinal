@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import './TipoOrganismos.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
-
+import { Menu } from "../../Menu";
 
 export function TipoOrganismos(){
     const [tipo_organismos, setTipoorganismos] = useState([])
@@ -29,7 +29,7 @@ export function TipoOrganismos(){
 
     return(
         <>
-       
+         <Menu/>
         <div>
             {mensaje}
         </div>
