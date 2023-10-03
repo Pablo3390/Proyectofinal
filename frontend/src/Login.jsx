@@ -40,6 +40,14 @@ return;
                 </a>
                     <h1 className="h3 mb-3 fw-normal">Por favor ingresar </h1>
 
+                    {
+                 mensaje? 
+                <div className="alert alert-warning" role="alert">
+                 {mensaje}
+                </div>
+              :<></>
+                  }
+
                     <div className="form-floating">
                       <input
                       type="text" 
