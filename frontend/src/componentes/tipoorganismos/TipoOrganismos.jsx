@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import './TipoOrganismos.css';
 import { Link } from "react-router-dom";
@@ -6,6 +8,7 @@ import { Menu } from "../../Menu";
 
 export function TipoOrganismos(){
     const [tipo_organismos, setTipoorganismos] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [mensaje, setMensaje] = useState('')
 
     useEffect(()=>{

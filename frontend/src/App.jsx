@@ -51,7 +51,7 @@ function App() {
         <Route path='/editorganismos/:id_organismo' element={<EditOrganismos/>}></Route>
         <Route path='/agregaractividades' element={<AddActividades/>}></Route>
         <Route path='/editactividades/:id_actividad' element={<EditActividades/>}></Route>
-        <Route path='/Tipoorganismos' element={<TipoOrganismos/>}></Route>
+        <Route path='/Tipo_organismos' element={<TipoOrganismos/>}></Route>
         <Route path='/agregartipoorganismos' element={<AddTipoorganismos/>}></Route>
         <Route path='/edittipoorganismos/:id_tipo_organismo' element={<EditTipoorganismos/>}></Route>
       </Routes>

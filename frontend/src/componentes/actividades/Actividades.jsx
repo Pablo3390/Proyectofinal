@@ -45,13 +45,10 @@ export function Actividades(){
         
            <thead>
            <tr>
-                <td colSpan="8">
+                <th colSpan="8">
                     <Link className="btn btn-outline-success" to="/agregarActividades">Agregar Actividades</Link>
 
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar Actividades
-                    </button>
-                </td>
+                </th>
             </tr>
            <tr>
                     <th >Nombre</th>
@@ -96,7 +93,7 @@ export function Actividades(){
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        ...
+                        HOLAAAA
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary">Guardar</button>
