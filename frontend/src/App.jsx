@@ -26,6 +26,9 @@ import { EditTipoorganismos } from './componentes/tipoorganismos/EditTipoOrganis
 import { TipoConvenios } from './componentes/tipoconvenios/TipoConvenios'
 import { AddTipoconvenios } from './componentes/tipoconvenios/AddTipoConvenios'
 import { EditTipoconvenios } from './componentes/tipoconvenios/EditTipoConvenios'
+import { Responsable } from './componentes/responsable/Responsable'
+import { AddResponsable } from './componentes/responsable/AddResponsable'
+import { EditResponsable } from './componentes/responsable/EditResponsable'
 
 
 
@@ -60,6 +63,9 @@ function App() {
         <Route path='/Tipoconvenios' element={<TipoConvenios/>}></Route>
         <Route path='/agregartipoconvenios' element={<AddTipoconvenios/>}></Route>
         <Route path='/edittipoconvenios/:id_tipo_convenio' element={<EditTipoconvenios/>}></Route>
+        <Route path='/Responsable' element={<Responsable/>}></Route>
+        <Route path='/agregarresponsable' element={<AddResponsable/>}></Route>
+        <Route path='/editresponsable/:id_responsable' element={<EditResponsable/>}></Route>
       </Routes>
 
     </>

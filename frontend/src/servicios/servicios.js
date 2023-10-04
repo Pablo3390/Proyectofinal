@@ -478,3 +478,74 @@ export async function EditTipoconvenios(datos, id_tipo_convenio){
     console.log(data)
     return data
 }
+
+//FUNCIONES DE RESPONSABLE
+//lista responsable
+export async function getResponsable(){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/responsable`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+// agregar Responsable
+export async function AddResponsable(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/responsable`, Options)
+    const data= await respuesta.json()
+    return data
+}
+
+//listar responsable por ID
+export async function getResponsableByID(id_responsable){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//editar responsable
+export async function EditResponsable(datos, id_responsable){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//eliminar responsable
+export async function deleteResponsable(id_responsable){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
