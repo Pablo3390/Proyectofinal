@@ -65,7 +65,7 @@ export function Actividades(){
 
      useEffect(()=>{
         API.getActividades().then(setActividades)
-        }, [])
+        API.getConvenios().then(setConvenios)}, [])
         
 
    /* CAMBIAR ESTADO DE ACTIVIDADES*/ 
