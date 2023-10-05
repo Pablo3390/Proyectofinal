@@ -59,7 +59,7 @@ router.get('/actividades_convenio', (req, res)=>{
 //PARAMETROS: nombre, id_convenio
 
 router.post('/actividades',bodyParser.json(), (req,res)=>{ 
-    const {nombre, id_convenio}=req.body
+    const {nombre, fecha, lugar, participante, id_convenio}=req.body
 
 //datos obligatorios
 if(!nombre){
@@ -77,12 +77,15 @@ if(!id_convenio){
 }
 
 //si lo datos están completos, entonces:
-    mysqlConect.query('INSERT INTO actividades (`nombre`, `id_convenio`) VALUES (?, ?);', [nombre, id_convenio], (error, registro) =>{
+    mysqlConect.query('INSERT INTO actividades (`nombre`, `fecha`, `lugar`, `participante`, `id_convenio`) VALUES (?, ?, ?, ?, ?);', [nombre, fecha, lugar, participante, id_convenio], (error, registro) =>{
         if(error){ // si hay un error entra acá
                     console.log("Error en la base de datos", error)
-        }else{ 
-                    res.send ('El registro se realizó correctamente')
-        }
+        }else{
+            res.json({
+                status:true,
+                mensaje: "La actividad se grabo correctamente"
+            })
+            }
      })
     })
 
