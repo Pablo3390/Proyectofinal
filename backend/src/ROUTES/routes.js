@@ -214,15 +214,4 @@ function verificaToken(req, res, next){
     }
  }
 
-// function verificaToken(req, res, next){
-//     const BearerHeader = req.headers['authorization']
-//     if(typeof BearerHeader!=='undefined'){
-//         const bearer =BearerHeader.split(" ")[1];
-//         req.token=bearer;
-//         next();
-//     }else{
-//         res.send('Se requiere un token')
-//     }
-// }
-
 module.exports= router; 

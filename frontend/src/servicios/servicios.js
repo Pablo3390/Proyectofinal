@@ -132,10 +132,12 @@ export async function AddConvenios(datos){
 //FUNCIONES DE ACTIVIDADES
 //Esta es mi funcion para listar las actividades
 export async function getActividades(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/actividades`, Options)

@@ -2,6 +2,7 @@ const express = require ('express');
 const router = express();
 const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
+const jwt= require('jsonwebtoken')
 
 
 //LISTADO TABLA ACTIVIDAD
@@ -9,15 +10,22 @@ const bodyParser = require('body-parser')
 //URL: /actividad
 //Paramatro: no hay
 
-router.get('/actividades', (req, res)=>{
-    mysqlConect.query('SELECT a.id_actividad, a.nombre, a.fecha, a.lugar, a.participante, c.nombre convenio, a.estado FROM actividades AS a INNER JOIN convenios AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
+router.get('/actividades', verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
         if(error){
-            console.log('Hay un error en la base de datos', error)
+            res.sendStatus(403);
         }else{
-            res.json(registro)
+            mysqlConect.query('SELECT a.id_actividad, a.nombre, a.fecha, a.lugar, a.participante, c.nombre convenio, a.estado FROM actividades AS a INNER JOIN convenios AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
+                if(error){
+                    console.log('Hay un error en la base de datos', error)
+                }else{
+                    res.json(registro)
+                }
+              })
         }
+    
     })
-})
+});
 
 //LISTADO TABLA ACTIVIDAD CON ID 
 //METODO: GET
@@ -181,6 +189,16 @@ router.delete('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{
     })
     })
 
+    function verificaToken(req, res, next){
+        const bearer= req.headers['authorization'];
+        if(typeof bearer!=='undefined'){
+            const token =bearer.split(" ")[1]
+            req.token= token;
+            next()
+        }else{
+            res.send('Debe contener un token')
+        }
+     }
 
 
 module.exports = router

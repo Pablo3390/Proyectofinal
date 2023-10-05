@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import './Responsable.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
+import { Menu } from "../../Menu";
 
 
 
 export function Responsable(){
     const [responsable, setResponsable] = useState([])
+    // eslint-disable-next-line no-unused-vars
     const [mensaje, setMensaje] = useState('')
 
     useEffect(()=>{
@@ -16,7 +20,7 @@ export function Responsable(){
 
     return(
         <>
-          
+          <Menu/>
         <div>
             {mensaje}
         </div>
