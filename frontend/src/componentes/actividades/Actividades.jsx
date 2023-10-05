@@ -178,6 +178,7 @@ export function Actividades(){
              <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
                     <div className="form-floating">
                       <input
+                      required
                       type="text" 
                       value={nombre}
                       onChange={(event)=>setNombre(event.target.value)}
@@ -209,6 +210,7 @@ export function Actividades(){
 
                     <div className="form-floating">
                       <input
+                      required
                       type="number" 
                       value={participante}
                       onChange={(event)=>setParticipante(event.target.value)}
@@ -217,10 +219,13 @@ export function Actividades(){
                       <label htmlFor="floatingInput">Participante</label>
                     </div>
                     <div className="form-floating">
+                        
 
-                    <select onChange={(event)=>setIdconvenio(event.target.value)} className="form-control">
+                    <select required onChange={(event)=>setIdconvenio(event.target.value)} className="form-control">
+                    
                     <option selected value="">Seleccione un convenio</option>
                       {convenios.map((a)=>(
+                      
                       
                         <option value={a.id_convenio}>{a.nombre}</option>
 

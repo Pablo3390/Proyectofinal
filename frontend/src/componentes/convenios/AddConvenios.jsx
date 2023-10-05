@@ -119,6 +119,7 @@ export function AddConvenios(){
                     <div className="form-floating">
                       
                       <select onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">
+                      <option selected value="">Seleccione una resolucion</option>
                       {resolucion.map((r)=>(
                       
                         <option value={r.id_resolucion}>{r.numero}</option>
