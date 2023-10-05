@@ -32,7 +32,7 @@ export function TipoConvenios(){
 
             <tr>
                 <td className="Letra_roja">Nombre</td>
-                <td className="Letra_roja">Tipo Convenio</td>
+                <td className="Letra_roja">Tipo Convenio Col</td>
                 <td colSpan="2" className="Letra_roja">Acciones</td>
                 
             </tr>
