@@ -43,7 +43,7 @@ router.get('/responsable/:id_responsable', (req, res)=>{
 //Paramatro: no
 
 router.get('/responsable_org', (req, res)=>{
-    mysqlConect.query('SELECT r.dni_responsable, r.nombre Nombre_Responsable, o.nombre Organismo FROM responsable AS r INNER JOIN organismo AS o ON r.id_organismo=o.id_organismo', (error, registro)=>{
+    mysqlConect.query('SELECT r.id_responsable, r.nombre Nombre_Responsable, o.nombre Organismo FROM responsable AS r INNER JOIN organismo AS o ON r.id_organismo=o.id_organismo', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
@@ -132,7 +132,7 @@ router.put('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
             }else{
             res.json({
                 status:false,
-                mensaje: "El dni del responsable no existe"
+                mensaje: "El id del responsable no existe"
             })
         }   
         }

@@ -23,6 +23,12 @@ import { EditActividades } from './componentes/actividades/EditActividades'
 import { TipoOrganismos } from './componentes/tipoorganismos/TipoOrganismos'
 import { AddTipoorganismos } from './componentes/tipoorganismos/AddTipoOrganismos'
 import { EditTipoorganismos } from './componentes/tipoorganismos/EditTipoOrganismos'
+import { TipoConvenios } from './componentes/tipoconvenios/TipoConvenios'
+import { AddTipoconvenios } from './componentes/tipoconvenios/AddTipoConvenios'
+import { EditTipoconvenios } from './componentes/tipoconvenios/EditTipoConvenios'
+import { Responsable } from './componentes/responsable/Responsable'
+import { AddResponsable } from './componentes/responsable/AddResponsable'
+import { EditResponsable } from './componentes/responsable/EditResponsable'
 
 
 
@@ -54,6 +60,12 @@ function App() {
         <Route path='/Tipo_organismos' element={<TipoOrganismos/>}></Route>
         <Route path='/agregartipoorganismos' element={<AddTipoorganismos/>}></Route>
         <Route path='/edittipoorganismos/:id_tipo_organismo' element={<EditTipoorganismos/>}></Route>
+        <Route path='/Tipoconvenios' element={<TipoConvenios/>}></Route>
+        <Route path='/agregartipoconvenios' element={<AddTipoconvenios/>}></Route>
+        <Route path='/edittipoconvenios/:id_tipo_convenio' element={<EditTipoconvenios/>}></Route>
+        <Route path='/Responsable' element={<Responsable/>}></Route>
+        <Route path='/agregarresponsable' element={<AddResponsable/>}></Route>
+        <Route path='/editresponsable/:id_responsable' element={<EditResponsable/>}></Route>
       </Routes>
 
     </>
