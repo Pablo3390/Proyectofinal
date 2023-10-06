@@ -71,6 +71,33 @@ router.get('/menu/:id_rol',verificaToken, (req , res)=>{
     })
 })
 
+router.post('/menu_permisos/',verificaToken, bodyParser.json() , (req , res)=>{
+    const { id_rol, menu } = req.body;
+   
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
+            mysqlconect.query('SELECT * FROM menu WHERE id_rol=? AND href=?', [id_rol, menu], (error, registros)=>{
+                if(error){
+                    console.log('Error en la base de datos', error)
+                }else{
+                    if(registros.length>0){
+                        res.json({
+                            status:true
+                        })
+                    }else{
+                        res.json({
+                            status:false
+                        })
+                    }
+                    
+                }
+            })
+        }
+    })
+})
+
 //ruta login con comparacion de datos con booleano
 
 router.post('/login', bodyParser.json(), (req,res)=>{

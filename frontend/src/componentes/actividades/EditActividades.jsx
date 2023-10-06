@@ -103,7 +103,7 @@ export function EditActividades(){
                       onChange={(event)=>setIdconvenio(event.target.value)}
                       className="form-control" 
                       placeholder="id_convenio"/>
-                      <label htmlFor="floatingInput">Id de Actividad</label>
+                      <label htmlFor="floatingInput">Id de Convenio</label>
                     </div>
 
                     <button className="btn btn-primary" type="submit" >Guardar Edicion</button>

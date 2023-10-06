@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 //Paramatro: no hay
 
 router.get('/organismos', (req, res)=>{
-    mysqlConect.query('select * from organismos', (error, registro)=>{
+    mysqlConect.query('SELECT o.id_organismo, o.nombre, t. nombre tipo_organismos, o.estado  FROM organismos AS o LEFT JOIN tipo_organismos AS t ON t.id_tipo_organismo=o.id_tipo_organismo', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{

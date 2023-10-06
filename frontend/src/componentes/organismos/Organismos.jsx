@@ -39,7 +39,7 @@ export function Organismos(){
             </tr>
             <tr>
                 <td className="Letra_roja">Nombre</td>
-                <td className="Letra_roja">Id_tipo_organismo</td>
+                <td className="Letra_roja">Tipo de organismo</td>
                 <td className="Letra_roja">Estado</td>
                 <td colSpan="2" className="Letra_roja">Acciones</td>
             </tr>
@@ -47,7 +47,7 @@ export function Organismos(){
                 // eslint-disable-next-line react/jsx-key
                 <tr>
                 <td className="Borde_negro">{organismos.nombre}</td>
-                <td className="Borde_negro">{organismos.id_tipo_organismo}</td>
+                <td className="Borde_negro">{organismos.tipo_organismos}</td>
                 <td className="Borde_negro">{organismos.estado}</td>
                 <td className="Borde_negro"><Link to={`/editOrganismos/${organismos.id_organismo} `}><button className="Boton_verde">Editar</button></Link></td>
                 {(organismos.estado=="A")?
