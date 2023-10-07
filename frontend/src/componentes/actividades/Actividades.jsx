@@ -3,9 +3,9 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import './Actividades.css';
-import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
 import { Menu } from "../../menu";
+import Swal from 'sweetalert2' 
 
 
 export function Actividades(){
@@ -69,22 +69,66 @@ export function Actividades(){
         
 
    /* CAMBIAR ESTADO DE ACTIVIDADES*/ 
-     const cambiar_estado = async (e, id_actividad, estado_actual)=>{
-            e.preventDefault();
-            const actualizar = (estado_actual=="A")?"B":"A";
-            console.log(actualizar)
-            const respuesta= await API.ActualizarEstadoActividades(id_actividad, {actualizar});
-            if (respuesta.status){
-                setMensaje(respuesta.mensaje)
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                toastBootstrap.show()
-                setTimeout(()=>{
-                    setMensaje('')
-                    toastBootstrap.hide()
+
+
+
+   const cambiar_estado = async (e, id_actividad, estado_actual)=>{
+    e.preventDefault();
+    const actualizar = (estado_actual=="A")?"B":"A";
+    const mjs = (estado_actual=="A")?"dar de baja":"dar de alta";
+    Swal.fire({
+        title: 'Esta seguro?',
+        text: "Usted esta a punto de "+mjs+" a una actividad!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar!',
+        confirmButtonText: 'Confirmar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            
+            API.ActualizarEstadoActividades(id_actividad, {actualizar})
+            .then((respuesta) => {
+                if(respuesta.status){
+                    setMensaje(respuesta.mensaje)
                     API.getActividades().then(setActividades)
-                }, 2000)
-            }
+                        Swal.fire(
+                            'Correcto!',
+                            mensaje,
+                            'success'
+                          )   
+                    
+                    
+                }
+         
+            })
         }
+    })
+    
+    
+}
+    //  const cambiar_estado = async (e, id_actividad, estado_actual)=>{
+    //         e.preventDefault();
+    //         const actualizar = (estado_actual=="A")?"B":"A";
+    //         console.log(actualizar)
+    //         const respuesta= await API.ActualizarEstadoActividades(id_actividad, {actualizar});
+    //         if (respuesta.status){
+    //             setMensaje(respuesta.mensaje)
+    //             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    //             toastBootstrap.show()
+    //             setTimeout(()=>{
+    //                 setMensaje('')
+    //                 toastBootstrap.hide()
+    //                 API.getActividades().then(setActividades)
+    //             }, 2000)
+    //         }
+    //     }
+
+
+
+
+
         const editar_registro = async (e, id_actividad)=>{
             e.preventDefault();
 
@@ -144,9 +188,11 @@ export function Actividades(){
                     <td>{actividades.participante}</td>
                     <td>{actividades.convenio}</td>
                     <td>{actividades.estado}</td>
-                    {/* <td><button to={`/editactividades/${actividades.id_actividad} `}><button data-bs-toggle="modal" data-bs-target="#exampleModal" className="btn btn-warning btn-sm">Editar</button></button></td> */}
-
-                    <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, actividades.id_actividad)}className="btn btn-warning btn-sm">Editar</button></td>
+                    <td >
+                {(actividades.estado=="A")?
+                <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, actividades.id_actividad)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                : 
+                <button disabled className="btn btn-warning btn-sm">Editar</button>}</td>
 
                     {(actividades.estado=="A")?
                     <td><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}>Dar De Baja</button></td>

@@ -81,7 +81,7 @@ export function Usuarios(){
                 .then((respuesta) => {
                     if(respuesta.status){
                         setMensaje(respuesta.mensaje)
-                        console.log('acrtualizar', actualizar)
+                        console.log('actualizar', actualizar)
                         const datos_usuario = JSON.parse(localStorage.getItem('usuario'));
                         console.log('user', datos_usuario.id_usuario)
                         console.log('usuario', id_usuario)
