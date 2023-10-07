@@ -72,8 +72,8 @@ export function Usuarios(){
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            cancelButtonText: 'No, deja nomas',
-            confirmButtonText: 'Si, ya te dije que si!'
+            cancelButtonText: 'Cancelar!',
+            confirmButtonText: 'Confirmar!'
           }).then((result) => {
             if (result.isConfirmed) {
                 

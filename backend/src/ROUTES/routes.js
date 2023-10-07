@@ -240,6 +240,21 @@ router.put('/resetpass/:id_usuario', bodyParser.json(), (req , res)=>{
    })
 })
 
+router.delete('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
+    const { actualizar }  = req.body
+    const { id_usuario } = req.params
+    mysqlconect.query('UPDATE usuarios SET estado = ?  WHERE id_usuario = ?', [actualizar, id_usuario], (error, registros)=>{
+        if(error){
+            console.log('Error en la base de datos', error)
+        }else{
+            res.json({
+                status:true,
+                mensaje: "El cambio de estado se realizo correctamente"
+                })
+        }
+    })
+})
+
 //Verificacion de tokens
 
 function verificaToken(req, res, next){

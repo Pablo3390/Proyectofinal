@@ -552,18 +552,6 @@ export async function deleteResponsable(id_responsable){
     return data
 }
 
-// export async function getUsuarios(){
-//     const Options={
-//         method:'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     }
-//     const respuesta = await fetch(`${URL}/usuarios`, Options)
-//     const data= await respuesta.json()
-//     console.log(data)
-//     return data
-// }
 
 export async function getUsuarios(){
     const token = JSON.parse(localStorage.getItem('token'));
@@ -603,6 +591,19 @@ export async function ResetUsuariosByID(id_usuario){
         }
     }
     const respuesta = await fetch(`${URL}/resetpass/${id_usuario}`, Options)
+    const data= await respuesta.json()
+    return data;
+}
+
+export async function ActualizarEstadoUsuario(id_usuario, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/usuarios/${id_usuario}`, Options)
     const data= await respuesta.json()
     return data;
 }
