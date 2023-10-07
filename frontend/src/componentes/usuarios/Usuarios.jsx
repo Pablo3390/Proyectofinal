@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 
 
 export function Usuarios(){
-    const [usuarios, setUsuarios]=useState([])
+    const [usuarios, setUsuarios]=useState([]);
     const [id_usuario, setIdUsuarios]=useState('')
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
@@ -57,8 +57,9 @@ export function Usuarios(){
     useEffect(()=>{
         const datos_usuario = JSON.parse(localStorage.getItem('usuario'));
         ver_permisos(datos_usuario.id_rol);
-        API.getUsuarios().then(setUsuarios)
-    }, [])
+        API.getUsuarios().then(setUsuarios);
+    }, []);
+    
 
     const cambiar_estado = async (e, id_usuario, estado_actual)=>{
         e.preventDefault();
@@ -191,7 +192,6 @@ export function Usuarios(){
                 <td>Apellido</td>
                 <td>Dni</td>
                 <td>Usuario</td>
-                <td>Contraseña</td>
                 <td>Rol</td>
                 <td>Correo</td>
                 <td>Estado</td>
@@ -199,10 +199,11 @@ export function Usuarios(){
             </tr>
             </thead>
             <tbody>
-            {usuarios.map((usuario, index)=>(
-                <tr key={index}>
+            {usuarios.map((usuario) => (
+                <tr>
                 <td >{usuario.nombre}</td> 
-                <td >{usuario.apellido}</td>    
+                <td >{usuario.apellido}</td> 
+                <td >{usuario.dni}</td>   
                 <td >{usuario.user}</td>
                 <td >{usuario.rol}</td>
                 <td >{usuario.correo}</td>

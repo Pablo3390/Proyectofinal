@@ -552,6 +552,19 @@ export async function deleteResponsable(id_responsable){
     return data
 }
 
+// export async function getUsuarios(){
+//     const Options={
+//         method:'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//     }
+//     const respuesta = await fetch(`${URL}/usuarios`, Options)
+//     const data= await respuesta.json()
+//     console.log(data)
+//     return data
+// }
+
 export async function getUsuarios(){
     const token = JSON.parse(localStorage.getItem('token'));
     const Options={
@@ -580,4 +593,16 @@ export async function ver_permisos(datos){
    const data= await respuesta.json();
    console.log('respuesta de permisos', data)
    return data;
+}
+
+export async function ResetUsuariosByID(id_usuario){
+    const Options={
+        method:'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/resetpass/${id_usuario}`, Options)
+    const data= await respuesta.json()
+    return data;
 }
