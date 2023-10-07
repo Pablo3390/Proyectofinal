@@ -178,7 +178,7 @@ export function Usuarios(){
         <thead>
             <tr>
                 
-                <th colSpan="6">
+                <th colSpan="8">
                 
                 <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar</button>
                 &nbsp;
@@ -195,7 +195,7 @@ export function Usuarios(){
                 <td>Rol</td>
                 <td>Correo</td>
                 <td>Estado</td>
-                <td colSpan="2">Acciones</td>
+                <td>Acciones</td>
             </tr>
             </thead>
             <tbody>
@@ -213,18 +213,18 @@ export function Usuarios(){
                 <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, usuario.id_usuario)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
                 : 
                 <button disabled className="btn btn-warning btn-sm">Editar</button>
-                }
+                } </td>
+                <td >
                 {(usuario.estado=="A")?
                 <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, usuario.id_usuario, usuario.estado )} ><i className="bi bi-hand-thumbs-down-fill"></i>Desactivar</button>
                 :
                 <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, usuario.id_usuario, usuario.estado )} ><i className="bi bi-hand-thumbs-up-fill"></i>Activar</button>
                 
-                }
-                
-                <button onClick={(event)=>resetPass(event, usuario.id_usuario)} className="btn btn-dark btn-sm"><i className="bi bi-arrow-clockwise"></i>Reset Password</button>
-                
-               
+                }</td>
+                <td >
+                <button onClick={(event)=>resetPass(event, usuario.id_usuario)} className="btn btn-dark btn-sm"><i className="bi bi-arrow-clockwise"></i>Reset Password </button>
                 </td>
+                
                 </tr>
             ))}
             </tbody>

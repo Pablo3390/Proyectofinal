@@ -146,7 +146,7 @@ export function Actividades(){
                     <td>{actividades.estado}</td>
                     {/* <td><button to={`/editactividades/${actividades.id_actividad} `}><button data-bs-toggle="modal" data-bs-target="#exampleModal" className="btn btn-warning btn-sm">Editar</button></button></td> */}
 
-                    <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, actividades.id_actividad)}className="btn btn-outline-warning btn-sm">Editar</button></td>
+                    <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, actividades.id_actividad)}className="btn btn-warning btn-sm">Editar</button></td>
 
                     {(actividades.estado=="A")?
                     <td><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}>Dar De Baja</button></td>
