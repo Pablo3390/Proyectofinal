@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../Menu";
+import { Menu } from "../../menu";
 
 export function Convenios(){
     const [convenios, setConvenios] = useState([])

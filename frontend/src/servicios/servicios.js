@@ -551,3 +551,33 @@ export async function deleteResponsable(id_responsable){
     console.log(data)
     return data
 }
+
+export async function getUsuarios(){
+    const token = JSON.parse(localStorage.getItem('token'));
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+             Authorization: `Bearer ${token}`,
+        }
+    }
+    const respuesta = await fetch(`${URL}/usuarios`, Options)
+    const data= await respuesta.json();
+    return data
+}
+
+export async function ver_permisos(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
+   const Options={
+       method:'POST',
+       body: JSON.stringify(datos),
+       headers: {
+           'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+       }
+   }
+   const respuesta = await fetch(`${URL}/menu_permisos`, Options)
+   const data= await respuesta.json();
+   console.log('respuesta de permisos', data)
+   return data;
+}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import './Resolucion.css';
 import * as API from '../../servicios/servicios'
 import { Link } from "react-router-dom";
-import { Menu } from "../../Menu";
+import { Menu } from "../../menu";
 
 
 export function Resolucion(){

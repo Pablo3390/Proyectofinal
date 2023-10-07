@@ -33,6 +33,7 @@ app.use(require('./routes/routesTipoConvenios'));
 app.use(require('./ROUTES/routesTipoOrganismos'));
 app.use(require('./ROUTES/routesResolucion'));
 app.use(require('./ROUTES/routesResponsable'));
+app.use(require('./ROUTES/routesUsuarios'))
 
 app.listen(app.get('puerto'), ()=>{
     console.log('Servidor ON en el puerto ', app.get('puerto'))

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import './Actividades.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../Menu";
+import { Menu } from "../../menu";
 
 
 export function Actividades(){

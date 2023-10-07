@@ -29,6 +29,7 @@ import { EditTipoconvenios } from './componentes/tipoconvenios/EditTipoConvenios
 import { Responsable } from './componentes/responsable/Responsable'
 import { AddResponsable } from './componentes/responsable/AddResponsable'
 import { EditResponsable } from './componentes/responsable/EditResponsable'
+import { Usuarios } from './componentes/usuarios/Usuarios'
 
 
 
@@ -66,6 +67,7 @@ function App() {
         <Route path='/Responsable' element={<Responsable/>}></Route>
         <Route path='/agregarresponsable' element={<AddResponsable/>}></Route>
         <Route path='/editresponsable/:id_responsable' element={<EditResponsable/>}></Route>
+        <Route path='/Usuarios' element={<Usuarios/>}></Route>
       </Routes>
 
     </>
