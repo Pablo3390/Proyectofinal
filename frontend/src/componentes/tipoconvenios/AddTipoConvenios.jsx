@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
@@ -56,7 +57,7 @@ export function AddTipoconvenios(){
                   
 
                     <button className="btn btn-primary" type="submit" >Guardar</button>
-                    <Link to="/tipoconvenios" >Volver</Link>                  
+                    <Link to="/tipo_convenios" >Volver</Link>                  
                   </form>
               </main>
         </>

@@ -64,7 +64,7 @@ export function EditOrganismos(){
                 </div>
 
                 <button className="btn btn-primary" type="submit" >Guardar Edicion</button>
-                <Link to="/convenios" >Volver</Link>                  
+                <Link to="/organismos" >Volver</Link>                  
               </form>
           </main>
     </>

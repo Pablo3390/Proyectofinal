@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -18,6 +19,7 @@ export function EditTipoconvenios(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
+    // eslint-disable-next-line no-unused-vars
     const traer_datos = async(event)=>{
       const datos_tipoconvenios= await API.getTipoconveniosByID(id_tipo_convenio);
       setNombre(datos_tipoconvenios.nombre)
@@ -70,7 +72,7 @@ export function EditTipoconvenios(){
                   
 
                     <button className="btn btn-primary" type="submit" >Guardar Edicion</button>
-                    <Link to="/tipoconvenios" >Volver</Link>                  
+                    <Link to="/tipo_convenios" >Volver</Link>                  
                   </form>
               </main>
         </>
