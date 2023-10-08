@@ -17,6 +17,7 @@ export function Registro(){
     const [mensajeAlerta, setMensajeAlerta]= useState('')
     const [mensajeAlertaNick, setMensajeAlertaNick]= useState('')
     const [correo, setCorreo]= useState('')
+    // eslint-disable-next-line no-unused-vars
     const [id_rol, setIdRol]= useState('1')
 
 
@@ -43,6 +44,7 @@ export function Registro(){
       }
     }
 
+    // eslint-disable-next-line no-unused-vars
     const validarNick = async(event)=>{
           // event.preventDefault();
           
@@ -150,7 +152,7 @@ export function Registro(){
                   className="form-control" 
                   id="pass" 
                   />
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">Contraseña</label>
                 </div>
                 {
                  mensajeAlerta? 
@@ -168,7 +170,7 @@ export function Registro(){
                   className="form-control" 
                   id="pass2" 
                   />
-                  <label htmlFor="password">Repita Password</label>
+                  <label htmlFor="password">Repita Contraseña</label>
                 </div>
                 <button className="btn btn-primary" type="submit" >Registrarme</button>
                 <p className="mt-5 mb-3 text-body-secondary letra_roja"> En el caso de tener cuenta <Link to="/login">Ingresar</Link></p>
