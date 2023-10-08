@@ -12,13 +12,17 @@ export function AddConvenios(){
     const [fecha_fin, setFechafin] = useState('')
     const [clausula_peas, setClausulapeas] = useState('')
     const [id_organismo, setIdorganismo] = useState('')
+    const [organismos, setOrganismos] = useState([])
     const [id_tipo_convenio, setIdtipoconvenio] = useState('')
+    const [tipo_convenio, setTipoconvenio] = useState([])
     const [id_resolucion, setIdresolucion] = useState('')
     const [resolucion, setResolucion] = useState([])
 
     useEffect(()=>{
       API.getResolucion().then(setResolucion)
-  }, [] )
+      API.getTipoconvenios().then(setTipoconvenio)
+      API.getOrganismos().then(setOrganismos)
+}, [] )
 
     const guardarConvenio = async(event)=>{
         event.preventDefault();
@@ -98,24 +102,31 @@ export function AddConvenios(){
                       placeholder="clausula_peas"/>
                       <label htmlFor="floatingInput">Clausula Peas</label>
                     </div>
+
                     <div className="form-floating">
-                      <input
-                      type="number" 
-                      value={id_organismo}
-                      onChange={(event)=>setIdorganismo(event.target.value)}
-                      className="form-control" 
-                      placeholder="id_organismo"/>
-                      <label htmlFor="floatingInput">Id de organismo</label>
+                      
+                      <select onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
+                      <option selected value="">Seleccione un organismo</option>
+                      {organismos.map((o)=>(
+                      
+                        <option value={o.id_organismo}>{o.nombre}</option>
+
+                        ))}
+                      </select>
                     </div>
+
                     <div className="form-floating">
-                      <input
-                      type="number" 
-                      value={id_tipo_convenio}
-                      onChange={(event)=>setIdtipoconvenio(event.target.value)}
-                      className="form-control" 
-                      placeholder="id_tipo_convenio"/>
-                      <label htmlFor="floatingInput">Id de tipo de convenio</label>
+                      
+                      <select onChange={(event)=>setIdtipoconvenio(event.target.value)} className="form-control">
+                      <option selected value="">Seleccione un tipo de convenio</option>
+                      {tipo_convenio.map((t)=>(
+                      
+                        <option value={t.id_tipo_convenio}>{t.nombre}</option>
+
+                        ))}
+                      </select>
                     </div>
+
                     <div className="form-floating">
                       
                       <select onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">

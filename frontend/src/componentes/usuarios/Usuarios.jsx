@@ -190,7 +190,7 @@ export function Usuarios(){
             <tr>
                 <td>Nombre</td>
                 <td>Apellido</td>
-                <td>Dni</td>
+                {/* <td>Dni</td> */}
                 <td>Usuario</td>
                 <td>Rol</td>
                 <td>Correo</td>
@@ -203,7 +203,7 @@ export function Usuarios(){
                 <tr>
                 <td >{usuario.nombre}</td> 
                 <td >{usuario.apellido}</td> 
-                <td >{usuario.dni}</td>   
+                {/* <td >{usuario.dni}</td>    */}
                 <td >{usuario.user}</td>
                 <td >{usuario.rol}</td>
                 <td >{usuario.correo}</td>

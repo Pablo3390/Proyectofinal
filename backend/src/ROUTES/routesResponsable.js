@@ -12,7 +12,7 @@ const bodyParser = require('body-parser')
 //Paramatro: no hay
 
 router.get('/responsable', (req, res)=>{
-    mysqlConect.query('select * from responsable', (error, registro)=>{
+    mysqlConect.query('SELECT r.id_responsable, r.nombre, o. nombre organismos, r.estado  FROM responsable AS r INNER JOIN organismos AS o ON o.id_organismo=r.id_organismo', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import './Organismos.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../Menu";
+import { Menu } from "../../menu";
 
 export function Organismos(){
     const [organismos, setOrganismos] = useState([])
