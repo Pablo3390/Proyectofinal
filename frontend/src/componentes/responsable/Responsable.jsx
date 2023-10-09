@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import './Responsable.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../Menu";
+import { Menu } from "../../menu";
 
  
 
@@ -97,7 +97,7 @@ return;
 
             <tr>
                 <th >Nombre</th>
-                <th>Id Organismo</th>
+                <th>Organismo</th>
                 <th >Acciones</th>
                 
             </tr>
@@ -107,7 +107,7 @@ return;
             {responsable.map((responsable)=>(
                 <tr>
                 <td >{responsable.nombre}</td>
-                <td >{responsable.id_organismo}</td>
+                <td >{responsable.organismos}</td>
 
                 <td><button data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)}className="btn btn-outline-warning btn-sm">Editar</button></td>
           {/* <td className="Borde_negro"><Link to={`/editresponsable/${responsable.id_responsable} `}><button className="Boton_verde">Editar</button></Link></td> */}

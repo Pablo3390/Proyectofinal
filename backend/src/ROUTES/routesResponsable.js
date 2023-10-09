@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../database/database');
+const mysqlConect = require('../DATABASE/database');
 const bodyParser = require('body-parser')
 const jwt= require('jsonwebtoken')
 //SE DEBE MODIFICAR EN BASE DE DATOS EL DNI_RESPONSABLE PORQUE APARECE COMO AUTOINCREMENTAL
@@ -16,7 +16,7 @@ router.get('/responsable', verificaToken, (req, res)=>{
         if(error){
             res.sendStatus(403);
         }else{
-            mysqlConect.query('select * from responsable', (error, registro)=>{
+            mysqlConect.query('SELECT r.id_responsable, r.nombre, o. nombre organismos, o.estado  FROM responsable AS r INNER JOIN organismos AS o ON o.id_organismo=r.id_organismo', (error, registro)=>{
                 if(error){
                          console.log('Hay un error en la base de datos', error)
                 }else{

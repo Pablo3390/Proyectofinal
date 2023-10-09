@@ -21,7 +21,7 @@ export function AddOrganismos(){
             setTimeout(()=>{
                 setMensaje('')
                     window.location.href='/organismos'
-            }, 5000)
+            }, 2000)
         }
         return;
   }

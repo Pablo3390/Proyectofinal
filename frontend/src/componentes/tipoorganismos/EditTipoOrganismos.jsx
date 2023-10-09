@@ -31,7 +31,7 @@ export function EditTipoorganismos(){
             setMensaje(respuesta.mensaje)
             setTimeout(()=>{
                 setMensaje('')
-                    window.location.href='/tipoorganismos'
+                    window.location.href='/tipo_organismos'
             }, 2000)
         }
         return;

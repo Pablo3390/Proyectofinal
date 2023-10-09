@@ -36,7 +36,7 @@ export function EditTipoconvenios(){
             setMensaje(respuesta.mensaje)
             setTimeout(()=>{
                 setMensaje('')
-                    window.location.href='/tipoconvenios'
+                    window.location.href='/tipo_convenios'
             }, 2000)
         }
         return;

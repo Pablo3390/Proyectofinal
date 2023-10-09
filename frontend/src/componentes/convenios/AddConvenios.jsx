@@ -40,7 +40,6 @@ export function AddConvenios(){
     
     return(
         <>
-        Aqui va el form agregar
         
         <main className="form-signin w-100 m-auto">
              <form onSubmit={guardarConvenio}>
