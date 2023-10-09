@@ -38,7 +38,7 @@ return;
                 <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
                    <img src={viteLogo} className="logo" alt="Vite logo" />
                 </a>
-                    <h1 className="h3 mb-3 fw-normal">Por favor ingresar </h1>
+                    <h1 className="h2 mb-3 fw-normal">Ingrese sus datos </h1>
 
                     {
                  mensaje? 
@@ -48,7 +48,7 @@ return;
               :<></>
                   }
 
-                    <div className="form-floating">
+                    <div className="mt-2 form-floating">
                       <input
                       type="text" 
                       value={user}
@@ -58,7 +58,7 @@ return;
                       placeholder="email@gmail.com"/>
                       <label htmlFor="floatingInput">Usuario</label>
                     </div>
-                    <div className="form-floating">
+                    <div className="mt-2 form-floating">
                       <input 
                       type="password" 
                       value={pass}
@@ -70,8 +70,8 @@ return;
                       <label htmlFor="floatingPass">Contraseña</label>
                     </div>
 
-                    <button className="btn btn-primary" type="submit" >Ingresar</button>                  
-                    <p className="mt-5 mb-3 text-body-secondary Letra_roja"> En el caso de no tener cuenta <Link to="/registro">Registrarse</Link></p>
+                    <button className="mt-3 btn btn-dark" type="submit" >Ingresar</button>                  
+                    <p className="mt-5 mb-3 text-body-secondary"> Si no tiene cuenta <Link to="/registro">Registrarse</Link></p>
                   </form>
               </main>
         </>

@@ -73,9 +73,9 @@ export function Registro(){
                   <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
                     <img src={viteLogo} className="logo" alt="Vite logo" />
                   </a>
-                <h1 className="h3 mb-3 fw-normal">Por favor completar los datos</h1>
+                <h1 className="h3 mb-3 fw-normal">Complete los datos</h1>
                 
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                   <input 
                   type="text" 
                   value={apellido}
@@ -85,7 +85,7 @@ export function Registro(){
                   />
                   <label htmlFor="apellido">Apellido</label>
                 </div>
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                   <input 
                   type="text" 
                   value={nombre}
@@ -96,7 +96,7 @@ export function Registro(){
                   <label htmlFor="nombre">Nombre</label>
                 </div>
 
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                   <input 
                   type="number" 
                   value={dni}
@@ -106,7 +106,7 @@ export function Registro(){
                   />
                   <label htmlFor="dni">DNI</label>
                 </div>
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                 <input 
                   type="email" 
                   value={correo}
@@ -117,7 +117,7 @@ export function Registro(){
                   <label htmlFor="correo">Correo</label>
                 </div>
                 
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                   <input 
                   required
                   type="text" 
@@ -143,7 +143,7 @@ export function Registro(){
                 </div>
                 :<></>
                   }
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                   <input 
                   required
                   type="password" 
@@ -161,7 +161,7 @@ export function Registro(){
                 </div>
               :<></>
                   }
-                <div className="form-floating">
+                <div className="mt-2 form-floating">
                   <input 
                   required
                   type="password" 
@@ -172,8 +172,8 @@ export function Registro(){
                   />
                   <label htmlFor="password">Repita Contraseña</label>
                 </div>
-                <button className="btn btn-primary" type="submit" >Registrarme</button>
-                <p className="mt-5 mb-3 text-body-secondary letra_roja"> En el caso de tener cuenta <Link to="/login">Ingresar</Link></p>
+                <button className="mt-3 btn btn-dark" type="submit" >Registrarme</button>
+                <p className="mt-5 mb-3 text-body-secondary"> Ya tengo cuenta <Link to="/login">Ingresar</Link></p>
               </form>
           </main>
         </>

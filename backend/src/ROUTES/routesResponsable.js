@@ -2,7 +2,7 @@ const express = require ('express');
 const router = express();
 const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
-
+const jwt= require('jsonwebtoken')
 //SE DEBE MODIFICAR EN BASE DE DATOS EL DNI_RESPONSABLE PORQUE APARECE COMO AUTOINCREMENTAL
 
 
@@ -11,15 +11,22 @@ const bodyParser = require('body-parser')
 //URL: /responsable
 //Paramatro: no hay
 
-router.get('/responsable', (req, res)=>{
-    mysqlConect.query('SELECT r.id_responsable, r.nombre, o. nombre organismos, r.estado  FROM responsable AS r INNER JOIN organismos AS o ON o.id_organismo=r.id_organismo', (error, registro)=>{
+router.get('/responsable', verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
         if(error){
-            console.log('Hay un error en la base de datos', error)
+            res.sendStatus(403);
         }else{
-            res.json(registro)
+            mysqlConect.query('select * from responsable', (error, registro)=>{
+                if(error){
+                         console.log('Hay un error en la base de datos', error)
+                }else{
+                    res.json(registro)
         }
+           
+     })
+    }
     })
-})
+});
 
 //LISTADO TABLA RESPONSABLE CON ID 
 //METODO: GET
@@ -177,6 +184,16 @@ router.delete('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
     })
     })
 
+    function verificaToken(req, res, next){
+        const bearer= req.headers['authorization'];
+        if(typeof bearer!=='undefined'){
+            const token =bearer.split(" ")[1]
+            req.token= token;
+            next()
+        }else{
+            res.send('Debe contener un token')
+        }
+     }
 
 
 

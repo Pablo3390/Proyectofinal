@@ -484,10 +484,12 @@ export async function EditTipoconvenios(datos, id_tipo_convenio){
 //FUNCIONES DE RESPONSABLE
 //lista responsable
 export async function getResponsable(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/responsable`, Options)
@@ -495,6 +497,7 @@ export async function getResponsable(){
     console.log(data)
     return data
 }
+
 
 // agregar Responsable
 export async function AddResponsable(datos){
