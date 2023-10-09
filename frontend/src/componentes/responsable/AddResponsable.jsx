@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -50,7 +52,7 @@ export function AddResponsable(){
                       <label htmlFor="floatingInput">Nombre</label>
                     </div>
 
-                    {/* <div className="form-floating">
+                    <div className="form-floating">
                       <input
                       type="number" 
                       value={id_organismo}
@@ -58,17 +60,18 @@ export function AddResponsable(){
                       className="form-control" 
                       placeholder="id_organismo"/>
                       <label htmlFor="floatingInput">Id Organismo</label>
-                    </div> */}
+                    </div>
 
 
                   
-                      <select onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
+                      {/* <select onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
+                      <option selected value="">Seleccione un organismo</option>
                       {organismos.map((organismos)=>(
                       
                         <option value={organismos.id_organismo}>{organismos.nombre}</option>
 
                         ))}
-                      </select>
+                      </select> */}
                     
 
                     <button className="btn btn-primary" type="submit" >Guardar</button>
