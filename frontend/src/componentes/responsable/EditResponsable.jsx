@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -19,6 +20,7 @@ export function EditResponsable(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
+    // eslint-disable-next-line no-unused-vars
     const traer_datos = async(event)=>{
       const datos_responsable= await API.getResponsableByID(id_responsable);
       setNombre(datos_responsable.nombre)

@@ -18,7 +18,7 @@ export function Home(){
         <>
         <div>
           <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
+            {/* <img src={viteLogo} className="logo" alt="Vite logo" /> */}
           </a>
         </div>
         <div>

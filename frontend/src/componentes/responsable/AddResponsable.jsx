@@ -33,9 +33,7 @@ export function AddResponsable(){
  }
     
     return(
-        <>
-        Aqui va el form agregar
-        
+        <>        
         <main className="form-signin w-100 m-auto">
              <form onSubmit={guardarResponsable}>
                 <div>
