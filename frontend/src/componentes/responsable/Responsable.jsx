@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
@@ -33,7 +34,7 @@ export function Responsable(){
     const guardarResponsable = async(event)=>{
         event.preventDefault();
         if(id_responsable){
-            const respuesta = await API.EditResponsable({nombre, id_organismo}, id_responsable)
+            const respuesta = await API.AddResponsable ({nombre, id_organismo}, id_responsable)
              if (respuesta.status){
                 setMensaje(respuesta.mensaje)
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
@@ -45,7 +46,7 @@ export function Responsable(){
             }
             return;
       }else{
-        const respuesta = await API.AddResponsable({nombre, id_organismo})
+        const respuesta = await API.EditResponsable ({nombre, id_organismo})
         if (respuesta.status){
              setMensaje(respuesta.mensaje)
               const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)

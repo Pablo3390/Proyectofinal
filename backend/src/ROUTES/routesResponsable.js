@@ -87,9 +87,12 @@ if(!id_organismo){
     mysqlConect.query('INSERT INTO responsable (`nombre`, `id_organismo`) VALUES (?, ?);', [nombre, id_organismo], (error, registro) =>{
         if(error){ // si hay un error entra acá
                     console.log("Error en la base de datos", error)
-        }else{ 
-                    res.send ('El registro se realizó correctamente')
-        }
+        }else{
+            res.json({
+                status:true,
+                mensaje: "La registro se grabo correctamente"
+            })
+            }
      })
     })
 

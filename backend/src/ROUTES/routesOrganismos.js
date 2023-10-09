@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../database/database');
+const mysqlConect = require('../DATABASE/database');
 const bodyParser = require('body-parser')
 
 
