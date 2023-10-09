@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
@@ -82,12 +83,12 @@ export function TipoConvenios(){
         <>
           <Menu/>
         
-        <table class="table table-striped">
+        <table className="table table-striped">
         <thead>
        <tr>
                 <th colSpan="12" >
                     {/* <Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></th> */}
-                    <button  class="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar</button>
+                    <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar</button>
                     </th>
             </tr>
 
@@ -108,7 +109,7 @@ export function TipoConvenios(){
                 
               <td >
                 {/* <Link to={`/editTipoconvenios/${tipo_convenios.id_tipo_convenio} `}><button className="Boton_verde">Editar</button></Link></td> */}
-                <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_convenios.id_tipo_convenio)} class="btn btn-outline-warning btn-sm">Editar modal</button>
+                <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_convenios.id_tipo_convenio)} className="btn btn-outline-warning btn-sm">Editar</button>
                 </td>
             </tr>
             ))}
@@ -116,15 +117,15 @@ export function TipoConvenios(){
         </table>
 
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Datos del modelo </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos del modelo </h1>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form onSubmit={guardaTipoconvenios}>
-                <div class="modal-body">
+                <div className="modal-body">
 
                 <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
                     <div className="form-floating">
@@ -155,15 +156,15 @@ export function TipoConvenios(){
             </div>
         </div>
 
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
+        <div className="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="toast-header">
                 
-                <strong class="me-auto">Mensaje</strong>
+                <strong className="me-auto">Mensaje</strong>
                 
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
+                <div className="toast-body">
                 {mensaje}
                 </div>
             </div>
