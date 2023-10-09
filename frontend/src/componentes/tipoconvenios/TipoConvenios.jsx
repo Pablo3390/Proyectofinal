@@ -10,43 +10,166 @@ import { Menu } from "../../Menu";
 
 export function TipoConvenios(){
     const [tipo_convenios, setTipoconvenios] = useState([])
-    // eslint-disable-next-line no-unused-vars
+    const [id_tipo_convenio, setIdTipoconvenios] = useState('')
     const [mensaje, setMensaje] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [tipo_conveniocol, setTipoconveniocol] = useState('')
 
+   
+   
+    const toastTrigger = document.getElementById('liveToastBtn')
+    const toastLiveExample = document.getElementById('liveToast')
+
+    if (toastTrigger) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastTrigger.addEventListener('click', () => {
+          toastBootstrap.show()
+        })
+      }
+   
+   
     useEffect(()=>{
         API.getTipoconvenios().then(setTipoconvenios)}, [])
 
+    
+        const guardaTipoconvenios = async(event)=>{
+            event.preventDefault();
+            if(id_tipo_convenio){
+                const respuesta = await API.EditTipoconvenios({nombre,tipo_conveniocol}, id_tipo_convenio)
+
+                if (respuesta.status){
+                    setMensaje(respuesta.mensaje)
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastBootstrap.show()
+                    setTimeout(()=>{
+                        setMensaje('')
+                            window.location.href='/tipo_convenios'
+                    }, 2000)
+                }
+                return;
+            }else{
+                const respuesta = await API.AddTipoconvenios({nombre, tipo_conveniocol})
+            if (respuesta.status){
+                setMensaje(respuesta.mensaje)
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastBootstrap.show()
+                setTimeout(()=>{
+                    setMensaje('')
+                        window.location.href='/tipo_convenios'
+                }, 2000)
+            }
+            return;
+
+            }
+            
+            
+     }
+
+     const editar_registro = async (e, id_tipo_convenio)=>{
+        e.preventDefault();
         
+        console.log('el id que vamos a editar es el ', id_tipo_convenio)
+        setIdTipoconvenios(id_tipo_convenio)
+        const datos_tipoconvenios= await API.getTipoconveniosByID(id_tipo_convenio);
+        console.log(datos_tipoconvenios)
+        setNombre(datos_tipoconvenios.nombre)
+        setTipoconveniocol(datos_tipoconvenios.tipo_conveniocol)
+        
+}
+
 
     return(
         <>
           <Menu/>
-        <div>
-            {mensaje}
-        </div>
-        <table>
-
+        
+        <table class="table table-striped">
+        <thead>
        <tr>
-                <td className="Letra_roja" colSpan="12" ><Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></td>
+                <th colSpan="12" >
+                    {/* <Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></th> */}
+                    <button  class="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar</button>
+                    </th>
             </tr>
 
             <tr>
-                <td className="Letra_roja">Nombre</td>
-                <td className="Letra_roja">Tipo Convenio Col</td>
-                <td colSpan="2" className="Letra_roja">Acciones</td>
+                <td >Nombre</td>
+                <td >Tipo Convenio Col</td>
+                <td >Acciones</td>
                 
             </tr>
+            </thead>
+
+
+            <tbody>
             {tipo_convenios.map((tipo_convenios)=>(
                 <tr>
-                <td className="Borde_negro">{tipo_convenios.nombre}</td>
-                <td className="Borde_negro">{tipo_convenios.tipo_conveniocol}</td>
+                <td >{tipo_convenios.nombre}</td>
+                <td >{tipo_convenios.tipo_conveniocol}</td>
                 
-              <td className="Borde_negro"><Link to={`/editTipoconvenios/${tipo_convenios.id_tipo_convenio} `}><button className="Boton_verde">Editar</button></Link></td>
-                
-            
+              <td >
+                {/* <Link to={`/editTipoconvenios/${tipo_convenios.id_tipo_convenio} `}><button className="Boton_verde">Editar</button></Link></td> */}
+                <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_convenios.id_tipo_convenio)} class="btn btn-outline-warning btn-sm">Editar modal</button>
+                </td>
             </tr>
             ))}
+             </tbody>
         </table>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Datos del modelo </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form onSubmit={guardaTipoconvenios}>
+                <div class="modal-body">
+
+                <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
+                    <div className="form-floating">
+                      <input
+                      type="text" 
+                      value={nombre}
+                      onChange={(event)=>setNombre(event.target.value)}
+                      className="form-control" 
+                      placeholder="nombre"/>
+                      <label htmlFor="floatingInput">Nombre</label>
+                    </div>
+
+                    <div className="form-floating">
+                      <input
+                      type="text" 
+                      value={tipo_conveniocol}
+                      onChange={(event)=>setTipoconveniocol(event.target.value)}
+                      className="form-control" 
+                      placeholder="tipo_conveniocol"/>
+                      <label htmlFor="floatingInput">Tipo Convenio col</label>
+                    </div>
+                    </div>
+
+                    <button className="btn btn-primary" type="submit" >Guardar</button>
+                                 
+                  </form>
+                  </div>
+            </div>
+        </div>
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                
+                <strong class="me-auto">Mensaje</strong>
+                
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                {mensaje}
+                </div>
+            </div>
+        </div>
+
+
         </>
     )
 }
