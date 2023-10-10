@@ -170,36 +170,45 @@ router.get('/usuarios', verificaToken,(req , res)=>{
     })
 });
 
-
-
-
-router.get('/usuarios/:id_usuario', verificaToken , (req,res)=>{
-    const{id_usuario}=req.params
-    jwt.verify(req.token, 'silicon' , (error, valido)=>{
-    if(!error){
-        mysqlconect.query('select * from usuarios where id_usuario=?', [id_usuario], (error, registros)=>{
-            if(error){
-                console.log('Error en base de datos ', error)
-            }else{
-                if(registros.length>0){
-                    res.json({
-                        status:true,
-                        datos: registros
-                    })
-                }else{
-                    res.json({
-                        status:false,
-                        mensaje: "El parametro es inexistente"
-                    })
-                }
-               
-            }
-        })
-    }
-
+router.get('/usuarios/:id_usuario', (req , res)=>{
+    const { id_usuario } = req.params
+    mysqlconect.query('SELECT * FROM usuarios WHERE id_usuario=?', [id_usuario], (error, registros)=>{
+        if(error){
+            console.log('Error en la base de datos', error)
+        }else{
+            res.json(registros)
+        }
     })
-   
 })
+
+
+// router.get('/usuarios/:id_usuario', verificaToken , (req,res)=>{
+//     const{id_usuario}=req.params
+//     jwt.verify(req.token, 'silicon' , (error, valido)=>{
+//     if(!error){
+//         mysqlconect.query('select * from usuarios where id_usuario=?', [id_usuario], (error, registros)=>{
+//             if(error){
+//                 console.log('Error en base de datos ', error)
+//             }else{
+//                 if(registros.length>0){
+//                     res.json({
+//                         status:true,
+//                         datos: registros
+//                     })
+//                 }else{
+//                     res.json({
+//                         status:false,
+//                         mensaje: "El parametro es inexistente"
+//                     })
+//                 }
+               
+//             }
+//         })
+//     }
+
+//     })
+   
+// })
 router.post('/validarnick', bodyParser.json() , (req , res)=>{
     const { user } = req.body;
     console.log(user)

@@ -35,7 +35,9 @@ export function AddResolucion(){
                       <input
                       type="number" 
                       value={numero}
-                      onChange={(event)=>setNumero(event.target.value)}
+                      onChange={(event) => {
+                        setNumero((event.target.value < 0)?event.target.value * -1:event.target.value);
+                      }}
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Numero</label>
@@ -44,9 +46,11 @@ export function AddResolucion(){
                       <input
                       type="number" 
                       value={ano}
-                      onChange={(event)=>setAno(event.target.value)}
+                      onChange={(event) => {
+                        setAno((event.target.value < 0)?event.target.value * -1:event.target.value);
+                      }}
                       className="form-control" 
-                      placeholder="nombre"/>
+                      placeholder="año"/>
                       <label htmlFor="floatingInput">Año</label>
                     </div>
                     <button className="btn btn-primary" type="submit" >Guardar</button>

@@ -60,7 +60,9 @@ export function AddConvenios(){
                       <input
                       type="numero" 
                       value={utilidad}
-                      onChange={(event)=>setUtilidad(event.target.value)}
+                      onChange={(event) => {
+                        setUtilidad((event.target.value < 0)?event.target.value * -1:event.target.value);
+                      }}
                       className="form-control" 
                       placeholder="utilidad"/>
                       <label htmlFor="floatingInput">Utilidad</label>

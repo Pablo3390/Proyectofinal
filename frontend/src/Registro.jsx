@@ -101,7 +101,9 @@ export function Registro(){
                   <input 
                   type="number" 
                   value={dni}
-                  onChange={(event)=>setDni(event.target.value)}
+                  onChange={(event) => {
+                    setDni((event.target.value < 0)?event.target.value * -1:event.target.value);
+                  }}
                   className="form-control" 
                   id="dni" 
                   />
@@ -167,7 +169,9 @@ export function Registro(){
                   required
                   type="password" 
                   value={pass2}
-                  onChange={(event)=>setPassDos(event.target.value)}
+                  onChange={(event) => {
+                    setPassDos((event.target.value < 0)?event.target.value * -1:event.target.value);
+                  }}
                   className="form-control" 
                   id="pass2" 
                   />

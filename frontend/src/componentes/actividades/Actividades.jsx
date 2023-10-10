@@ -259,7 +259,9 @@ export function Actividades(){
                       required
                       type="number" 
                       value={participante}
-                      onChange={(event)=>setParticipante(event.target.value)}
+                      onChange={(event) => {
+                        setParticipante((event.target.value < 0)?event.target.value * -1:event.target.value);
+                      }}
                       className="form-control" 
                       placeholder="participante"/>
                       <label htmlFor="floatingInput">Participante</label>

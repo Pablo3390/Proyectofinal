@@ -570,6 +570,18 @@ export async function getUsuarios(){
     return data
 }
 
+export async function getUsuariosByID(id_usuario){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/usuarios/${id_usuario}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
 export async function ver_permisos(datos){
     const token = JSON.parse(localStorage.getItem('token'));
    const Options={
