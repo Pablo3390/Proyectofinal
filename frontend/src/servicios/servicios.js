@@ -380,8 +380,42 @@ export async function AddResolucion(datos){
     return data
 }
 
+//editar resoluciones
+export async function EditResolucion(datos, id_resolucion){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//listar resoluciones por ID
+export async function getResolucionByID(id_resolucion){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
 
 
+
+
+
+
+
+
+//FUNCIONES ORGANISMOS
 //Esta es mi funcion para eliminar organismos
 export async function deleteOrganismos(id_organismo){
     const Options={
