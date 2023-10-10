@@ -513,6 +513,27 @@ export async function AddResponsable(datos){
     return data
 }
 
+//actualizar Responsable
+export async function ActualizarEstadoResponsable(id_responsable, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+
+
+
+
+
 //listar responsable por ID
 export async function getResponsableByID(id_responsable){
     const Options={

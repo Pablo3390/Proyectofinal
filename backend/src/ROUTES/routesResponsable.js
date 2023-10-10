@@ -157,7 +157,7 @@ router.put('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
 
 router.delete('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{ 
     const {id_responsable}= req.params
-
+    const {actualizar} = req.body
     
     mysqlConect.query('SELECT * FROM responsable WHERE id_responsable=?;', [id_responsable], (error, registro) =>{
         if(error){ // si hay un error entra acá
@@ -165,13 +165,13 @@ router.delete('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
         
         }else{ // si no hay error que me devuelve lo siguiente
             if(registro.length>0){
-                mysqlConect.query('UPDATE responsable SET estado = "B" WHERE id_responsable = ?;', [id_responsable], (error, registro) =>{
+                mysqlConect.query('UPDATE responsable SET estado = ? WHERE id_responsable = ?;', [actualizar, id_responsable], (error, registro) =>{
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
                     }else{ 
                         res.json({
                             status: true,
-                            mensaje: 'El registro '+id_responsable+ ' se dió de BAJA correctamente'
+                            mensaje: 'El cambio de estado se realizó correctamente'
                         })
                                 
                     }
@@ -180,7 +180,7 @@ router.delete('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
             }else{
                 res.json({
                 status:false,
-                mensaje: "El dni del responsable no existe"
+                mensaje: "El id del responsable no existe"
             })
         }   
         }
