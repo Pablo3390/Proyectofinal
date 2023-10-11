@@ -101,10 +101,10 @@ export function Resolucion(){
                 </th>
             </tr>
             <tr>
-                <td >Numero</td>
-                <td >Año</td>
-                <td >Estado</td>
-                <td >Acciones</td>
+                <th >Numero</th>
+                <th >Año</th>
+                <th >Estado</th>
+                <th >Acciones</th>
                 {/* <td className="Letra_roja">#</td> */}
             </tr>
             </thead>

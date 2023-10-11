@@ -179,9 +179,9 @@ export function TipoConvenios(){
             </tr>
 
             <tr>
-                <td >Nombre</td>
-                <td >Tipo Convenio Col</td>
-                <td >Acciones</td>
+                <th >Nombre</th>
+                <th >Tipo Convenio Col</th>
+                <th >Acciones</th>
                 
             </tr>
             </thead>
