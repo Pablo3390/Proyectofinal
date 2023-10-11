@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../menu";
+import { Menu } from "../../Menu";
 
 export function Convenios(){
     const [convenios, setConvenios] = useState([])
@@ -41,7 +41,7 @@ export function Convenios(){
             </tr>
             <tr>
                 <td className="Letra_roja">Nombre</td>
-                <td className="Letra_roja">Utilidad</td>
+                <td className="Letra_roja">Utilidad $</td>
                 <td className="Letra_roja">Objeto</td>
                 <td className="Letra_roja">Fecha de inicio</td>
                 <td className="Letra_roja">Fecha de fin</td>

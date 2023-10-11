@@ -57,11 +57,11 @@ export function Registro(){
               setTimeout(()=>{
                 setMensajeAlertaNick('')
                   setUser('')
-                  // setNick('')
-                  }, 5000)
-              // un icono rojo
+                  
+                  }, 2000)
+              
             }else{
-              // un icono lojo
+              
               setNick('ok')
             }
          

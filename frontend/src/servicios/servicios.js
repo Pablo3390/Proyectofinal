@@ -563,11 +563,6 @@ export async function ActualizarEstadoResponsable(id_responsable, actualizar){
 }
 
 
-
-
-
-
-
 //listar responsable por ID
 export async function getResponsableByID(id_responsable){
     const Options={

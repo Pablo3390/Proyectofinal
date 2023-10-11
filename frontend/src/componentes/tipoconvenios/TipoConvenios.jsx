@@ -88,7 +88,7 @@ export function TipoConvenios(){
        <tr>
                 <th colSpan="12" >
                     {/* <Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></th> */}
-                    <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar</button>
+                    <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar tipo de convenio</button>
                     </th>
             </tr>
 

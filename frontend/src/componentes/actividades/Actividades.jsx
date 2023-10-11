@@ -18,6 +18,7 @@ export function Actividades(){
     const [participante, setParticipante] = useState('')
     const [id_convenio, setIdconvenio] = useState('')
     const [convenios, setConvenios] = useState([])
+    const [permisoDenegado, setPermisoDenegado] = useState(false)
 
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
@@ -64,6 +65,8 @@ export function Actividades(){
      }
 
      useEffect(()=>{
+        const datos_usuario = JSON.parse(localStorage.getItem('usuario'));
+        ver_permisos(datos_usuario.id_rol);
         API.getActividades().then(setActividades)
         API.getConvenios().then(setConvenios)}, [])
         
@@ -108,25 +111,6 @@ export function Actividades(){
     
     
 }
-    //  const cambiar_estado = async (e, id_actividad, estado_actual)=>{
-    //         e.preventDefault();
-    //         const actualizar = (estado_actual=="A")?"B":"A";
-    //         console.log(actualizar)
-    //         const respuesta= await API.ActualizarEstadoActividades(id_actividad, {actualizar});
-    //         if (respuesta.status){
-    //             setMensaje(respuesta.mensaje)
-    //             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-    //             toastBootstrap.show()
-    //             setTimeout(()=>{
-    //                 setMensaje('')
-    //                 toastBootstrap.hide()
-    //                 API.getActividades().then(setActividades)
-    //             }, 2000)
-    //         }
-    //     }
-
-
-
 
 
         const editar_registro = async (e, id_actividad)=>{
@@ -145,15 +129,29 @@ export function Actividades(){
         
         }
 
+        const ver_permisos =  async (id_rol)=>{
+            const menu='/actividades';
+            const respuesta= await API.ver_permisos({id_rol, menu });
+            if(respuesta.status){
+                setPermisoDenegado(true)
+            }else{
+                setPermisoDenegado(false)
+            }
+        }
+
  
 
         
     return(
         <>
         <Menu/>
-         {/* <div>
-            {mensaje}
-        </div> */}
+        {
+        !permisoDenegado? 
+            <div className="alert alert-warning" role="alert">
+            No tiene  permiso para acceder a esta opcion
+            </div>
+            :<>
+    
 
 
         <table className="table table-striped-columns">
@@ -306,6 +304,8 @@ export function Actividades(){
                     </div>
                 </div>
                 </div>
+        </>
+        }
         </>
     )
 
