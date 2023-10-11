@@ -49,6 +49,8 @@ export function Resolucion(){
 
         if (respuesta.status){
             setMensaje(respuesta.mensaje)
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastBootstrap.show()
             setTimeout(()=>{
                 setMensaje('')
                     window.location.href='/resolucion'
@@ -60,6 +62,8 @@ export function Resolucion(){
                 const respuesta = await API.AddResolucion({numero, ano})
                 if (respuesta.status){
                     setMensaje(respuesta.mensaje)
+                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastBootstrap.show()
                     setTimeout(()=>{
                         setMensaje('')
                             window.location.href='/resolucion'
@@ -92,7 +96,7 @@ export function Resolucion(){
         <thead>
         <tr>
                 <th colSpan="4" >
-                <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Reasolución</button>
+                <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Resolución</button>
                     {/* <Link className="Borde_negro" to="/agregarResolucion">Agregar Resolucion</Link> */}
                 </th>
             </tr>
@@ -100,6 +104,7 @@ export function Resolucion(){
                 <td >Numero</td>
                 <td >Año</td>
                 <td >Estado</td>
+                <td >Acciones</td>
                 {/* <td className="Letra_roja">#</td> */}
             </tr>
             </thead>
@@ -112,8 +117,9 @@ export function Resolucion(){
                 <td >{resolucion.ano}</td>
                 <td>{resolucion.estado}</td>
                 <td>
-                    <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, resolucion.id_resolucion)} className="btn btn-warning">Editar</button>
-                    <button onClick={(event)=>eliminar(event, resolucion.id_resolucion)} className="btn btn-danger">Eliminar</button>
+                    <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, resolucion.id_resolucion)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                    
+                    <button onClick={(event)=>eliminar(event, resolucion.id_resolucion)} className="btn btn-danger btn-sm">Eliminar</button>
                     {/* <Link to={`/editResolucion/${resolucion.id_resolucion} `}><button className="Boton_verde">Editar</button></Link> */}
                     
                 </td>
