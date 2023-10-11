@@ -78,6 +78,13 @@ export function TipoConvenios(){
         
 }
 
+    const limpiarModal = async ()=>{
+        
+        setNombre('')
+        setIdTipoconvenios('')
+        setTipoconveniocol('')
+    }
+
 
     return(
         <>
@@ -88,7 +95,7 @@ export function TipoConvenios(){
        <tr>
                 <th colSpan="12" >
                     {/* <Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></th> */}
-                    <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar tipo de convenio</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar tipo de convenio</button>
                     </th>
             </tr>
 

@@ -139,6 +139,16 @@ export function Actividades(){
             }
         }
 
+        const limpiarModal = async ()=>{
+       
+            setNombre('')
+            setIdActividades('')
+            setFecha('')
+            setLugar('')
+            setParticipante('')
+
+        }
+
  
 
         
@@ -160,7 +170,7 @@ export function Actividades(){
            <thead>
            <tr>
                 <th colSpan="8">
-                    <button className="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >Agregar Actividades</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >Agregar Actividades</button>
                     {/* <button type="button" className="btn btn-primary" id="liveToastBtn">Show live toast</button> */}
 
                 </th>

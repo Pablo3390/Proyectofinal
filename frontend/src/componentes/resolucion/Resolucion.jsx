@@ -112,9 +112,10 @@ export function Resolucion(){
                 <td >{resolucion.ano}</td>
                 <td>{resolucion.estado}</td>
                 <td>
+                    <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, resolucion.id_resolucion)} className="btn btn-warning">Editar</button>
                     <button onClick={(event)=>eliminar(event, resolucion.id_resolucion)} className="btn btn-danger">Eliminar</button>
                     {/* <Link to={`/editResolucion/${resolucion.id_resolucion} `}><button className="Boton_verde">Editar</button></Link> */}
-                    <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, resolucion.id_resolucion)} className="btn btn-warning">Editar</button>
+                    
                 </td>
                 
             </tr>

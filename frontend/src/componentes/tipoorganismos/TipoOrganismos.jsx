@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
@@ -83,18 +84,24 @@ export function TipoOrganismos(){
             setNombre(datos_tipoorganismos.nombre)
         }
 
+        const limpiarModal = async ()=>{
+       
+            setNombre('')
+            setIdTipoorganismos('')
+        }
+
 
 
     return(
         <>
          <Menu/>
       
-        <table class="table table-striped">
+        <table className="table table-striped">
         <thead>
         <tr>
                 <th colSpan="12" >
-                    {/* <Link className="Borde_negro" to="/agregartipoorganismos">Agregar Tipo Organismos</Link></td> */}
-                    <button  class="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Tipo Organismos</button>
+                    {/* <Link classNameName="Borde_negro" to="/agregartipoorganismos">Agregar Tipo Organismos</Link></td> */}
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Tipo Organismos</button>
              </th>
             </tr>
 
@@ -112,8 +119,8 @@ export function TipoOrganismos(){
                 <td >{tipo_organismos.nombre}</td>
                 
                <td>
-                {/* <Link to={`/editTipoorganismos/${tipo_organismos.id_tipo_organismo} `}><button className="Boton_verde">Editar</button></Link> */}
-                <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_organismos.id_tipo_organismo)} class="btn btn-outline-warning btn-sm">Editar</button>
+                {/* <Link to={`/editTipoorganismos/${tipo_organismos.id_tipo_organismo} `}><button classNameName="Boton_verde">Editar</button></Link> */}
+                <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_organismos.id_tipo_organismo)} className="btn btn-outline-warning btn-sm">Editar</button>
                 </td> 
             
             </tr>
@@ -121,16 +128,16 @@ export function TipoOrganismos(){
             </tbody>
         </table>
          
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Datos Tipo Organismo </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos Tipo Organismo </h1>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <form onSubmit={guardaTipoorganismos}>
-                <div class="modal-body">
+                <div className="modal-body">
 
 
                     <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
@@ -152,15 +159,15 @@ export function TipoOrganismos(){
                   </div>
                   </div>
 
-                  <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
+                  <div className="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="toast-header">
                 
-                <strong class="me-auto">Mensaje</strong>
+                <strong className="me-auto">Mensaje</strong>
                 
                 
                 </div>
-                <div class="toast-body">
+                <div className="toast-body">
                 {mensaje}
                 </div>
             </div>

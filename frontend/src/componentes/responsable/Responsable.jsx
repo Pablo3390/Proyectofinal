@@ -102,6 +102,11 @@ export function Responsable(){
         setIdorganismo(datos_responsable.id_organismo)
     
     }
+    const limpiarModal = async ()=>{
+       
+        setNombre('')
+        setIdresponsable('')
+    }
    
 
 
@@ -114,7 +119,7 @@ export function Responsable(){
        <tr>
                  <th colSpan="12" >
                     {/* <Link classNameName="Borde_negro" to="/agregarresponsable">Agregar Responsable</Link> */}
-                    <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Responsable</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Responsable</button>
                 </th>
             </tr> 
 

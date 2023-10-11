@@ -180,7 +180,7 @@ export function Usuarios(){
                 
                 <th colSpan="8">
                 
-                <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar</button>
+                <button className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar</button>
                 &nbsp;
                 
                 <input  type="checkbox"/>Solo Activos
