@@ -6,6 +6,7 @@ import './Responsable.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
 import { Menu } from "../../Menu";
+import Swal from 'sweetalert2'
 
 
 
@@ -71,24 +72,74 @@ export function Responsable(){
      }
 
 
-     const cambiar_estado = async (e, id_responsable, estado_actual)=>{
-        e.preventDefault();
-        const actualizar = (estado_actual=="A")?"B":"A";
-        console.log(actualizar)
-        const respuesta= await API.ActualizarEstadoResponsable(id_responsable, {actualizar});
-        if(respuesta.status){
-            setMensaje(respuesta.mensaje)
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-            toastBootstrap.show()
-            setTimeout(()=>{
-                setMensaje('')
-                toastBootstrap.hide()
-                API.getResponsable().then(setResponsable)
-                window.location.href='/responsable'
-            }, 1000)
-        }
+    //  const cambiar_estado = async (e, id_responsable, estado_actual)=>{
+    //     e.preventDefault();
+    //     const actualizar = (estado_actual=="A")?"B":"A";
+    //     console.log(actualizar)
+    //     const respuesta= await API.ActualizarEstadoResponsable(id_responsable, {actualizar});
+    //     if(respuesta.status){
+    //         setMensaje(respuesta.mensaje)
+    //         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    //         toastBootstrap.show()
+    //         setTimeout(()=>{
+    //             setMensaje('')
+    //             toastBootstrap.hide()
+    //             API.getResponsable().then(setResponsable)
+    //             window.location.href='/responsable'
+    //         }, 1000)
+    //     }
         
+    // }
+
+    const cambiar_estado = async (e, id_responsable, estado_actual)=>{
+     e.preventDefault();
+     const actualizar = (estado_actual=="A")?"B":"A";
+     const mjs = (estado_actual=="A")?"dar de baja":"dar de alta";
+     Swal.fire({
+         title: '¿Está seguro?',
+         text: "Usted esta a punto de "+mjs+" a un responsable",
+         icon: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         cancelButtonText: 'Cancelar',
+         confirmButtonText: 'Confirmar'
+       }).then((result) => {
+        if (result.isConfirmed) {
+
+            API.ActualizarEstadoResponsable(id_responsable, {actualizar})
+                .then((respuesta) => {
+                    if(respuesta.status){
+                        setMensaje(respuesta.mensaje)
+                        API.getResponsable().then(setResponsable)
+                            Swal.fire(
+                                '¡Correcto!',
+                                mensaje,
+                                'success'
+                              )   
+                        
+                        
+                    }
+             
+                })
+            }
+        })
+
+    
+    
+    
+    
+    
+    
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -119,7 +170,7 @@ export function Responsable(){
        <tr>
                  <th colSpan="12" >
                     {/* <Link classNameName="Borde_negro" to="/agregarresponsable">Agregar Responsable</Link> */}
-                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Responsable</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Responsable</button>
                 </th>
             </tr> 
 
@@ -141,13 +192,18 @@ export function Responsable(){
             
           <td >
             {/* <Link to={`/editresponsable/${responsable.id_responsable} `}><button classNameName="Boton_verde">Editar</button></Link> */}
-            <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)} className="btn btn-outline-warning btn-sm">Editar</button>
+            {/* <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)} className="btn btn-outline-warning btn-sm">Editar</button> */}
+            {(responsable.estado=="A")?
+                <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                : 
+                <button disabled className="btn btn-warning btn-sm">Editar</button>}
+
            
 
             {(responsable.estado=="A")?
-                <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} >Desactivar</button>
+                <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} ><i className="bi bi-hand-thumbs-down-fill"></i>Desactivar</button>
                 :
-                <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} >Activar</button>
+                <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} ><i className="bi bi-hand-thumbs-up-fill"></i>Activar</button>
                 
                 }
            
