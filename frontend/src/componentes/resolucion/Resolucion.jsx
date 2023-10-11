@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import './Resolucion.css';
 import * as API from '../../servicios/servicios'
+// eslint-disable-next-line no-unused-vars
 import { Link } from "react-router-dom";
-import { Menu } from "../../menu";
+import { Menu } from "../../Menu";
 
 
 export function Resolucion(){
@@ -86,11 +88,11 @@ export function Resolucion(){
          <Menu/>
        
 
-        <table class="table table-striped">
+        <table className="table table-striped">
         <thead>
         <tr>
                 <th colSpan="4" >
-                <button  class="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar</button>
+                <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar</button>
                     {/* <Link className="Borde_negro" to="/agregarResolucion">Agregar Resolucion</Link> */}
                 </th>
             </tr>
@@ -120,12 +122,12 @@ export function Resolucion(){
             </tbody>
         </table>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Datos del modelo </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos del modelo </h1>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <form onSubmit={guardaResolucion}>
@@ -157,15 +159,15 @@ export function Resolucion(){
                   </div>
             </div>
         </div>
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
+        <div className="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="toast-header">
                 
-                <strong class="me-auto">Mensaje</strong>
+                <strong className="me-auto">Mensaje</strong>
                 
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
+                <div className="toast-body">
                 {mensaje}
                 </div>
             </div>

@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from "react";
 import './Actividades.css';
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../menu";
+import { Menu } from "../../Menu";
 import Swal from 'sweetalert2' 
 
 

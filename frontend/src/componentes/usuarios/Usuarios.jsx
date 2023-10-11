@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import * as API from '../../servicios/servicios'
-import { Menu } from "../../menu";
+import { Menu } from "../../Menu";
 import Swal from 'sweetalert2' 
 
 

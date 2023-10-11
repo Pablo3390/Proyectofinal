@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
@@ -46,7 +47,7 @@ export function Responsable(){
                         setTimeout(()=>{
                         setMensaje('')
                              window.location.href='/responsable'
-                 }, 2000)
+                 }, 1000)
                       }
                     return;
 
@@ -83,8 +84,8 @@ export function Responsable(){
                 setMensaje('')
                 toastBootstrap.hide()
                 API.getResponsable().then(setResponsable)
-                //window.location.href='/responsable'
-            }, 2500)
+                window.location.href='/responsable'
+            }, 1000)
         }
         
     }
@@ -108,12 +109,12 @@ export function Responsable(){
         <>
           <Menu/>
         
-        <table class="table table-striped">
+        <table className="table table-striped">
         <thead>
        <tr>
                  <th colSpan="12" >
-                    {/* <Link className="Borde_negro" to="/agregarresponsable">Agregar Responsable</Link> */}
-                    <button  class="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Responsable</button>
+                    {/* <Link classNameName="Borde_negro" to="/agregarresponsable">Agregar Responsable</Link> */}
+                    <button  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Responsable</button>
                 </th>
             </tr> 
 
@@ -134,14 +135,14 @@ export function Responsable(){
                 <td >{responsable.estado}</td>
             
           <td >
-            {/* <Link to={`/editresponsable/${responsable.id_responsable} `}><button className="Boton_verde">Editar</button></Link> */}
-            <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)} class="btn btn-outline-warning btn-sm">Editar</button>
+            {/* <Link to={`/editresponsable/${responsable.id_responsable} `}><button classNameName="Boton_verde">Editar</button></Link> */}
+            <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)} className="btn btn-outline-warning btn-sm">Editar</button>
            
 
             {(responsable.estado=="A")?
-                <button class="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} >Desactivar</button>
+                <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} >Desactivar</button>
                 :
-                <button class="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} >Activar</button>
+                <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} >Activar</button>
                 
                 }
            
@@ -153,12 +154,12 @@ export function Responsable(){
        
         </table>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Datos del Responsable </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos del Responsable </h1>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <form onSubmit={guardaResponsable}>
@@ -204,15 +205,15 @@ export function Responsable(){
                   </div>
             </div>
         </div>
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
+        <div className="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="toast-header">
                 
-                <strong class="me-auto">Mensaje</strong>
+                <strong className="me-auto">Mensaje</strong>
                 
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
+                <div className="toast-body">
                 {mensaje}
                 </div>
             </div>
