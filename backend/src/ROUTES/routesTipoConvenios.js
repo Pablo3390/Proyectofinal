@@ -98,6 +98,7 @@ if(!nombre){
 //Borrado logico por DELETE
 
 router.delete('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), (req,res)=>{ 
+    const {actualizar} = req.body
     const {id_tipo_convenio}= req.params
 
     
@@ -107,13 +108,13 @@ router.delete('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), (req,res)=>
         
         }else{
             if(registro.length>0){
-                mysqlConect.query('UPDATE tipo_convenios SET estado = "B" WHERE id_tipo_convenio = ?;', [id_tipo_convenio], (error, registro) =>{
+                mysqlConect.query('UPDATE tipo_convenios SET estado = ? WHERE id_tipo_convenio = ?;', [actualizar, id_tipo_convenio], (error, registro) =>{
                     if(error){
                                 console.log("Error en la base de datos", error)
                     }else{ 
                         res.json({
                             status: true,
-                            mensaje: 'El registro '+id_tipo_convenio+ ' se dió de BAJA correctamente'
+                            mensaje: "El cambio del estado se realizó correctamente "
                         })
                                 
                     }

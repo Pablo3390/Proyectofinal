@@ -6,6 +6,7 @@ import './TipoConvenios.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
 import { Menu } from "../../Menu";
+import Swal from 'sweetalert2'
 
 
 
@@ -66,6 +67,84 @@ export function TipoConvenios(){
             
      }
 
+
+
+    //   const cambiar_estado = async (e, id_tipo_convenio, estado_actual)=>{
+    //      e.preventDefault();
+    //     const actualizar = (estado_actual=="A")?"B":"A";
+    //     console.log(actualizar)
+    //     const respuesta= await API.ActualizarEstadoTipoConvenios(id_tipo_convenio, {actualizar});
+    //     if (respuesta.status){
+    //     setMensaje(respuesta.mensaje)
+    //     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    //     toastBootstrap.show()
+    //     setTimeout(()=>{
+    //      setMensaje('')
+    //     toastBootstrap.hide()
+    //     window.location.href='/tipo_convenios'
+    //     }, 1000)
+    //     }
+
+            
+    //     }
+
+
+    const cambiar_estado = async (e, id_tipo_convenio, estado_actual)=>{
+    e.preventDefault();
+    const actualizar = (estado_actual=="A")?"B":"A";
+    const mjs = (estado_actual=="A")?"dar de baja":"dar de alta";
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: "Usted esta a punto de "+mjs+" a un convenio",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            API.ActualizarEstadoTipoConvenios(id_tipo_convenio, {actualizar})
+                .then((respuesta) => {
+                    if(respuesta.status){
+                        setMensaje(respuesta.mensaje)
+                        API.getTipoconvenios().then(setTipoconvenios)
+                            Swal.fire(
+                                '¡Correcto!',
+                                mensaje,
+                                'success'
+                              )   
+                        
+                        
+                    }
+             
+                })
+            }
+        })
+
+
+
+
+
+
+
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      const editar_registro = async (e, id_tipo_convenio)=>{
         e.preventDefault();
         
@@ -95,7 +174,7 @@ export function TipoConvenios(){
        <tr>
                 <th colSpan="12" >
                     {/* <Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></th> */}
-                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar tipo de convenio</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar tipo de convenio</button>
                     </th>
             </tr>
 
@@ -113,11 +192,26 @@ export function TipoConvenios(){
                 <tr>
                 <td >{tipo_convenios.nombre}</td>
                 <td >{tipo_convenios.tipo_conveniocol}</td>
+                <td >{tipo_convenios.estado}</td>
                 
-              <td >
-                {/* <Link to={`/editTipoconvenios/${tipo_convenios.id_tipo_convenio} `}><button className="Boton_verde">Editar</button></Link></td> */}
+              {/* <td >
+                
                 <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_convenios.id_tipo_convenio)} className="btn btn-outline-warning btn-sm">Editar</button>
-                </td>
+                </td> */}
+                 <td >
+                {(tipo_convenios.estado=="A")?
+                <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, tipo_convenios.id_tipo_convenio)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                : 
+                <button disabled className="btn btn-warning btn-sm">Editar</button>}</td>
+
+
+                {(tipo_convenios.estado=="A")?
+                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, tipo_convenios.id_tipo_convenio, tipo_convenios.estado)} >Baja</button></td>
+                :
+                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, tipo_convenios.id_tipo_convenio, tipo_convenios.estado)} >Alta</button></td>
+                
+                 }
+
             </tr>
             ))}
              </tbody>

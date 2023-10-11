@@ -110,7 +110,7 @@ export async function ActualizarEstadoConvenios(id_convenio, actualizar){
     console.log(data)
     return data
 }
-
+ 
 
 
 //Esta es mi funcion para agregar convenios
@@ -335,6 +335,20 @@ export async function EditTipoorganismos(datos, id_tipo_organismo){
     return data
 }*/
 
+//funcion para cambiar estado
+export async function ActualizarEstadoTipoConvenios(id_tipo_convenio, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
 
 
 //FUNCIONES DE RESOLUCIONES
