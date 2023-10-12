@@ -335,6 +335,26 @@ export async function EditTipoorganismos(datos, id_tipo_organismo){
     return data
 }*/
 
+//editar Tipo Organismos
+export async function ActualizarEstadoTipoOrganismos(id_tipo_organismo, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+
+
+
+
 //funcion para cambiar estado
 export async function ActualizarEstadoTipoConvenios(id_tipo_convenio, actualizar){
     const Options={

@@ -6,6 +6,7 @@ import './TipoOrganismos.css';
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
 import { Menu } from "../../Menu";
+import Swal from 'sweetalert2'
 
 export function TipoOrganismos(){
     const [tipo_organismos, setTipoorganismos] = useState([])
@@ -27,21 +28,54 @@ export function TipoOrganismos(){
     useEffect(()=>{
         API.getTipoorganismos().then(setTipoorganismos)}, [])
 
-        /*const cambiar_estado = async (e, id_convenio, estado_actual)=>{
+   
+        const cambiar_estado = async (e, id_tipo_organismo, estado_actual)=>{
             e.preventDefault();
             const actualizar = (estado_actual=="A")?"B":"A";
-            console.log(actualizar)
-            const respuesta= await API.ActualizarEstadoConvenios(id_convenio, {actualizar});
-            if (respuesta.status){
-                setMensaje(respuesta.mensaje)
-                setTimeout(()=>{
-                    setMensaje('')
-                        window.location.href='/convenios'
-                }, 1000)
-            }
+            const mjs = (estado_actual=="A")?"dar de baja":"dar de alta";
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: "Usted esta a punto de "+mjs+" a un tipo de organismo",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-            
-        }*/
+                    API.ActualizarEstadoTipoOrganismos(id_tipo_organismo, {actualizar})
+                    .then((respuesta) => {
+                        if(respuesta.status){
+                            setMensaje(respuesta.mensaje)
+                            API.getTipoorganismos().then(setTipoorganismos)
+                                Swal.fire(
+                                    '¡Correcto!',
+                                    mensaje,
+                                    'success'
+                                  )   
+                            
+                            
+                        }
+                 
+                    })
+                }
+            })
+        
+        
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         const guardaTipoorganismos = async(event)=>{
             event.preventDefault();
@@ -101,13 +135,14 @@ export function TipoOrganismos(){
         <tr>
                 <th colSpan="12" >
                     {/* <Link classNameName="Borde_negro" to="/agregartipoorganismos">Agregar Tipo Organismos</Link></td> */}
-                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" >Agregar Tipo Organismos</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Tipo Organismos</button>
              </th>
             </tr>
 
             <tr>
-                <td >Nombre</td>
-                <td >Acciones</td>
+                <th >Nombre</th>
+                <th >Estado</th>
+                <th >Acciones</th>
                 
             </tr>
             </thead>
@@ -117,11 +152,34 @@ export function TipoOrganismos(){
             {tipo_organismos.map((tipo_organismos)=>(
                 <tr>
                 <td >{tipo_organismos.nombre}</td>
+                <td >{tipo_organismos.estado}</td>
                 
                <td>
-                {/* <Link to={`/editTipoorganismos/${tipo_organismos.id_tipo_organismo} `}><button classNameName="Boton_verde">Editar</button></Link> */}
-                <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_organismos.id_tipo_organismo)} className="btn btn-outline-warning btn-sm">Editar</button>
+               {(tipo_organismos.estado=="A")?
+                <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, tipo_organismos.id_tipo_organismo)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                : 
+                <button disabled className="btn btn-warning btn-sm">Editar</button>}
+                {/* <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, tipo_organismos.id_tipo_organismo)} className="btn btn-outline-warning btn-sm">Editar</button> */}
+
                 </td> 
+
+                {(tipo_organismos.estado=="A")?
+                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} >Baja</button></td>
+                :
+                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} >Alta</button></td>
+                
+                 }
+
+
+
+
+
+                {/* {(tipo_organismos.estado=="A")?
+                <td ><button onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} className="Boton_rojo">Dar De Baja</button></td>
+                :
+                <td ><button onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} className="Boton_azul">Dar De Alta</button></td>
+                
+                 } */}
             
             </tr>
             ))}

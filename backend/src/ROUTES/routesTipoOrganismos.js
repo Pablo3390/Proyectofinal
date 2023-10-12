@@ -123,6 +123,7 @@ router.put('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)=>{
  //Parametros: id_tipo_organismo
 
 router.delete('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)=>{ 
+    const {actualizar} = req.body
     const {id_tipo_organismo}= req.params
 
     
@@ -132,13 +133,13 @@ router.delete('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)
         
         }else{ // si no hay error que me devuelve lo siguiente
             if(registro.length>0){
-                mysqlConect.query('UPDATE tipo_organismos SET estado = "B" WHERE id_tipo_organismo = ?;', [id_tipo_organismo], (error, registro) =>{
+                mysqlConect.query('UPDATE tipo_organismos SET estado = ? WHERE id_tipo_organismo = ?;', [actualizar, id_tipo_organismo], (error, registro) =>{
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
                     }else{ 
                         res.json({
                             status: true,
-                            mensaje: 'El registro '+id_tipo_organismo+ ' se dió de BAJA correctamente'
+                            mensaje: "El cambio de estado se realizo correctamente"
                         })
                                 
                     }
