@@ -32,8 +32,13 @@ router.get('/actividades', verificaToken, (req, res)=>{
 //URL: /actividad/:id_actividad
 //Paramatro: id_actividad
 
-router.get('/actividades/:id_actividad', (req, res)=>{
+router.get('/actividades/:id_actividad', verificaToken, (req, res)=>{
     const {id_actividad}=req.params 
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
+
     mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?', [id_actividad], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -41,6 +46,8 @@ router.get('/actividades/:id_actividad', (req, res)=>{
             res.json(registro)
         }
     })
+    }
+})
 })
 
 //LISTADO TABLA ACTIVIDAD con tabla CONVENIO
@@ -48,12 +55,18 @@ router.get('/actividades/:id_actividad', (req, res)=>{
 //URL: /actividad_convenio
 //Paramatro: no
 
-router.get('/actividades_convenio', (req, res)=>{
+router.get('/actividades_convenio',verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('SELECT a.id_actividad, a.nombre actividades, c.nombre Convenio FROM actividades as a INNER JOIN convenio AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
             res.json(registro)
+        }
+    })
         }
     })
 })
@@ -66,8 +79,12 @@ router.get('/actividades_convenio', (req, res)=>{
 //URL: /actividad
 //PARAMETROS: nombre, id_convenio
 
-router.post('/actividades',bodyParser.json(), (req,res)=>{ 
+router.post('/actividades',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {nombre, fecha, lugar, participante, id_convenio}=req.body
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 
 //datos obligatorios
 if(!nombre){
@@ -95,6 +112,8 @@ if(!id_convenio){
             })
             }
      })
+            }
+    })
     })
 
 
@@ -102,9 +121,13 @@ if(!id_convenio){
 //Metodo PUT
 //URL: /actividad/:id_actividad
 //Parametros: id_actividad, nombre, id_convenio
-router.put('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{ 
+router.put('/actividades/:id_actividad',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_actividad}= req.params
     const {nombre, id_convenio}=req.body
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 
     if(!nombre){
         res.json({
@@ -148,6 +171,8 @@ router.put('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{
         }   
         }
     })
+        }
+    })
     })
 
 
@@ -156,9 +181,13 @@ router.put('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{
  //URL: /actividad/:id_actividad
  //Parametros: id_actividad
 
-router.delete('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{ 
+router.delete('/actividades/:id_actividad',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_actividad}= req.params
     const {actualizar} = req.body
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 
     
     mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?;', [id_actividad], (error, registro) =>{
@@ -185,6 +214,8 @@ router.delete('/actividades/:id_actividad',bodyParser.json(), (req,res)=>{
                 mensaje: "El id de la actividad no existe"
             })
         }   
+        }
+    })
         }
     })
     })

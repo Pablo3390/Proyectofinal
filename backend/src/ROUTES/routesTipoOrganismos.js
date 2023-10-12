@@ -2,6 +2,7 @@ const express = require ('express');
 const router = express();
 const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
+const jwt= require('jsonwebtoken')
 
 
 //LISTADO TABLA TIPO ORGANISMO
@@ -9,7 +10,11 @@ const bodyParser = require('body-parser')
 //URL: /tipo_organismo
 //Paramatro: no hay
 
-router.get('/tipo_organismos', (req, res)=>{
+router.get('/tipo_organismos', verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('select * from tipo_organismos', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -17,6 +22,8 @@ router.get('/tipo_organismos', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+  })
 })
 
 //LISTADO TABLA TIPO ORGANISMO CON ID 
@@ -24,7 +31,7 @@ router.get('/tipo_organismos', (req, res)=>{
 //URL: /tipo_organismo/:id_tipo_organismo
 //Paramatro: id_tipo_organismo
 
-router.get('/tipo_organismos/:id_tipo_organismo', (req, res)=>{
+router.get('/tipo_organismos/:id_tipo_organismo', verificaToken, (req, res)=>{
     const {id_tipo_organismo}=req.params 
     mysqlConect.query('SELECT * FROM tipo_organismos WHERE id_tipo_organismo=?', [id_tipo_organismo], (error, registro)=>{
         if(error){
@@ -41,9 +48,12 @@ router.get('/tipo_organismos/:id_tipo_organismo', (req, res)=>{
 //URL: /tipo_organismo
 //PARAMETROS: nombre
 
-router.post('/tipo_organismos',bodyParser.json(), (req,res)=>{ 
+router.post('/tipo_organismos',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {nombre}=req.body
-
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 //datos obligatorios
 if(!nombre){
     res.json({
@@ -67,17 +77,22 @@ if(!nombre){
             })
         }
      })
-    })
+    }
+  })
+ })
 
 
 //MODIFICAR/UPDATE UN ORGANISMO ESPECIFICO
 //Metodo PUT
 //URL: /tipo_organismo/:id_tipo_organismo
 //Parametros: id_tipo_organismo, nombre
-router.put('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)=>{ 
+router.put('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_tipo_organismo}= req.params
     const {nombre}=req.body
-
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     if(!nombre){
         res.json({
             status: false,
@@ -114,7 +129,9 @@ router.put('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)=>{
         }   
         }
     })
-    })
+   }
+  })
+})
 
 
  //BORRADO LÓGICO
@@ -122,10 +139,13 @@ router.put('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)=>{
  //URL: /tipo_organismo/:id_tipo_organismo
  //Parametros: id_tipo_organismo
 
-router.delete('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)=>{ 
+router.delete('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {actualizar} = req.body
     const {id_tipo_organismo}= req.params
-
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     
     mysqlConect.query('SELECT * FROM tipo_organismos WHERE id_tipo_organismo=?;', [id_tipo_organismo], (error, registro) =>{
         if(error){ // si hay un error entra acá
@@ -153,8 +173,20 @@ router.delete('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), (req,res)
         }   
         }
     })
-    })
+   }
+  })
+ })
 
+    function verificaToken(req, res, next){
+        const bearer= req.headers['authorization'];
+        if(typeof bearer!=='undefined'){
+            const token =bearer.split(" ")[1]
+            req.token= token;
+            next()
+        }else{
+            res.send('Debe contener un token')
+        }
+     }
 
 
 

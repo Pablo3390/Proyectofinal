@@ -63,11 +63,13 @@ export async function getActividades(){
 
 //Esta es mi funcion para agregar actividades
 export async function AddActividades(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/actividades`, Options)
@@ -77,11 +79,13 @@ export async function AddActividades(datos){
 
 //Esta es mi funcion para actualizar actividades
 export async function ActualizarEstadoActividades(id_actividad, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
@@ -92,10 +96,12 @@ export async function ActualizarEstadoActividades(id_actividad, actualizar){
 
 //Esta es mi funcion para listar las actividades por ID
 export async function getActividadesByID(id_actividad){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
@@ -105,11 +111,13 @@ export async function getActividadesByID(id_actividad){
 
 //Esta es mi funcion para editar las actividades
 export async function EditActividades(datos, id_actividad){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
@@ -122,10 +130,12 @@ export async function EditActividades(datos, id_actividad){
 
 //Esta es mi funcion para listar los convenios
 export async function getConvenios(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/convenios`, Options)
@@ -135,10 +145,12 @@ export async function getConvenios(){
 }
 //Esta es mi funcion para listar los convenios
 export async function getConveniosByID(id_convenio){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
@@ -148,11 +160,13 @@ export async function getConveniosByID(id_convenio){
 
 //Esta es mi funcion para editar los convenios
 export async function EditConvenios(datos, id_convenio){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
@@ -162,10 +176,12 @@ export async function EditConvenios(datos, id_convenio){
 }
 //Esta es mi funcion para eliminar convenios
 export async function deleteConvenios(id_convenio){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
@@ -175,11 +191,13 @@ export async function deleteConvenios(id_convenio){
 }
 //Esta es mi funcion para actualizar convenios
 export async function ActualizarEstadoConvenios(id_convenio, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/convenios/${id_convenio}`, Options)
@@ -192,11 +210,13 @@ export async function ActualizarEstadoConvenios(id_convenio, actualizar){
 
 //Esta es mi funcion para agregar convenios
 export async function AddConvenios(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/convenios`, Options)
@@ -208,10 +228,12 @@ export async function AddConvenios(datos){
 
 //Esta es mi funcion para listar los organmismos
 export async function getOrganismos(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/organismos`, Options)
@@ -221,10 +243,12 @@ export async function getOrganismos(){
 }
 
 export async function getOrganismosByID(id_organismo){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
@@ -233,11 +257,13 @@ export async function getOrganismosByID(id_organismo){
 }
 
 export async function EditOrganismos(datos, id_organismo){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
@@ -247,11 +273,13 @@ export async function EditOrganismos(datos, id_organismo){
 }
 
 export async function ActualizarEstadoOrganismos(id_organismo, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
@@ -262,10 +290,12 @@ export async function ActualizarEstadoOrganismos(id_organismo, actualizar){
 
 //Esta es mi funcion para eliminar organismos
 export async function deleteOrganismos(id_organismo){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
@@ -276,11 +306,13 @@ export async function deleteOrganismos(id_organismo){
 
 //Esta es mi funcion para agregar organismo
 export async function AddOrganismos(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/organismos`, Options)
@@ -291,10 +323,12 @@ export async function AddOrganismos(datos){
 //FUNCIONES DE RESOLUCIONES
 //Esta es mi funcion para listar las resoluciones
 export async function getResolucion(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/resolucion`, Options)
@@ -306,10 +340,12 @@ export async function getResolucion(){
 
 //Esta es mi funcion para eliminar resoluciones
 export async function deleteResolucion(id_resolucion){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
@@ -319,11 +355,13 @@ export async function deleteResolucion(id_resolucion){
 }
 //Esta es mi funcion para agregar convenios
 export async function AddResolucion(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/resolucion`, Options)  
@@ -333,11 +371,13 @@ export async function AddResolucion(datos){
 
 //editar resoluciones
 export async function EditResolucion(datos, id_resolucion){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
@@ -348,10 +388,12 @@ export async function EditResolucion(datos, id_resolucion){
 
 //listar resoluciones por ID
 export async function getResolucionByID(id_resolucion){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
         }
     }
     const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
@@ -379,11 +421,13 @@ export async function getResponsable(){
 
 // agregar Responsable
 export async function AddResponsable(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/responsable`, Options)
@@ -393,11 +437,13 @@ export async function AddResponsable(datos){
 
 //actualizar Responsable
 export async function ActualizarEstadoResponsable(id_responsable, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
@@ -409,10 +455,12 @@ export async function ActualizarEstadoResponsable(id_responsable, actualizar){
 
 //listar responsable por ID
 export async function getResponsableByID(id_responsable){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
@@ -422,11 +470,13 @@ export async function getResponsableByID(id_responsable){
 
 //editar responsable
 export async function EditResponsable(datos, id_responsable){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
@@ -437,10 +487,12 @@ export async function EditResponsable(datos, id_responsable){
 
 //eliminar responsable
 export async function deleteResponsable(id_responsable){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/responsable/${id_responsable}`, Options)
@@ -453,10 +505,12 @@ export async function deleteResponsable(id_responsable){
 //FUNCIONES DE TIPO ORGANISMOS
 //listar tipos de organismos
 export async function getTipoorganismos(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
@@ -467,11 +521,13 @@ export async function getTipoorganismos(){
 
 // agregar Tipos organismos
 export async function AddTipoorganismos(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
@@ -481,10 +537,12 @@ export async function AddTipoorganismos(datos){
 
 //listar tipos organismos por ID
 export async function getTipoorganismosByID(id_tipo_organismo){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
@@ -494,11 +552,13 @@ export async function getTipoorganismosByID(id_tipo_organismo){
 
 //editar tipo organismos
 export async function EditTipoorganismos(datos, id_tipo_organismo){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
@@ -524,11 +584,13 @@ export async function EditTipoorganismos(datos, id_tipo_organismo){
 
 //editar Tipo Organismos
 export async function ActualizarEstadoTipoOrganismos(id_tipo_organismo, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
@@ -541,11 +603,13 @@ export async function ActualizarEstadoTipoOrganismos(id_tipo_organismo, actualiz
 
 //funcion para cambiar estado
 export async function ActualizarEstadoTipoConvenios(id_tipo_convenio, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
@@ -556,10 +620,12 @@ export async function ActualizarEstadoTipoConvenios(id_tipo_convenio, actualizar
 
 //listar tipo_convenios
 export async function getTipoconvenios(){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_convenios`, Options)
@@ -570,11 +636,13 @@ export async function getTipoconvenios(){
 
 // agregar Tipos convenios
 export async function AddTipoconvenios(datos){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_convenios`, Options)
@@ -584,10 +652,12 @@ export async function AddTipoconvenios(datos){
 
 //listar tipos convenios por ID
 export async function getTipoconveniosByID(id_tipo_convenio){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'GET',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
@@ -597,11 +667,13 @@ export async function getTipoconveniosByID(id_tipo_convenio){
 
 //editar tipo convenios
 export async function EditTipoconvenios(datos, id_tipo_convenio){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'PUT',
         body: JSON.stringify(datos),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)

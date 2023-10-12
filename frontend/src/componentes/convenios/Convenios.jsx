@@ -265,7 +265,7 @@ export function Convenios(){
                 </div>
              <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
                     <div className="form-floating">
-                      <input
+                      <input required
                       type="text" 
                       value={nombre}
                       onChange={(event)=>setNombre(event.target.value)}
@@ -274,7 +274,7 @@ export function Convenios(){
                       <label htmlFor="floatingInput">Nombre</label>
                     </div>
                     <div className="form-floating">
-                      <input
+                      <input required
                       type="numero" 
                       value={utilidad}
                       onChange={(event) => {
@@ -323,7 +323,7 @@ export function Convenios(){
 
                     <div className="form-floating">
                       
-                      <select onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
+                      <select required onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un organismo</option>
                       {organismos.map((o)=>(
                       
@@ -335,7 +335,7 @@ export function Convenios(){
 
                     <div className="form-floating">
                       
-                      <select onChange={(event)=>setIdtipoconvenio(event.target.value)} className="form-control">
+                      <select required onChange={(event)=>setIdtipoconvenio(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un tipo de convenio</option>
                       {tipo_convenio.map((t)=>(
                       
@@ -347,7 +347,7 @@ export function Convenios(){
 
                     <div className="form-floating">
                       
-                      <select onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">
+                      <select required onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">
                       <option selected value="">Seleccione una resolucion</option>
                       {resolucion.map((r)=>(
                       

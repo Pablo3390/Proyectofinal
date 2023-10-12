@@ -146,7 +146,9 @@ export function Resolucion(){
                       <input
                       type="number" 
                       value={numero}
-                      onChange={(event)=>setNumero(event.target.value)}
+                      onChange={(event) => {
+                        setNumero((event.target.value < 0)?event.target.value * -1:event.target.value);
+                      }}
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Numero</label>
@@ -155,7 +157,9 @@ export function Resolucion(){
                       <input
                       type="number" 
                       value={ano}
-                      onChange={(event)=>setAno(event.target.value)}
+                      onChange={(event) => {
+                        setAno((event.target.value < 0)?event.target.value * -1:event.target.value);
+                      }}
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Año</label>

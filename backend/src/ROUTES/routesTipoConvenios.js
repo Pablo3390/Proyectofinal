@@ -1,11 +1,16 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../DATABASE/database');
+const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
+const jwt= require('jsonwebtoken')
 
 //Lista de tipo_convenio
 
-router.get('/tipo_convenios', (req, res)=>{
+router.get('/tipo_convenios', verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('select * from tipo_convenios', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -13,12 +18,18 @@ router.get('/tipo_convenios', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+ })
 })
 
 //Lista de tipo_convenio por ID
 
-router.get('/tipo_convenios/:id_tipo_convenio', (req, res)=>{
+router.get('/tipo_convenios/:id_tipo_convenio', verificaToken, (req, res)=>{
     const {id_tipo_convenio}=req.params 
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('SELECT * FROM tipo_convenios WHERE id_tipo_convenio=?', [id_tipo_convenio], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -26,12 +37,18 @@ router.get('/tipo_convenios/:id_tipo_convenio', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+ })
 })
 
 // Endpoint para crear un nuevo tipo_convenio
 
-router.post('/tipo_convenios',bodyParser.json(), (req,res)=>{ 
+router.post('/tipo_convenios',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {nombre, tipo_conveniocol}=req.body
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 if(!nombre){
     res.json({
         status: false,
@@ -51,14 +68,19 @@ if(!nombre){
             })
         }
      })
-    })
+    }
+  })
+})
     
 //Modificar por metodo PUT
 
-router.put('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), (req,res)=>{ 
+router.put('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_tipo_convenio}= req.params
     const {nombre, tipo_conveniocol}=req.body
-    
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 if(!nombre){
     res.json({
         status: false,
@@ -92,15 +114,20 @@ if(!nombre){
             }   
             }
         })
-        })
+       }
+     })
+ })
 
 
 //Borrado logico por DELETE
 
-router.delete('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), (req,res)=>{ 
+router.delete('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {actualizar} = req.body
     const {id_tipo_convenio}= req.params
-
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     
     mysqlConect.query('SELECT * FROM tipo_convenios WHERE id_tipo_convenio=?;', [id_tipo_convenio], (error, registro) =>{
         if(error){ 
@@ -127,8 +154,19 @@ router.delete('/tipo_convenios/:id_tipo_convenio',bodyParser.json(), (req,res)=>
             })
         }   
         }
-    })
-    })
-
+     })
+    }
+  })
+})
+    function verificaToken(req, res, next){
+        const bearer= req.headers['authorization'];
+        if(typeof bearer!=='undefined'){
+            const token =bearer.split(" ")[1]
+            req.token= token;
+            next()
+        }else{
+            res.send('Debe contener un token')
+        }
+     }
 
 module.exports = router

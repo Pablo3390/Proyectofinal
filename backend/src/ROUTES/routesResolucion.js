@@ -2,6 +2,7 @@ const express = require ('express');
 const router = express();
 const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
+const jwt= require('jsonwebtoken')
 
 
 //LISTADO TABLA RESOLUCION
@@ -9,7 +10,11 @@ const bodyParser = require('body-parser')
 //URL: /resolucion
 //Paramatro: no hay
 
-router.get('/resolucion', (req, res)=>{
+router.get('/resolucion', verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('select * from resolucion', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -17,6 +22,8 @@ router.get('/resolucion', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+ })  
 })
 
 //LISTADO TABLA RESOLUCION CON ID 
@@ -24,8 +31,12 @@ router.get('/resolucion', (req, res)=>{
 //URL: /resolucion/:id_resolucion
 //Paramatro: id_resolucion
 
-router.get('/resolucion:id_resolucion', (req, res)=>{
+router.get('/resolucion:id_resolucion', verificaToken, (req, res)=>{
     const {id_resolucion}=req.params 
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('SELECT * FROM resolucion WHERE id_resolucion=?', [id_resolucion], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -33,6 +44,8 @@ router.get('/resolucion:id_resolucion', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+ })
 })
 
 
@@ -41,8 +54,12 @@ router.get('/resolucion:id_resolucion', (req, res)=>{
 //URL: /resolucion
 //PARAMETROS: nombre, año
 
-router.post('/resolucion',bodyParser.json(), (req,res)=>{ 
+router.post('/resolucion',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {numero, ano}=req.body
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 
 //datos obligatorios
 if(!numero){
@@ -74,17 +91,22 @@ if(!ano){
             })
         }
      })
-    })
+    }
+  })
+})
 
 
 //MODIFICAR/UPDATE UNA RESOLUCION ESPECIFICA
 //Metodo PUT
 //URL: /resolucion/:id_resolucion
 //Parametros: id_resolucion, nombre,año
-router.put('/resolucion/:id_resolucion',bodyParser.json(), (req,res)=>{ 
+router.put('/resolucion/:id_resolucion',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_resolucion}= req.params
     const {numero, ano}=req.body
-
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     if(!numero){
         res.json({
             status: false,
@@ -128,7 +150,9 @@ router.put('/resolucion/:id_resolucion',bodyParser.json(), (req,res)=>{
         }   
         }
     })
-    })
+   }
+ })
+})
 
 
  //BORRADO FISICO
@@ -137,16 +161,33 @@ router.put('/resolucion/:id_resolucion',bodyParser.json(), (req,res)=>{
  //Parametros: id_resolucion
 
 
-router.delete('/resolucion/:id_resolucion',bodyParser.json(), (req,res)=>{ 
+router.delete('/resolucion/:id_resolucion',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_resolucion}= req.params
+     jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('DELETE FROM resolucion WHERE id_resolucion = ?', [id_resolucion], (error, registro) =>{
         if(error){ // si hay un error entra acá
                     console.log("Error en la base de datos", error)
         }else{ 
-                    res.send ('La eliminación del registro '+id_resolucion+ ' se realizó correctamente')
+                    res.json ('La eliminación del registro '+id_resolucion+ ' se realizó correctamente')
         }
      })
-    })
+    }
+  })
+ })
+
+    function verificaToken(req, res, next){
+        const bearer= req.headers['authorization'];
+        if(typeof bearer!=='undefined'){
+            const token =bearer.split(" ")[1]
+            req.token= token;
+            next()
+        }else{
+            res.send('Debe contener un token')
+        }
+     }
 
 
 

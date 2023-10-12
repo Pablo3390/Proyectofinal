@@ -1,18 +1,24 @@
 const express = require('express');
 const router = express();
-const mysqlConect = require('../DATABASE/database');
+const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')
 
 //Listar de convenios
 
-router.get('/convenios', (req , res)=>{
+router.get('/convenios', verificaToken, (req , res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
   mysqlConect.query('SELECT  c.id_convenio, c.nombre, c.utilidad, c.objeto, c.fecha_inicio, c.fecha_fin, c.clausula_peas, o.nombre organismos, tc.nombre tipo_convenios, r.numero resolucion, c.estado  FROM convenios AS c INNER JOIN organismos AS o ON o.id_organismo=c.id_organismo LEFT JOIN tipo_convenios AS tc ON tc.id_tipo_convenio=c.id_tipo_convenio LEFT JOIN resolucion AS r ON r.id_resolucion=c.id_resolucion', (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
       }else{
           res.json(registros)
+      }
+   })
       }
   })
 })
@@ -35,9 +41,14 @@ router.get('/convenios', (req , res)=>{
 
 // Endpoint para crear un nuevo convenio
 
-router.post('/convenios', bodyParser.json(), (req , res)=>{
+router.post('/convenios', bodyParser.json(), verificaToken, (req , res)=>{
+  
   
   const { nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio  }  = req.body
+  jwt.verify(req.token, 'silicon', (error, valido)=>{
+    if(error){
+        res.sendStatus(403);
+    }else{
   if(!nombre){
       res.json({
           status:false,
@@ -72,14 +83,19 @@ router.post('/convenios', bodyParser.json(), (req , res)=>{
       })
       }
   })
+      }
+    })
 })
 
 // traer los  datos del convenio por el ID
 
-router.get('/convenios/:id_convenio', (req , res)=>{
-    
+router.get('/convenios/:id_convenio', verificaToken, (req , res)=>{    
   const { id_convenio } = req.params
   console.log('entra aqui', id_convenio)
+  jwt.verify(req.token, 'silicon', (error, valido)=>{
+    if(error){
+        res.sendStatus(403);
+    }else{
   mysqlConect.query('SELECT * FROM convenios WHERE id_convenio=?', [id_convenio], (error, registros)=>{
       if(error){
           res.json({
@@ -97,14 +113,20 @@ router.get('/convenios/:id_convenio', (req , res)=>{
           
       }
   })
+}
+  })
 })
 
 //Metodo UPDATE
 //Borrado logico por id
 
-router.put('/convenios/:id_convenio',bodyParser.json(), (req,res)=>{ 
+router.put('/convenios/:id_convenio',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_convenio}= req.params
     const {nombre, utilidad, objeto, fecha_inicio, fecha_fin, clausula_peas, id_resolucion, id_organismo, id_tipo_convenio }=req.body
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
 
     if(!nombre){
         res.json({
@@ -160,15 +182,22 @@ router.put('/convenios/:id_convenio',bodyParser.json(), (req,res)=>{
         }   
         }
     })
+        }
     })
+ })
 
 
 // Metodo DELETE
 //Borrado logico por id
 
-router.delete('/convenios/:id_convenio', bodyParser.json(), (req , res)=>{
+router.delete('/convenios/:id_convenio', bodyParser.json(), verificaToken, (req , res)=>{
   const {actualizar} = req.body
   const { id_convenio } = req.params
+  jwt.verify(req.token, 'silicon', (error, valido)=>{
+    if(error){
+        res.sendStatus(403);
+    }else{
+  
   mysqlConect.query('SELECT * FROM convenios WHERE id_convenio=?', [id_convenio], (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
@@ -193,7 +222,19 @@ router.delete('/convenios/:id_convenio', bodyParser.json(), (req , res)=>{
           
       }
   })  
+    }
 })
+})
+function verificaToken(req, res, next){
+    const bearer= req.headers['authorization'];
+    if(typeof bearer!=='undefined'){
+        const token =bearer.split(" ")[1]
+        req.token= token;
+        next()
+    }else{
+        res.send('Debe contener un token')
+    }
+ }
 
 
 module.exports= router; 

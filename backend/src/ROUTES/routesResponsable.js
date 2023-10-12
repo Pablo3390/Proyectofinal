@@ -1,9 +1,8 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../DATABASE/database');
+const mysqlConect = require('../database/database');
 const bodyParser = require('body-parser')
 const jwt= require('jsonwebtoken')
-//SE DEBE MODIFICAR EN BASE DE DATOS EL DNI_RESPONSABLE PORQUE APARECE COMO AUTOINCREMENTAL
 
 
 //LISTADO TABLA RESPONSABLE
@@ -33,8 +32,12 @@ router.get('/responsable', verificaToken, (req, res)=>{
 //URL: /responsable/:id_organismo
 //Paramatro: id_organismo
 
-router.get('/responsable/:id_responsable', (req, res)=>{
+router.get('/responsable/:id_responsable', verificaToken, (req, res)=>{
     const {id_responsable}=req.params 
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('SELECT * FROM responsable WHERE id_responsable=?', [id_responsable], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -42,6 +45,8 @@ router.get('/responsable/:id_responsable', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+ })
 })
 
 //LISTADO TABLA RESPONSABLE con tabla ORGANISMO
@@ -49,7 +54,11 @@ router.get('/responsable/:id_responsable', (req, res)=>{
 //URL: /responsable_org
 //Paramatro: no
 
-router.get('/responsable_org', (req, res)=>{
+router.get('/responsable_org', verificaToken, (req, res)=>{
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('SELECT r.id_responsable, r.nombre Nombre_Responsable, o.nombre Organismo FROM responsable AS r INNER JOIN organismo AS o ON r.id_organismo=o.id_organismo', (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
@@ -57,6 +66,8 @@ router.get('/responsable_org', (req, res)=>{
             res.json(registro)
         }
     })
+   }
+ })
 })
 
 
@@ -65,7 +76,7 @@ router.get('/responsable_org', (req, res)=>{
 //URL: /responsable
 //PARAMETROS: nombre, id_organismo
 
-router.post('/responsable',bodyParser.json(), (req,res)=>{ 
+router.post('/responsable',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {nombre, id_organismo}=req.body
 
 //datos obligatorios
@@ -101,10 +112,13 @@ if(!id_organismo){
 //Metodo PUT
 //URL: /responsable/:id_responsable
 //Parametros: id_organismo, nombre, id_responsable
-router.put('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{ 
+router.put('/responsable/:id_responsable',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_responsable}= req.params
     const {nombre, id_organismo}=req.body
-
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     if(!nombre){
         res.json({
             status: false,
@@ -147,7 +161,9 @@ router.put('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
         }   
         }
     })
-    })
+   }
+ })
+})
 
 
  //BORRADO LÓGICO
@@ -155,10 +171,13 @@ router.put('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
  //URL: /responsable/:id_responsable
  //Parametros: id_responsable
 
-router.delete('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{ 
+router.delete('/responsable/:id_responsable',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_responsable}= req.params
     const {actualizar} = req.body
-    
+    jwt.verify(req.token, 'silicon', (error, valido)=>{
+        if(error){
+            res.sendStatus(403);
+        }else{
     mysqlConect.query('SELECT * FROM responsable WHERE id_responsable=?;', [id_responsable], (error, registro) =>{
         if(error){ // si hay un error entra acá
             console.log("Error en la base de datos", error)
@@ -185,7 +204,9 @@ router.delete('/responsable/:id_responsable',bodyParser.json(), (req,res)=>{
         }   
         }
     })
-    })
+   }
+ })
+})
 
     function verificaToken(req, res, next){
         const bearer= req.headers['authorization'];
