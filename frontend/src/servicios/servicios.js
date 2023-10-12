@@ -43,6 +43,83 @@ export async function Registro(datos){
     const data= await respuesta.json()
     return data
 }
+
+//FUNCIONES DE ACTIVIDADES
+//Esta es mi funcion para listar las actividades
+export async function getActividades(){
+    const token = JSON.parse(localStorage.getItem('token'));
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//Esta es mi funcion para agregar actividades
+export async function AddActividades(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades`, Options)
+    const data= await respuesta.json()
+    return data
+}
+
+//Esta es mi funcion para actualizar actividades
+export async function ActualizarEstadoActividades(id_actividad, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//Esta es mi funcion para listar las actividades por ID
+export async function getActividadesByID(id_actividad){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//Esta es mi funcion para editar las actividades
+export async function EditActividades(datos, id_actividad){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//FUNCIONES DE CONVENIOS
+
 //Esta es mi funcion para listar los convenios
 export async function getConvenios(){
     const Options={
@@ -127,86 +204,8 @@ export async function AddConvenios(datos){
     return data
 }
 
-
-
-//FUNCIONES DE ACTIVIDADES
-//Esta es mi funcion para listar las actividades
-export async function getActividades(){
-    const token = JSON.parse(localStorage.getItem('token'));
-    const Options={
-        method:'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        }
-    }
-    const respuesta = await fetch(`${URL}/actividades`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-//Esta es mi funcion para agregar ACTIVIDADES
-export async function AddActividades(datos){
-    const Options={
-        method:'POST',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/actividades`, Options)
-    const data= await respuesta.json()
-    return data
-}
-
-//Esta es mi funcion para actualizar actividades
-export async function ActualizarEstadoActividades(id_actividad, actualizar){
-    const Options={
-        method:'DELETE',
-        body: JSON.stringify(actualizar),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-//Esta es mi funcion para listar las actividades
-export async function getActividadesByID(id_actividad){
-    const Options={
-        method:'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
-    const data= await respuesta.json();
-    return data[0];
-}
-
-//Esta es mi funcion para editar las actividades
-export async function EditActividades(datos, id_actividad){
-    const Options={
-        method:'PUT',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/actividades/${id_actividad}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-
-
-
 //FUNCIONES DE ORGANISMOS
+
 //Esta es mi funcion para listar los organmismos
 export async function getOrganismos(){
     const Options={
@@ -261,25 +260,22 @@ export async function ActualizarEstadoOrganismos(id_organismo, actualizar){
     return data
 }
 
-
-
-//FUNCIONES DE TIPO ORGANISMOS
-//listar tipos de organismos
-export async function getTipoorganismos(){
+//Esta es mi funcion para eliminar organismos
+export async function deleteOrganismos(id_organismo){
     const Options={
-        method:'GET',
+        method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
         }
     }
-    const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
+    const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
     const data= await respuesta.json()
     console.log(data)
     return data
 }
 
-// agregar Tipos organismos
-export async function AddTipoorganismos(datos){
+//Esta es mi funcion para agregar organismo
+export async function AddOrganismos(datos){
     const Options={
         method:'POST',
         body: JSON.stringify(datos),
@@ -287,89 +283,10 @@ export async function AddTipoorganismos(datos){
             'Content-Type': 'application/json',
         }
     }
-    const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
+    const respuesta = await fetch(`${URL}/organismos`, Options)
     const data= await respuesta.json()
     return data
 }
-
-//listar tipos organismos por ID
-export async function getTipoorganismosByID(id_tipo_organismo){
-    const Options={
-        method:'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
-    const data= await respuesta.json();
-    return data[0];
-}
-
-//editar tipo organismos
-export async function EditTipoorganismos(datos, id_tipo_organismo){
-    const Options={
-        method:'PUT',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-//Esta es mi funcion para eliminar los tipos de organismo
-
-/*export async function deleteTipoOrganismos(id_tipo_organismo){
-    const Options={
-        method:'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}*/
-
-//editar Tipo Organismos
-export async function ActualizarEstadoTipoOrganismos(id_tipo_organismo, actualizar){
-    const Options={
-        method:'DELETE',
-        body: JSON.stringify(actualizar),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-
-
-
-
-
-//funcion para cambiar estado
-export async function ActualizarEstadoTipoConvenios(id_tipo_convenio, actualizar){
-    const Options={
-        method:'DELETE',
-        body: JSON.stringify(actualizar),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
 
 //FUNCIONES DE RESOLUCIONES
 //Esta es mi funcion para listar las resoluciones
@@ -440,113 +357,6 @@ export async function getResolucionByID(id_resolucion){
     const respuesta = await fetch(`${URL}/resolucion/${id_resolucion}`, Options)
     const data= await respuesta.json();
     return data[0];
-}
-
-
-
-
-
-
-
-
-//FUNCIONES ORGANISMOS
-//Esta es mi funcion para eliminar organismos
-export async function deleteOrganismos(id_organismo){
-    const Options={
-        method:'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/organismos/${id_organismo}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-//Esta es mi funcion para agregar organismo
-export async function AddOrganismos(datos){
-    const Options={
-        method:'POST',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/organismos`, Options)
-    const data= await respuesta.json()
-    return data
-}
-
-export async function getMenuByRol(id_rol){
-    const token = JSON.parse(localStorage.getItem('token'));
-   const Options={
-       method:'GET',
-       headers: {
-           'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-       }
-   }
-   const respuesta = await fetch(`${URL}/menu/${id_rol}`, Options)
-   const data= await respuesta.json();
-   return data;
-}
-
-//FUNCIONES TIPO CONVENIOS
-//listar tipo_convenios
-export async function getTipoconvenios(){
-    const Options={
-        method:'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_convenios`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
-
-// agregar Tipos convenios
-export async function AddTipoconvenios(datos){
-    const Options={
-        method:'POST',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_convenios`, Options)
-    const data= await respuesta.json()
-    return data
-}
-
-//listar tipos convenios por ID
-export async function getTipoconveniosByID(id_tipo_convenio){
-    const Options={
-        method:'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
-    const data= await respuesta.json();
-    return data[0];
-}
-
-//editar tipo convenios
-export async function EditTipoconvenios(datos, id_tipo_convenio){
-    const Options={
-        method:'PUT',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
 }
 
 //FUNCIONES DE RESPONSABLE
@@ -640,6 +450,169 @@ export async function deleteResponsable(id_responsable){
 }
 
 
+//FUNCIONES DE TIPO ORGANISMOS
+//listar tipos de organismos
+export async function getTipoorganismos(){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+// agregar Tipos organismos
+export async function AddTipoorganismos(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos`, Options)
+    const data= await respuesta.json()
+    return data
+}
+
+//listar tipos organismos por ID
+export async function getTipoorganismosByID(id_tipo_organismo){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//editar tipo organismos
+export async function EditTipoorganismos(datos, id_tipo_organismo){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//Esta es mi funcion para eliminar los tipos de organismo
+
+/*export async function deleteTipoOrganismos(id_tipo_organismo){
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}*/
+
+//editar Tipo Organismos
+export async function ActualizarEstadoTipoOrganismos(id_tipo_organismo, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_organismos/${id_tipo_organismo}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//FUNCIONES DE TIPO DE CONVENIOS
+
+//funcion para cambiar estado
+export async function ActualizarEstadoTipoConvenios(id_tipo_convenio, actualizar){
+    const Options={
+        method:'DELETE',
+        body: JSON.stringify(actualizar),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+//listar tipo_convenios
+export async function getTipoconvenios(){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_convenios`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+// agregar Tipos convenios
+export async function AddTipoconvenios(datos){
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_convenios`, Options)
+    const data= await respuesta.json()
+    return data
+}
+
+//listar tipos convenios por ID
+export async function getTipoconveniosByID(id_tipo_convenio){
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+//editar tipo convenios
+export async function EditTipoconvenios(datos, id_tipo_convenio){
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/tipo_convenios/${id_tipo_convenio}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+//FINCIONES DE URUARIOS
+
 export async function getUsuarios(){
     const token = JSON.parse(localStorage.getItem('token'));
     const Options={
@@ -705,4 +678,18 @@ export async function ActualizarEstadoUsuario(id_usuario, actualizar){
     const respuesta = await fetch(`${URL}/usuarios/${id_usuario}`, Options)
     const data= await respuesta.json()
     return data;
+}
+//FUNCIONES DE MENU
+export async function getMenuByRol(id_rol){
+    const token = JSON.parse(localStorage.getItem('token'));
+   const Options={
+       method:'GET',
+       headers: {
+           'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+       }
+   }
+   const respuesta = await fetch(`${URL}/menu/${id_rol}`, Options)
+   const data= await respuesta.json();
+   return data;
 }

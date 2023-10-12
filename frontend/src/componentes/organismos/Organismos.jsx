@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-undef */
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import './Organismos.css';
@@ -132,6 +135,15 @@ export function Organismos(){
         setIdtipoorganismo(datos_organismos.id_tipo_organismo)
     
     }
+    const limpiarModal = async ()=>{
+       
+        setNombre('')
+        seIdOrganismos('')
+        setIdActividades('')
+        setIdtipoorganismo('')
+
+    }
+
 
 
 
@@ -221,6 +233,7 @@ export function Organismos(){
                     <div className="form-floating">
                       
                       <select onChange={(event)=>setIdtipoorganismo(event.target.value)} className="form-control">
+                      <option selected value="">Seleccione un tipo de organismo</option>
                       {tipo_organismos.map((o)=>(
                       
                         <option value={o.id_tipo_organismo}>{o.nombre}</option>

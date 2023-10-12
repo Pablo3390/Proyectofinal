@@ -134,15 +134,6 @@ export function Responsable(){
     }
 
 
-
-
-
-
-
-
-
-
-
      const editar_registro = async (e, id_responsable)=>{
         e.preventDefault();
     

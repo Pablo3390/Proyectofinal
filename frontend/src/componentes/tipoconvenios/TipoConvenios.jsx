@@ -132,19 +132,6 @@ export function TipoConvenios(){
 }
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
      const editar_registro = async (e, id_tipo_convenio)=>{
         e.preventDefault();
         

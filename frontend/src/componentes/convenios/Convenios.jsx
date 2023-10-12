@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
@@ -162,6 +163,17 @@ export function Convenios(){
         
         }
 
+        const limpiarModal = async ()=>{
+       
+          setNombre('')
+          setUtilidad('') 
+          setObjeto('')
+          setFechainicio('')
+          setFechafin('')
+          setClausulapeas('')
+
+      }
+
 
 
 
@@ -178,7 +190,7 @@ export function Convenios(){
         <tr>
                 <th colSpan="12" >
                     {/* <Link className="Borde_negro" to="/agregarConvenios">Agregar Convenios</Link> */}
-                    <button className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Convenio</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Convenio</button>
                 </th>
             </tr>
             <tr>
