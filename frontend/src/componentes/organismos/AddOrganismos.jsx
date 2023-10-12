@@ -1,8 +1,11 @@
+
 /* eslint-disable react/jsx-key */
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as API from '../../servicios/servicios'
+
+
 export function AddOrganismos(){
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
@@ -13,7 +16,7 @@ export function AddOrganismos(){
         API.getTipoorganismos().then(setTipoorganismos)
     }, [] )
 
-    const guardarOrganismo = async(event)=>{
+    const guardarOrganismos = async(event)=>{
         event.preventDefault();
         const respuesta = await API.AddOrganismos({nombre, id_tipo_organismo})
         if (respuesta.status){
@@ -32,7 +35,7 @@ export function AddOrganismos(){
     return(
         <>        
         <main className="form-signin w-100 m-auto">
-             <form onSubmit={guardarOrganismo}>
+             <form onSubmit={guardarOrganismos}>
                 <div>
                     {mensaje}
                 </div>
