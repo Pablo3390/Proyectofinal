@@ -31,7 +31,7 @@ router.get('/resolucion', verificaToken, (req, res)=>{
 //URL: /resolucion/:id_resolucion
 //Paramatro: id_resolucion
 
-router.get('/resolucion:id_resolucion', verificaToken, (req, res)=>{
+router.get('/resolucion/:id_resolucion', verificaToken, (req, res)=>{
     const {id_resolucion}=req.params 
     jwt.verify(req.token, 'silicon', (error, valido)=>{
         if(error){
