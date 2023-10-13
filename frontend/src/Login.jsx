@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from "react";
-import viteLogo from '/vite.svg'
+import miLogo from './componentes/logo/Logo.png'
 import { Link } from "react-router-dom";
 import './Login.css'
 import * as API from './servicios/servicios'
@@ -35,8 +35,8 @@ return;
         <>
           <main className="form-signin w-100 m-auto">
              <form onSubmit={ingresar}>
-                <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-                   <img src={viteLogo} className="logo" alt="Vite logo" />
+                <a>
+                   <img src={miLogo} className="logo" alt="Mi Logo" />
                 </a>
                     <h1 className="h2 mb-3 fw-normal">Ingrese sus datos </h1>
 
@@ -70,8 +70,9 @@ return;
                       <label htmlFor="floatingPass">Contraseña</label>
                     </div>
 
-                    <button className="mt-3 btn btn-dark" type="submit" >Ingresar</button>                  
+                    <button className="btn btn-primary w-100 py-2" type="submit">Iniciar Sesión</button>                 
                     <p className="mt-5 mb-3 text-body-secondary"> Si no tiene cuenta <Link to="/registro">Registrarse</Link></p>
+                    <p className="mt-5 mb-3 text-body-secondary">&copy; A.P 2023</p>
                   </form>
               </main>
         </>

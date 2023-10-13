@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
-import viteLogo from '/vite.svg'
+import miLogo from './componentes/logo/Logo.png'
 import { Link } from "react-router-dom";
 export function Home(){
 
@@ -18,8 +18,8 @@ export function Home(){
     return(
         <>
         <div>
-          <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-            {/* <img src={viteLogo} className="logo" alt="Vite logo" /> */}
+          <a>
+          <img src={miLogo} className="logo" alt="Mi Logo" />
           </a>
         </div>
         <div>

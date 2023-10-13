@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
-import reactLogo from './assets/react.svg'
+import miLogo from './componentes/logo/Logo.png'
 import './Menu.css';
 import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
@@ -34,6 +34,7 @@ export function Menu(){
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
+                <img src={miLogo} className="logo" alt="Mi Logo" />
                 {/* <img src={reactLogo} className="logo react" alt="React logo" /> */}
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
