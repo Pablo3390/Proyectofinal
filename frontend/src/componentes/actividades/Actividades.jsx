@@ -155,6 +155,7 @@ export function Actividades(){
     return(
         <>
         <Menu/>
+        <div className="table-responsive small">
         {
         !permisoDenegado? 
             <div className="alert alert-warning" role="alert">
@@ -316,6 +317,7 @@ export function Actividades(){
                 </div>
         </>
         }
+        </div>
         </>
     )
 

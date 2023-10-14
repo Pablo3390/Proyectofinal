@@ -151,9 +151,9 @@ export function Organismos(){
     return(
         <>
         <Menu/>
-        
+        <div className="table-responsive small">
 
-        <table className="table table-striped">
+        <table className="table table-striped-columns">
         <thead>
         <tr>
                 <th colSpan="5" >
@@ -262,7 +262,7 @@ export function Organismos(){
             </div>
         </div>
 
-
+        </div>
 
 
         </>

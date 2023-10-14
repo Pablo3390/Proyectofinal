@@ -184,7 +184,7 @@ export function Convenios(){
     return(
         <>
         <Menu/>
-       
+        <div className="table-responsive small">
         <table className="table table-striped">
         <thead>
         <tr>
@@ -249,7 +249,7 @@ export function Convenios(){
             ))}
             </tbody>
         </table>
-
+        </div>
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
