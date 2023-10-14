@@ -151,14 +151,14 @@ export function Organismos(){
     return(
         <>
         <Menu/>
-        <div className="table-responsive small">
 
+        <div className="table-responsive">
         <table className="table table-striped-columns">
         <thead>
         <tr>
                 <th colSpan="5" >
                     {/* <Link className="Borde_negro" to="/agregarOrganismos">Agregar Organismo</Link> */}
-                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-success btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Organismos</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-primary btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Organismos</button>
                     </th>
             </tr>
             <tr>
@@ -207,7 +207,7 @@ export function Organismos(){
             ))}
             </tbody>
         </table>
-
+        </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -261,9 +261,6 @@ export function Organismos(){
                 </div>
             </div>
         </div>
-
-        </div>
-
 
         </>
     )

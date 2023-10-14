@@ -155,13 +155,13 @@ export function Responsable(){
     return(
         <>
           <Menu/>
-        
+          <div className="table-responsive">
         <table className="table table-striped">
         <thead>
        <tr>
                  <th colSpan="12" >
                     {/* <Link classNameName="Borde_negro" to="/agregarresponsable">Agregar Responsable</Link> */}
-                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Responsable</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-primary btn-sm"   data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Responsable</button>
                 </th>
             </tr> 
 
@@ -206,7 +206,7 @@ export function Responsable(){
        
        
         </table>
-
+        </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">

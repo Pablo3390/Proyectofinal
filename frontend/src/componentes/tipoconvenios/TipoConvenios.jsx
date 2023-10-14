@@ -155,13 +155,13 @@ export function TipoConvenios(){
     return(
         <>
           <Menu/>
-        
+          <div className="table-responsive">
         <table className="table table-striped">
         <thead>
        <tr>
                 <th colSpan="12" >
                     {/* <Link className="Borde_negro" to="/agregartipoconvenios">Agregar Tipo Convenios</Link></th> */}
-                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-success  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar tipo de convenio</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-primary btn-sm"   data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar tipo de convenio</button>
                     </th>
             </tr>
 
@@ -204,7 +204,7 @@ export function TipoConvenios(){
             ))}
              </tbody>
         </table>
-
+            </div>
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">

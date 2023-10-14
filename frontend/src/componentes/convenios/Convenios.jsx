@@ -187,70 +187,72 @@ export function Convenios(){
             {mensaje}
         </div>
         <Menu/>
-        <div className="table-responsive small">
-        <table className="table table-striped">
-        <thead>
-        <tr>
-                <th colSpan="12" >
-                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Convenio</button>
-                </th>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <th>Utilidad $</th>
-                <th>Objeto</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha de fin</th>
-                <th>Clausula peas</th>
-                <th>Organismo</th>
-                <th>Tipo de convenio</th>
-                <th>Resolucion</th>
-                <th>Estado</th>
-                <th colSpan="2">Acciones</th>
-                
-            </tr>
-            </thead>
+        <div className="table-responsive">
+          <table className="table table-striped">
+          <thead>
+          <tr>
+                  <th colSpan="12" >
+                      <button onClick={(event)=>limpiarModal('')} className="btn btn-primary btn-sm"   data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Convenio</button>
+                  </th>
+              </tr>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Utilidad $</th>
+                  <th>Objeto</th>
+                  <th>Fecha de inicio</th>
+                  <th>Fecha de fin</th>
+                  <th>Clausula peas</th>
+                  <th>Organismo</th>
+                  <th>Tipo de convenio</th>
+                  <th>Resolucion</th>
+                  <th>Estado</th>
+                  <th colSpan="2">Acciones</th>
+                  
+              </tr>
+              </thead>
 
-            <tbody>
-            {convenios.map((convenios)=>(
-                <tr>
-                <td>{convenios.nombre}</td>
-                <td >{convenios.utilidad}</td>
-                <td>{convenios.objeto}</td>
-                <td>{convenios.fecha_inicio}</td>
-                <td >{convenios.fecha_fin}</td>
-                <td >{convenios.clausula_peas}</td>
-                <td >{convenios.organismos}</td>
-                <td >{convenios.tipo_convenios}</td>
-                <td >{convenios.resolucion}</td>
-                <td >{convenios.estado}</td>
+              <tbody>
+              {convenios.map((convenios)=>(
+                  <tr>
+                  <td>{convenios.nombre}</td>
+                  <td >{convenios.utilidad}</td>
+                  <td>{convenios.objeto}</td>
+                  <td>{convenios.fecha_inicio}</td>
+                  <td >{convenios.fecha_fin}</td>
+                  <td >{convenios.clausula_peas}</td>
+                  <td >{convenios.organismos}</td>
+                  <td >{convenios.tipo_convenios}</td>
+                  <td >{convenios.resolucion}</td>
+                  <td >{convenios.estado}</td>
 
-                {/* {(convenios.estado=="A")?
-                <td >
-                   
-                    <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, convenios.id_convenio)}  className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
-                    : 
-                     <button disabled className="btn btn-warning btn-sm">Editar</button>
-                }</td>
-                 */}
-                 <td >
-                {(convenios.estado=="A")?
-                <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, convenios.id_convenio)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
-                : 
-                <button disabled className="btn btn-warning btn-sm">Editar</button>}</td>
+                  {/* {(convenios.estado=="A")?
+                  <td >
+                    
+                      <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, convenios.id_convenio)}  className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                      : 
+                      <button disabled className="btn btn-warning btn-sm">Editar</button>
+                  }</td>
+                  */}
+                  <td >
+                  {(convenios.estado=="A")?
+                  <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, convenios.id_convenio)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
+                  : 
+                  <button disabled className="btn btn-warning btn-sm">Editar</button>}</td>
 
-                
-                {(convenios.estado=="A")?
-                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, convenios.id_convenio, convenios.estado)} ><i className="bi bi-hand-thumbs-down-fill"></i>Baja</button></td>
-                :
-                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, convenios.id_convenio, convenios.estado)} ><i className="bi bi-hand-thumbs-up-fill"></i>Alta</button></td>
-                
-                 }
-                
-            </tr>
-            ))}
-            </tbody>
-        </table>
+                  
+                  {(convenios.estado=="A")?
+                  <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, convenios.id_convenio, convenios.estado)} ><i className="bi bi-hand-thumbs-down-fill"></i>Baja</button></td>
+                  :
+                  <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, convenios.id_convenio, convenios.estado)} ><i className="bi bi-hand-thumbs-up-fill"></i>Alta</button></td>
+                  
+                  }
+                  
+              </tr>
+              ))}
+              </tbody>
+          </table>
+        </div>
+        
         
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -381,7 +383,7 @@ export function Convenios(){
         </div>
 
 
-        </div>
+        
         </>
     )
 }

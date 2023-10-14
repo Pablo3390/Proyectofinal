@@ -41,8 +41,7 @@ function App() {
 
   return (
     <>
-        
-      
+      <div className="container">
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/Login' element={<Login/>}></Route>
@@ -71,6 +70,9 @@ function App() {
         <Route path='/Usuarios' element={<Usuarios/>}></Route>
         <Route path='/editresolucion/:id_resolucion' element={<EditResolucion/>}></Route>
       </Routes>
+      </div>  
+      
+      
 
     </>
   )

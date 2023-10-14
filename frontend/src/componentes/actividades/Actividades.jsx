@@ -155,7 +155,6 @@ export function Actividades(){
     return(
         <>
         <Menu/>
-        <div className="table-responsive small">
         {
         !permisoDenegado? 
             <div className="alert alert-warning" role="alert">
@@ -164,14 +163,14 @@ export function Actividades(){
             :<>
     
 
-
+    <div className="table-responsive">
         <table className="table table-striped">
 
         
            <thead>
            <tr>
                 <th colSpan="8">
-                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Actividades</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Actividades</button>
                     {/* <button type="button" className="btn btn-primary" id="liveToastBtn">Show live toast</button> */}
 
                 </th>
@@ -215,6 +214,7 @@ export function Actividades(){
             </tbody>        
 
         </table>
+        </div>
 
                         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -317,7 +317,6 @@ export function Actividades(){
                 </div>
         </>
         }
-        </div>
         </>
     )
 

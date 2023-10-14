@@ -174,13 +174,14 @@ export function Usuarios(){
             No tiene  permiso para acceder a esta opcion
             </div>
             :<>
+            <div className="table-responsive">
         <table className="table table-striped">
         <thead>
             <tr>
                 
                 <th colSpan="8">
                 
-                <button className="btn btn-outline-success  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar</button>
+                <button className="btn btn-primary btn-sm"   data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar</button>
                 &nbsp;
                 
                 <input  type="checkbox"/>Solo Activos
@@ -231,6 +232,7 @@ export function Usuarios(){
             
            
         </table>
+        </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
