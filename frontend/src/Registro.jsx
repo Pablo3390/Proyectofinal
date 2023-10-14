@@ -99,6 +99,7 @@ export function Registro(){
 
                 <div className="mt-2 form-floating">
                   <input 
+                  required
                   type="number" 
                   value={dni}
                   onChange={(event) => {

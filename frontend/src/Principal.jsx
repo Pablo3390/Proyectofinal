@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Menu } from './Menu'
+import './Principal.css'
 export function Principal(){
     const [usuario, setUsuario]= useState()
 
