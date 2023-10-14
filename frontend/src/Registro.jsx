@@ -2,7 +2,7 @@
 // // eslint-disable-next-line no-unused-vars
 
 import React, { useState } from "react";
-import viteLogo from '/vite.svg'
+import miLogo from './componentes/logo/Logo.png'
 import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
 
@@ -71,8 +71,8 @@ export function Registro(){
         <>
         <main className="form-signin w-100 m-auto">
               <form onSubmit={registro}>
-                  <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
+                  <a>
+                    <img src={miLogo} className="logo" alt="Mi Logo" />
                   </a>
                 <h1 className="h3 mb-3 fw-normal">Complete los datos</h1>
                 
