@@ -48,7 +48,7 @@ export function Menu(){
                         </li>
                         ))}
                         <li className="nav-link active"  aria-current="page" >{user}</li>
-                        <li><button  className="btn btn-danger" onClick={salir}>Cerrar Session</button></li>
+                        <li><button  className="btn btn-danger" onClick={salir}>Cerrar Sesión</button></li>
                         </ul>
                     </div>
                 </div>

@@ -95,7 +95,7 @@ export function Resolucion(){
         <table className="table table-striped">
         <thead>
         <tr>
-                <th colSpan="4" >
+                <th colSpan="12" >
                 <button  className="btn btn-outline-success  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Resolución</button>
                     {/* <Link className="Borde_negro" to="/agregarResolucion">Agregar Resolucion</Link> */}
                 </th>

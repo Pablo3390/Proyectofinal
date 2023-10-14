@@ -170,7 +170,7 @@ export function Actividades(){
         
            <thead>
            <tr>
-                <th colSpan="8">
+                <th colSpan="12">
                     <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Actividades</button>
                     {/* <button type="button" className="btn btn-primary" id="liveToastBtn">Show live toast</button> */}
 
@@ -204,9 +204,9 @@ export function Actividades(){
                 <button disabled className="btn btn-warning btn-sm">Editar</button>}</td>
 
                     {(actividades.estado=="A")?
-                    <td><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}><i className="bi bi-hand-thumbs-down-fill"></i>Dar De Baja</button></td>
+                    <td><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}><i className="bi bi-hand-thumbs-down-fill"></i>Baja</button></td>
                     :
-                    <td><button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}><i className="bi bi-hand-thumbs-up-fill"></i>Dar De Alta</button></td>
+                    <td><button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}><i className="bi bi-hand-thumbs-up-fill"></i>Alta</button></td>
                     
                     }
                 
