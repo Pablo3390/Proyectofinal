@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from "react";
-import miLogo from './componentes/logo/Logo.png'
+import miLogo from './Logo.png'
 import { Link } from "react-router-dom";
 import './Login.css'
 import * as API from './servicios/servicios'

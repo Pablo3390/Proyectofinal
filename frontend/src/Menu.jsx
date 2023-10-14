@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
-import miLogo from './componentes/logo/Logo.png'
+import miLogo from './Logo.png'
 import './Menu.css';
 import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
