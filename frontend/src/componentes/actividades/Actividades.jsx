@@ -170,7 +170,7 @@ export function Actividades(){
            <thead>
            <tr>
                 <th colSpan="8">
-                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Actividades</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Actividades</button>
                     {/* <button type="button" className="btn btn-primary" id="liveToastBtn">Show live toast</button> */}
 
                 </th>

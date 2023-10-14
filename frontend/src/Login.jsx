@@ -72,7 +72,7 @@ return;
                       <label htmlFor="floatingPass">Contraseña</label>
                     </div>
 
-                    <button className="btn btn-primary w-100 py-2" type="submit">Ingresar</button>                 
+                    <button className="btn btn-success w-100 py-2" type="submit">Ingresar</button>                 
                     <p className="mt-5 mb-3 text-body-secondary"> Si no tiene cuenta <Link to="/registro">Registrarse</Link></p>
                     <p className="mt-5 mb-3 text-body-secondary">&copy; A.P 2023</p>
                   </form>

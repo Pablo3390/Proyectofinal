@@ -158,7 +158,7 @@ export function Organismos(){
         <tr>
                 <th colSpan="5" >
                     {/* <Link className="Borde_negro" to="/agregarOrganismos">Agregar Organismo</Link> */}
-                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Organismos</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-success btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Organismos</button>
                     </th>
             </tr>
             <tr>

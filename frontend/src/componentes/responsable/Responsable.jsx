@@ -161,7 +161,7 @@ export function Responsable(){
        <tr>
                  <th colSpan="12" >
                     {/* <Link classNameName="Borde_negro" to="/agregarresponsable">Agregar Responsable</Link> */}
-                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Responsable</button>
+                    <button onClick={(event)=>limpiarModal('')} className="btn btn-outline-success btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Responsable</button>
                 </th>
             </tr> 
 

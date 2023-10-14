@@ -177,7 +177,7 @@ export function Registro(){
                   />
                   <label htmlFor="password">Repita Contraseña</label>
                 </div>
-                <button className="mt-3 btn btn-dark" type="submit" >Registrarme</button>
+                <button className="mt-3 btn btn-success" type="submit" >Registrarme</button>
                 <p className="mt-5 mb-3 text-body-secondary"> Ya tengo cuenta <Link to="/login">Ingresar</Link></p>
               </form>
           </main>

@@ -135,7 +135,7 @@ export function TipoOrganismos(){
         <tr>
                 <th colSpan="12" >
                     {/* <Link classNameName="Borde_negro" to="/agregartipoorganismos">Agregar Tipo Organismos</Link></td> */}
-                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-primary  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Tipo Organismos</button>
+                    <button onClick={(event)=>limpiarModal('')}  className="btn btn-outline-success  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Tipo Organismos</button>
              </th>
             </tr>
 
