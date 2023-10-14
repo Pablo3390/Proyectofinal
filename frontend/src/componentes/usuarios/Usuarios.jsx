@@ -188,14 +188,14 @@ export function Usuarios(){
             </tr>
 
             <tr>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                {/* <td>Dni</td> */}
-                <td>Usuario</td>
-                <td>Rol</td>
-                <td>Correo</td>
-                <td>Estado</td>
-                <td>Acciones</td>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                {/* <th>Dni</th> */}
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th>Correo</th>
+                <th>Estado</th>
+                <th colSpan="3">Acciones</th>
             </tr>
             </thead>
             <tbody>

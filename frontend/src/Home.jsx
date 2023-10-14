@@ -18,10 +18,12 @@ export function Home(){
 
     return(
         <>
+        <nav >
         <div>
           <a>
           <img src={miLogo} className="logo" alt="Mi Logo" />
           </a>
+          
         </div>
         <div>
             <ul>
@@ -31,7 +33,7 @@ export function Home(){
                 
             </ul>
         </div>
-      
+        </nav>
         </>
     )
 }

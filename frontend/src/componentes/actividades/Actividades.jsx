@@ -203,9 +203,9 @@ export function Actividades(){
                 <button disabled className="btn btn-warning btn-sm">Editar</button>}</td>
 
                     {(actividades.estado=="A")?
-                    <td><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}>Dar De Baja</button></td>
+                    <td><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}><i className="bi bi-hand-thumbs-down-fill"></i>Dar De Baja</button></td>
                     :
-                    <td><button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}>Dar De Alta</button></td>
+                    <td><button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, actividades.id_actividad, actividades.estado)}><i className="bi bi-hand-thumbs-up-fill"></i>Dar De Alta</button></td>
                     
                     }
                 

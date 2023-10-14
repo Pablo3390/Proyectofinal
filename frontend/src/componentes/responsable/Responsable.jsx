@@ -169,7 +169,7 @@ export function Responsable(){
                 <th >Nombre</th>
                 <th >Organismo</th>
                 <th >Estado</th>
-                <th >Acciones</th>
+                <th colSpan="2">Acciones</th>
                 
             </tr>
             </thead>
@@ -188,17 +188,18 @@ export function Responsable(){
                 <button   data-bs-toggle="modal"  data-bs-target="#exampleModal" onClick={(event)=>editar_registro(event, responsable.id_responsable)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button>
                 : 
                 <button disabled className="btn btn-warning btn-sm">Editar</button>}
+          </td>
 
            
 
             {(responsable.estado=="A")?
-                <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} ><i className="bi bi-hand-thumbs-down-fill"></i>Desactivar</button>
+               <td > <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} ><i className="bi bi-hand-thumbs-down-fill"></i>Desactivar</button></td>
                 :
-                <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} ><i className="bi bi-hand-thumbs-up-fill"></i>Activar</button>
+                <td>  <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, responsable.id_responsable, responsable.estado )} ><i className="bi bi-hand-thumbs-up-fill"></i>Activar</button></td>
                 
                 }
            
-            </td>
+            
               </tr>
             ))}
             </tbody>

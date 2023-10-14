@@ -142,7 +142,7 @@ export function TipoOrganismos(){
             <tr>
                 <th >Nombre</th>
                 <th >Estado</th>
-                <th >Acciones</th>
+                <th colSpan="2">Acciones</th>
                 
             </tr>
             </thead>
@@ -164,9 +164,9 @@ export function TipoOrganismos(){
                 </td> 
 
                 {(tipo_organismos.estado=="A")?
-                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} >Baja</button></td>
+                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} ><i className="bi bi-hand-thumbs-down-fill"></i>Baja</button></td>
                 :
-                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} >Alta</button></td>
+                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, tipo_organismos.id_tipo_organismo, tipo_organismos.estado)} ><i className="bi bi-hand-thumbs-up-fill"></i>Alta</button></td>
                 
                  }
 

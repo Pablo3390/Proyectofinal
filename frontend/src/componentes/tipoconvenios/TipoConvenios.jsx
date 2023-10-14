@@ -168,7 +168,8 @@ export function TipoConvenios(){
             <tr>
                 <th >Nombre</th>
                 <th >Tipo Convenio Col</th>
-                <th >Acciones</th>
+                <th >Estado</th>
+                <th colSpan="2">Acciones</th>
                 
             </tr>
             </thead>
@@ -193,9 +194,9 @@ export function TipoConvenios(){
 
 
                 {(tipo_convenios.estado=="A")?
-                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, tipo_convenios.id_tipo_convenio, tipo_convenios.estado)} >Baja</button></td>
+                <td ><button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, tipo_convenios.id_tipo_convenio, tipo_convenios.estado)} ><i className="bi bi-hand-thumbs-down-fill"></i>Baja</button></td>
                 :
-                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, tipo_convenios.id_tipo_convenio, tipo_convenios.estado)} >Alta</button></td>
+                <td ><button className="btn btn-success btn-sm"   onClick={(event)=>cambiar_estado(event, tipo_convenios.id_tipo_convenio, tipo_convenios.estado)} ><i className="bi bi-hand-thumbs-up-fill"></i>Alta</button></td>
                 
                  }
 
