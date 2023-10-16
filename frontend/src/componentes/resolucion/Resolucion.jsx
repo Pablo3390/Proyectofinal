@@ -14,6 +14,7 @@ export function Resolucion(){
     const [mensaje, setMensaje] = useState('')
     const [numero, setNumero] = useState('')
     const [ano, setAno] = useState('')
+    const [permisoDenegado, setPermisoDenegado] = useState(false)
 
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
@@ -27,11 +28,14 @@ export function Resolucion(){
 
 
 
-    useEffect(()=>{
-        API.getResolucion().then(setResolucion)}, [])
+    useEffect(()=>{const datos_usuario = JSON.parse(localStorage.getItem('usuario'));
+        ver_permisos(datos_usuario.id_rol);
+        API.getResolucion().then(setResolucion);
+    }, [])
         // eslint-disable-next-line no-unused-vars
 
 
+        // eslint-disable-next-line no-unused-vars
         const eliminar =(e, id_resolucion)=>{
             e.preventDefault();
             console.log('El id que vamos a eliminar es el ', id_resolucion)
@@ -85,12 +89,27 @@ export function Resolucion(){
       setAno(datos_resolucion.ano)
     }
 
+    const ver_permisos =  async (id_rol)=>{
+        const menu='/usuarios';
+        const respuesta= await API.ver_permisos({id_rol, menu });
+        if(respuesta.status){
+            setPermisoDenegado(true)
+        }else{
+            setPermisoDenegado(false)
+        }
+    }
+
 
 
     return(
         <>
          <Menu/>
-       
+         {
+        !permisoDenegado? 
+            <div className="alert alert-warning" role="alert">
+            No tiene  permiso para acceder a esta opcion
+            </div>
+            :<>
          <div className="table-responsive">
         <table className="table table-striped">
         <thead>
@@ -103,7 +122,7 @@ export function Resolucion(){
             <tr>
                 <th >Numero</th>
                 <th >Año</th>
-                <th >Estado</th>
+                {/* <th >Estado</th> */}
                 <th colSpan="2">Acciones</th>
                 {/* <td className="Letra_roja">#</td> */}
             </tr>
@@ -115,11 +134,11 @@ export function Resolucion(){
                 <tr>
                 <td>{resolucion.numero}</td>
                 <td >{resolucion.ano}</td>
-                <td>{resolucion.estado}</td>
+                {/* <td>{resolucion.estado}</td> */}
                 
                 <td>  <button data-bs-toggle="modal"  data-bs-target="#exampleModal"  onClick={(event)=>editar_registro(event, resolucion.id_resolucion)} className="btn btn-warning btn-sm"><i className="bi bi-pencil"></i>Editar</button></td>
                     
-                <td>   <button className="btn btn-danger btn-sm" onClick={(event)=>eliminar(event, resolucion.id_resolucion)}><i className="bi bi-hand-thumbs-down-fill"></i>Eliminar</button></td>
+                {/* <td>   <button className="btn btn-danger btn-sm" onClick={(event)=>eliminar(event, resolucion.id_resolucion)}><i className="bi bi-hand-thumbs-down-fill"></i>Eliminar</button></td> */}
                     {/* <Link to={`/editResolucion/${resolucion.id_resolucion} `}><button className="Boton_verde">Editar</button></Link> */}
                     
                 
@@ -186,6 +205,8 @@ export function Resolucion(){
         </div>
 
 
+        </>
+        }
         </>
     )
 
