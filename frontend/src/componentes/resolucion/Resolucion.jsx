@@ -96,7 +96,7 @@ export function Resolucion(){
         <thead>
         <tr>
                 <th colSpan="4" >
-                <button  className="btn btn-outline-success  btn-sm"  data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Resolución</button>
+                <button  className="btn btn-primary btn-sm" data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Resolución</button>
                     {/* <Link className="Borde_negro" to="/agregarResolucion">Agregar Resolucion</Link> */}
                 </th>
             </tr>
