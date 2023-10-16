@@ -69,7 +69,7 @@ export function Registro(){
 
     return(
         <>
-        <main className="form-signin w-100 m-auto">
+        <main className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
               <form onSubmit={registro}>
                   <a>
                     <img src={miLogo} className="logo" alt="Mi Logo" />

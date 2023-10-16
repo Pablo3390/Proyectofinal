@@ -25,7 +25,7 @@ export function Home(){
                 <nav className="nav nav-masthead justify-content-center float-md-end">
                  <td> <a className="nav-link fw-bold py-1 px-0"><Link className="btn btn-dark w-100 py-2" to="/login">Iniciar sesión</Link></a> </td> 
 
-                 <a className="nav-link fw-bold py-1 px-0"><Link className="btn btn-dark w-100 py-2" to="/registro">Registrarse</Link></a> 
+                <td><a className="nav-link fw-bold py-1 px-0"><Link className="btn btn-dark w-100 py-2" to="/registro">Registrarse</Link></a> </td> 
                   
                 </nav>
               </div>
