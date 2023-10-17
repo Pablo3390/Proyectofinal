@@ -191,7 +191,7 @@ export function Convenios(){
           <table className="table table-striped">
           <thead>
           <tr>
-                  <th colSpan="12" >
+                  <th colSpan="11" >
                       <button onClick={(event)=>limpiarModal('')} className="btn btn-primary btn-sm"   data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar Convenio</button>
                   </th>
               </tr>
