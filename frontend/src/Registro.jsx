@@ -3,6 +3,7 @@
 
 import React, { useState } from "react";
 import miLogo from './Logo.png'
+import './Registro.css'
 import { Link } from "react-router-dom";
 import * as API from './servicios/servicios'
 

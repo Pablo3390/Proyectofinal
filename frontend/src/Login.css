@@ -1,3 +1,6 @@
 .Letra_roja{
     color:red !important;
 }
+.cover-container {
+    max-width: 35em;
+  }
