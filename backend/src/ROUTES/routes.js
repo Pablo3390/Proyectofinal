@@ -34,7 +34,7 @@ router.post('/registro', bodyParser.json() , (req , res)=>{
                     mensaje:"El nombre de usuario ya existe" 
                 })
             }else{
-                mysqlconect.query('INSERT INTO usuarios (apellido, nombre, dni, user, pass, correo, id_rol ) VALUES (?,?,?,?,?,?,?)', [apellido, nombre, dni, user, hash, correo, id_rol ], (error, registros)=>{
+                mysqlconect.query('INSERT INTO usuarios (apellido, nombre, dni, user, pass, correo, id_rol ) VALUES (?,?,?,?,?,?,2)', [apellido, nombre, dni, user, hash, correo, id_rol ], (error, registros)=>{
                     if(error){
                         console.log('Error en la base de datos al momento de insertar ----> ', error)
                     }else{
