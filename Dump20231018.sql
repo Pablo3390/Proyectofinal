@@ -26,16 +26,16 @@ DROP TABLE IF EXISTS `actividades`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `actividades` (
   `id_actividad` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `fecha` varchar(50) DEFAULT NULL,
-  `lugar` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `fecha` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `lugar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `participante` int DEFAULT NULL,
   `id_convenio` int NOT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_actividad`),
   KEY `actividad_convenio_idx` (`id_convenio`),
   CONSTRAINT `actividad_convenio` FOREIGN KEY (`id_convenio`) REFERENCES `convenios` (`id_convenio`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,13 +57,13 @@ DROP TABLE IF EXISTS `convenios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `convenios` (
   `id_convenio` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `utilidad` int DEFAULT NULL,
-  `objeto` varchar(1000) DEFAULT NULL,
-  `fecha_inicio` varchar(100) DEFAULT NULL,
-  `fecha_fin` varchar(100) DEFAULT NULL,
-  `clausula_peas` varchar(255) DEFAULT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `objeto` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fecha_inicio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fecha_fin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `clausula_peas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   `id_organismo` int DEFAULT NULL,
   `id_tipo_convenio` int DEFAULT NULL,
   `id_resolucion` int DEFAULT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE `convenios` (
   CONSTRAINT `convenio_organismo` FOREIGN KEY (`id_organismo`) REFERENCES `organismos` (`id_organismo`),
   CONSTRAINT `convenio_resolucion` FOREIGN KEY (`id_resolucion`) REFERENCES `resolucion` (`id_resolucion`),
   CONSTRAINT `convenio_tipo_convenio` FOREIGN KEY (`id_tipo_convenio`) REFERENCES `tipo_convenios` (`id_tipo_convenio`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,13 +96,13 @@ DROP TABLE IF EXISTS `menu`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menu` (
   `id_menu` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(150) NOT NULL,
-  `href` varchar(150) NOT NULL,
+  `nombre` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `href` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_rol` int NOT NULL,
   PRIMARY KEY (`id_menu`),
   KEY `menu_roles_idx` (`id_rol`),
   CONSTRAINT `menu_rol` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,13 +124,13 @@ DROP TABLE IF EXISTS `organismos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `organismos` (
   `id_organismo` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_tipo_organismo` int DEFAULT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_organismo`),
   KEY `id_tipo_organismmo_idx` (`id_tipo_organismo`),
   CONSTRAINT `id_tipo_organismmo` FOREIGN KEY (`id_tipo_organismo`) REFERENCES `tipo_organismos` (`id_tipo_organismo`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,9 +154,9 @@ CREATE TABLE `resolucion` (
   `id_resolucion` int NOT NULL AUTO_INCREMENT,
   `numero` int NOT NULL,
   `ano` int NOT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_resolucion`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,13 +178,13 @@ DROP TABLE IF EXISTS `responsable`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `responsable` (
   `id_responsable` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_organismo` int NOT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_responsable`),
   KEY `id_organismo_idx` (`id_organismo`),
   CONSTRAINT `id_organismo` FOREIGN KEY (`id_organismo`) REFERENCES `organismos` (`id_organismo`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,10 +206,10 @@ DROP TABLE IF EXISTS `roles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
   `id_rol` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,11 +231,11 @@ DROP TABLE IF EXISTS `tipo_convenios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_convenios` (
   `id_tipo_convenio` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `tipo_conveniocol` varchar(45) DEFAULT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tipo_conveniocol` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_tipo_convenio`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,10 +257,10 @@ DROP TABLE IF EXISTS `tipo_organismos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_organismos` (
   `id_tipo_organismo` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `estado` enum('A','B') NOT NULL DEFAULT 'A',
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `estado` enum('A','B') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'A',
   PRIMARY KEY (`id_tipo_organismo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id_usuario`),
   KEY `id_rol_idx` (`id_rol`),
   CONSTRAINT `id_rol` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-18 19:52:28
+-- Dump completed on 2023-10-18 20:04:10
