@@ -279,7 +279,7 @@ export function Convenios(){
                     </div>
                     <div className="form-floating">
                       <input required
-                      type="numero" 
+                      type="number" 
                       value={utilidad}
                       onChange={(event) => {
                         setUtilidad((event.target.value < 0)?event.target.value * -1:event.target.value);
