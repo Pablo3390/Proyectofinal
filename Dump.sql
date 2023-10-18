@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `gestiondeconvenio` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `gestiondeconvenio` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gestiondeconvenio`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
@@ -111,7 +111,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,'Convenios','/convenios',1),(4,'Convenios','/convenios',2),(5,'Organismos','/organismos',1),(12,'Resolucion','/resolucion',1),(13,'Actividades','/Actividades',1),(16,'Tipo de organismos','/Tipo_organismos',1),(17,'Tipo de convenios','/tipo_convenios',1),(18,'Responsables','/responsable',1),(19,'Usuarios','/usuarios',1),(23,'Organismos','/organismos',2),(24,'Resolucion','/resolucion',2),(25,'Actividades','/actividades',2),(26,'Tipo de organismos','/tipo_organismos',2),(27,'Tipo de convenios','/tipo_convenios',2),(28,'Responsables','/responsable',2);
+INSERT INTO `menu` VALUES (1,'Convenios','/convenios',1),(4,'Convenios','/convenios',2),(5,'Organismos','/organismos',1),(12,'Resolucion','/resolucion',1),(13,'Actividades','/Actividades',1),(16,'Tipo de organismos','/Tipo_organismos',1),(17,'Tipo de convenios','/tipo_convenios',1),(18,'Responsables','/responsable',1),(19,'Usuarios','/usuarios',1),(23,'Organismos','/organismos',2),(25,'Actividades','/actividades',2),(26,'Tipo de organismos','/tipo_organismos',2),(27,'Tipo de convenios','/tipo_convenios',2),(28,'Responsables','/responsable',2);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +193,7 @@ CREATE TABLE `responsable` (
 
 LOCK TABLES `responsable` WRITE;
 /*!40000 ALTER TABLE `responsable` DISABLE KEYS */;
-INSERT INTO `responsable` VALUES (1,'Caramelo12',5,'A'),(2,'Prueba2',5,'A'),(4,'Responsable2',9,'A'),(5,'Responsable12',9,'A'),(7,'Responsable33',20,'A'),(8,'Prueba2',5,'A'),(22,'uva',5,'A'),(23,'Chupetin',17,'A');
+INSERT INTO `responsable` VALUES (1,'Caramelo12',5,'B'),(2,'Prueba2',5,'A'),(4,'Responsable2',9,'A'),(5,'Responsable12',9,'A'),(7,'Responsable33',20,'A'),(8,'Prueba2',5,'A'),(22,'uva',5,'A'),(23,'Chupetin',17,'A');
 /*!40000 ALTER TABLE `responsable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +293,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id_usuario`),
   KEY `id_rol_idx` (`id_rol`),
   CONSTRAINT `id_rol` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +302,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Pablo','Saucedo',35327089,'psaucedo','$2b$10$W5k2d4N.AxSgzz91tkfTMO9X1R35HGGod/.sBsVlVepWo4xgcHDm.','psaucedo@gmail.com',2,'A'),(2,'Agustina','Munaretto',38327082,'amunaretto','$2b$10$zObgRivlJAW4Nve.CSiAQ.GUNdYtgXKjBlfyTPTYv3RUQwYD7j47a','psaucedo@gmail.com',1,'A'),(4,'martin','zapata',30321654,'mzapata','$2b$10$1hSe.swtQD4XdhoMfiwtQe6qM8ao6n9MBOhHMEGZqnmH6c0U7oglq','mzapata@gmail.com',1,'A'),(5,'Camil','Piriz',40321653,'pcamila','$2b$10$NUnYOVIqUoXI8Wtr2ztqbOZlTpXnG1vv6b9N0OjsoWQDkvFWSMXAa','pcamila@gmail.com',1,'A'),(6,'Jose','Ponce',33321654,'jponce','$2b$10$MUqq.QicVfBFSCeajxs0Aezz4vJqwiAbCsgvs0xOcWOIHnP.WeJAa','jponce@gmail.com',1,'A'),(7,'Ezequiel','Acosta',35327089,'eacosta','$2b$10$5Kq0SHIzyl.NyewOsAqkV.yN.tJyaZQrFTzAOzVnRVgEkmN3Z.rD6','eacosta@gmail.com',1,'A'),(8,'Benjamin','Sena',40321654,'bsena','$2b$10$6dK5cez54VkT1d6iADBUkONaHYBjfJog4egaHKOPYmTq9cThYKyEW','bsena@gmail.com',1,'A'),(10,'pepe','argento',12123454,'apepe','$2b$10$BH4vW.5CUuoQAOPb10lA/OFib5gYoMOxIYpp.LY2BEUsurCYHImYi','apepe@gmail.com',1,'A'),(12,'Mauro','Flores',35123654,'mflores','$2b$10$9Y8MKRNfmjeCsHbfJGY33u7dK.12JZQTkfwyqiTSBlaF7H6ngz7Yu','mflores@gmail.com',1,'A');
+INSERT INTO `usuarios` VALUES (1,'Pablo','Saucedo',35327089,'psaucedo','$2b$10$W5k2d4N.AxSgzz91tkfTMO9X1R35HGGod/.sBsVlVepWo4xgcHDm.','psaucedo@gmail.com',2,'A'),(2,'Agustina','Munaretto',38327082,'amunaretto','$2b$10$zObgRivlJAW4Nve.CSiAQ.GUNdYtgXKjBlfyTPTYv3RUQwYD7j47a','psaucedo@gmail.com',1,'B'),(4,'martin','zapata',30321654,'mzapata','$2b$10$1hSe.swtQD4XdhoMfiwtQe6qM8ao6n9MBOhHMEGZqnmH6c0U7oglq','mzapata@gmail.com',1,'A'),(5,'Camil','Piriz',40321653,'pcamila','$2b$10$NUnYOVIqUoXI8Wtr2ztqbOZlTpXnG1vv6b9N0OjsoWQDkvFWSMXAa','pcamila@gmail.com',1,'A'),(6,'Jose','Ponce',33321654,'jponce','$2b$10$MUqq.QicVfBFSCeajxs0Aezz4vJqwiAbCsgvs0xOcWOIHnP.WeJAa','jponce@gmail.com',1,'A'),(7,'Ezequiel','Acosta',35327089,'eacosta','$2b$10$5Kq0SHIzyl.NyewOsAqkV.yN.tJyaZQrFTzAOzVnRVgEkmN3Z.rD6','eacosta@gmail.com',1,'A'),(8,'Benjamin','Sena',40321654,'bsena','$2b$10$6dK5cez54VkT1d6iADBUkONaHYBjfJog4egaHKOPYmTq9cThYKyEW','bsena@gmail.com',1,'A'),(10,'pepe','argento',12123454,'apepe','$2b$10$BH4vW.5CUuoQAOPb10lA/OFib5gYoMOxIYpp.LY2BEUsurCYHImYi','apepe@gmail.com',1,'A'),(12,'Mauro','Flores',35123654,'mflores','$2b$10$9Y8MKRNfmjeCsHbfJGY33u7dK.12JZQTkfwyqiTSBlaF7H6ngz7Yu','mflores@gmail.com',1,'A'),(13,'Natalia','Benitez',32654987,'Nbenitez','$2b$10$K5otElC50XZ3NLulwG/4VuF9g.L.PICHg2/kVteEtN1sTIdX745qq','bnatalia@gmail.com',1,'A'),(14,'Pig','Pepa',56987456,'pepa','$2b$10$DZze9n5Fr1dFeOY0i.I16uVjhS5l776zQ2jOmrkwlLiIv1.NXxFNO','pepa@gmail.com',2,'A');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-14  3:00:35
+-- Dump completed on 2023-10-18 19:52:28
