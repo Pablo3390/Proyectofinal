@@ -4,3 +4,13 @@
 .cover-container {
     max-width: 35em;
   }
+
+  .Background {
+    margin: 0;
+    padding: 0;
+   background-image: url('https://i.pinimg.com/originals/a5/5c/46/a55c46bb2134a99274883401ccc1f567.jpg');
+   background-size: cover;
+    background-position: center;
+     background-repeat: no-repeat;
+     height: 100vh;
+  }

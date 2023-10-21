@@ -5,12 +5,22 @@
 
 }
 
-body {
+/* body {
     height: 800px;
     background-image: url("https://img.freepik.com/foto-gratis/fondo-formas-geometricas_23-2147721536.jpg?w=1380&t=st=1697556875~exp=1697557475~hmac=f96ab0509d784a33956d5926ae4938e851cb8cab4928cb295ac031d9d9c0a95d");
   background-size: cover;
     background-repeat:no-repeat;
     background-position: center center;
+  } */
+
+  .Background {
+    margin: 0;
+    padding: 0;
+   background-image: url('https://i.pinimg.com/originals/a5/5c/46/a55c46bb2134a99274883401ccc1f567.jpg');
+   background-size: cover;
+    background-position: center;
+     background-repeat: no-repeat;
+     height: 100vh;
   }
 
   /*
