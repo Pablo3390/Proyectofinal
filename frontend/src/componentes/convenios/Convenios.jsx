@@ -299,7 +299,7 @@ export function Convenios(){
                     </div>
                     <div className="form-floating">
                       <input
-                      type="text" 
+                      type="date" 
                       value={fecha_inicio}
                       onChange={(event)=>setFechainicio(event.target.value)}
                       className="form-control" 
@@ -308,7 +308,7 @@ export function Convenios(){
                     </div>
                     <div className="form-floating">
                       <input
-                      type="text" 
+                      type="date" 
                       value={fecha_fin}
                       onChange={(event)=>setFechafin(event.target.value)}
                       className="form-control" 
