@@ -765,3 +765,20 @@ export async function getMenuByRol(id_rol){
    const data= await respuesta.json();
    return data;
 }
+
+//editar usuarios
+// export async function EditUsuario(datos, id_usuario){
+//     const token = JSON.parse(localStorage.getItem('token'));
+//     const Options={
+//         method:'PUT',
+//         body: JSON.stringify(datos),
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: `Bearer ${token}`,
+//         }
+//     }
+//     const respuesta = await fetch(`${URL}/usuarios/${id_usuario}`, Options)
+//     const data= await respuesta.json()
+//     console.log(data)
+//     return data
+// }
