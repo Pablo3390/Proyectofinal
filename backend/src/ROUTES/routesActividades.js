@@ -1,6 +1,6 @@
 const express = require ('express');
 const router = express();
-const mysqlConect = require('../database/database');
+const mysqlConect = require('../DATABASE/database');
 const bodyParser = require('body-parser')
 const jwt= require('jsonwebtoken')
 
@@ -123,7 +123,7 @@ if(!id_convenio){
 //Parametros: id_actividad, nombre, id_convenio
 router.put('/actividades/:id_actividad',bodyParser.json(), verificaToken, (req,res)=>{ 
     const {id_actividad}= req.params
-    const {nombre, id_convenio}=req.body
+    const {nombre, fecha, lugar, participante, id_convenio}=req.body
     jwt.verify(req.token, 'silicon', (error, valido)=>{
         if(error){
             res.sendStatus(403);
@@ -150,7 +150,7 @@ router.put('/actividades/:id_actividad',bodyParser.json(), verificaToken, (req,r
         
         }else{ // si no hay error que me devuelve lo siguiente:
             if(registro.length>0){
-                mysqlConect.query('UPDATE actividades SET nombre=?, id_convenio=? WHERE id_actividad = ?', [nombre, id_convenio, id_actividad], (error, registro) =>{
+                mysqlConect.query('UPDATE actividades SET nombre=?, fecha=?, lugar=?, participante=?, id_convenio=? WHERE id_actividad = ?', [nombre, fecha, lugar, participante, id_convenio,  id_actividad], (error, registro) =>{
                     
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)

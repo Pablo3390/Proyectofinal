@@ -244,7 +244,7 @@ export function Actividades(){
                   
                     <div className="form-floating">
                       <input
-                      type="text" 
+                      type="date" 
                       value={fecha}
                       onChange={(event)=>setFecha(event.target.value)}
                       className="form-control" 
