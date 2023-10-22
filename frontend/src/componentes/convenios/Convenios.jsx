@@ -26,6 +26,7 @@ export function Convenios(){
     const [tipo_convenio, setTipoconvenio] = useState([])
     const [id_resolucion, setIdresolucion] = useState('')
     const [resolucion, setResolucion] = useState([])
+   
 
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
@@ -171,6 +172,9 @@ export function Convenios(){
           setFechainicio('')
           setFechafin('')
           setClausulapeas('')
+          setIdorganismo('')
+          setIdtipoconvenio('')
+          setIdresolucion('')
 
       }
 
@@ -331,7 +335,7 @@ export function Convenios(){
                       <option selected value="">Seleccione un organismo</option>
                       {organismos.map((o)=>(
                       
-                        <option value={o.id_organismo}>{o.nombre}</option>
+                        <option selected={(o.id_organismo==id_organismo)?`selected`:``} value={o.id_organismo}>{o.nombre}</option>
 
                         ))}
                       </select>
@@ -343,7 +347,7 @@ export function Convenios(){
                       <option selected value="">Seleccione un tipo de convenio</option>
                       {tipo_convenio.map((t)=>(
                       
-                        <option value={t.id_tipo_convenio}>{t.nombre}</option>
+                        <option selected={(t.id_tipo_convenio==id_tipo_convenio)?`selected`:``} value={t.id_tipo_convenio}>{t.nombre}</option>
 
                         ))}
                       </select>
@@ -355,7 +359,7 @@ export function Convenios(){
                       <option selected value="">Seleccione una resolucion</option>
                       {resolucion.map((r)=>(
                       
-                        <option value={r.id_resolucion}>{r.numero}</option>
+                        <option selected={(r.id_resolucion==id_resolucion)?`selected`:``} value={r.id_resolucion}>{r.numero}</option>
 
                         ))}
                       </select>

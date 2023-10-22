@@ -138,8 +138,6 @@ export function Organismos(){
     const limpiarModal = async ()=>{
        
         setNombre('')
-        seIdOrganismos('')
-        setIdActividades('')
         setIdtipoorganismo('')
 
     }
@@ -236,7 +234,7 @@ export function Organismos(){
                       <option selected value="">Seleccione un tipo de organismo</option>
                       {tipo_organismos.map((o)=>(
                       
-                        <option value={o.id_tipo_organismo}>{o.nombre}</option>
+                        <option selected={(o.id_tipo_organismo==id_tipo_organismo)?`selected`:``} value={o.id_tipo_organismo}>{o.nombre}</option>
 
                         ))}
                       </select>

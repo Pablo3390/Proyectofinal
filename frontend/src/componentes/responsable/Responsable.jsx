@@ -147,7 +147,7 @@ export function Responsable(){
     const limpiarModal = async ()=>{
        
         setNombre('')
-        setIdresponsable('')
+        setIdorganismo('')
     }
    
 
@@ -244,9 +244,9 @@ export function Responsable(){
                   
                        <select onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un organismo</option>
-                      {organismos.map((organismos)=>(
+                      {organismos.map((o)=>(
                       
-                        <option value={organismos.id_organismo}>{organismos.nombre}</option>
+                        <option selected={(o.id_organismo==id_organismo)?`selected`:``}  value={o.id_organismo}>{o.nombre}</option>
 
                         ))}
                       </select> 

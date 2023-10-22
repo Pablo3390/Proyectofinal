@@ -146,6 +146,7 @@ export function Actividades(){
             setFecha('')
             setLugar('')
             setParticipante('')
+            setIdconvenio('')
 
         }
 
@@ -284,7 +285,7 @@ export function Actividades(){
                       {convenios.map((a)=>(
                       
                       
-                        <option value={a.id_convenio}>{a.nombre}</option>
+                        <option selected={(a.id_convenio==id_convenio)?`selected`:``} value={a.id_convenio}>{a.nombre}</option>
 
                         ))}
                     </select>

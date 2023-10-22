@@ -12,6 +12,7 @@ export function Usuarios(){
     const [id_usuario, setIdUsuarios]=useState('')
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
+    const [correo, setCorreo] = useState('')
     const [permisoDenegado, setPermisoDenegado] = useState(false)
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
@@ -114,6 +115,7 @@ export function Usuarios(){
         const datos_usuario= await API.getUsuariosByID(id_usuario);
         console.log(datos_usuario)
         setNombre(datos_usuario.nombre)
+        setCorreo(datos_usuario.correo)
     }
 
     const resetPass = async (e, id_usuario)=>{
@@ -252,8 +254,21 @@ export function Usuarios(){
                     className="form-control" 
                     placeholder="Nombre del usuarios"
                     />
-                    <label htmlFor="floatingInput">Nombre del usuario</label>
+                    <label htmlFor="floatingInput">Nombre</label>
                     </div>
+
+                    <div className="form-floating">
+                    <input required
+                    type="text" 
+                    value={correo}
+                    onChange={(event)=>setCorreo(event.target.value)}
+                    className="form-control" 
+                    placeholder="Nombre del usuarios"
+                    />
+                    <label htmlFor="floatingInput">Correo</label>
+                    </div>
+
+
                 </div>
                 <div className="modal-footer">
                 <button className="btn btn-primary" type="submit" >Guardar</button>
