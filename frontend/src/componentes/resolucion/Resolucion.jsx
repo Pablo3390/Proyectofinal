@@ -16,6 +16,8 @@ export function Resolucion(){
     const [ano, setAno] = useState('')
     const [permisoDenegado, setPermisoDenegado] = useState(false)
 
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
+
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
 
@@ -100,6 +102,29 @@ export function Resolucion(){
     }
 
 
+    // eslint-disable-next-line no-unused-vars
+    const validarNumero = async(event)=>{
+        // event.preventDefault();
+        
+        const validacion = await API.ValidarNumeroResolucion({numero})
+        console.log(validacion)
+          if(validacion.status){
+            setMensajeAlertaNombre(validacion.mensaje)
+            setNumero('')
+            setTimeout(()=>{
+                setMensajeAlertaNombre('')
+                setNumero('')
+                
+                }, 2000)
+            
+          }else{
+            
+            setNumero(numero)
+          }
+       
+  }
+
+
 
     return(
         <>
@@ -162,17 +187,47 @@ export function Resolucion(){
                     {mensaje}
                 </div>
              <h1 className="h3 mb-3 fw-normal">Por favor completar datos </h1>
-                    <div className="form-floating">
+                    {/* <div className="form-floating">
                       <input
                       type="number" 
                       value={numero}
-                      onChange={(event) => {
-                        setNumero((event.target.value < 0)?event.target.value * -1:event.target.value);
-                      }}
+                      onChange={(event) => {setNumero((event.target.value < 0)?event.target.value * -1:event.target.value); }}
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Numero</label>
-                    </div>
+                    </div> */}
+
+                <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="number" 
+                  value={numero}
+                //   onChange={(event)=>setNumero(event.target.value)}
+                  onChange={(event) => {setNumero((event.target.value < 0)?event.target.value * -1:event.target.value); }}
+                  onBlur={(event)=>validarNumero(event.target.value)}
+                  className="form-control" 
+                  id="numero" 
+                  />
+                  {
+                 numero? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="resolucion">Numero</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
+
+
+
                     <div className="form-floating">
                       <input
                       type="number" 

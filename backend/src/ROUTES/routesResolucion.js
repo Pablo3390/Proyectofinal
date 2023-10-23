@@ -178,6 +178,31 @@ router.delete('/resolucion/:id_resolucion',bodyParser.json(), verificaToken, (re
   })
  })
 
+
+ router.post('/validarresolucion', bodyParser.json() , (req , res)=>{
+    const { numero } = req.body;
+    console.log(numero)
+            mysqlConect.query('SELECT * FROM resolucion WHERE numero=?', [numero], (error, registros)=>{
+                if(error){
+                    console.log('Error en la base de datos', error)
+                }else{
+
+                    if(registros.length>0){
+                        res.json({
+                            status:true,
+                            mensaje:"El numero de resolucion ya existe" 
+                        })
+                    }else{
+                        res.json({
+                            status:false,
+                           
+                        })
+                    }
+                }
+            })
+       
+})
+
     function verificaToken(req, res, next){
         const bearer= req.headers['authorization'];
         if(typeof bearer!=='undefined'){

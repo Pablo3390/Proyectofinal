@@ -26,6 +26,8 @@ export function Convenios(){
     const [tipo_convenio, setTipoconvenio] = useState([])
     const [id_resolucion, setIdresolucion] = useState('')
     const [resolucion, setResolucion] = useState([])
+
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
    
 
     const toastTrigger = document.getElementById('liveToastBtn')
@@ -178,7 +180,26 @@ export function Convenios(){
 
       }
 
-
+      const validarNombre = async(event)=>{
+        // event.preventDefault();
+        
+        const validacion = await API.ValidarNombreconvenio({nombre})
+        console.log(validacion)
+          if(validacion.status){
+            setMensajeAlertaNombre(validacion.mensaje)
+            setNombre('')
+            setTimeout(()=>{
+                setMensajeAlertaNombre('')
+                setNombre('')
+                
+                }, 2000)
+            
+          }else{
+            
+            setNombre(nombre)
+          }
+       
+  }
 
 
 
@@ -272,7 +293,7 @@ export function Convenios(){
                     {mensaje}
                 </div>
              <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
-                    <div className="form-floating">
+                    {/* <div className="form-floating">
                       <input required
                       type="text" 
                       value={nombre}
@@ -280,7 +301,38 @@ export function Convenios(){
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Nombre</label>
-                    </div>
+                    </div> */}
+
+                  <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={nombre}
+                  onChange={(event)=>setNombre(event.target.value)}
+                  onBlur={(event)=>validarNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  {
+                 nombre? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="organismo">Nombre</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
+
+
+                    
                     <div className="form-floating">
                       <input required
                       type="number" 

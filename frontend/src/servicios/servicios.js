@@ -785,7 +785,7 @@ export async function EditUsuario(datos, id_usuario){
 
 
 
-//esta es mi funcion es para validar el nick
+//esta es mi funcion es para validar el nombre
 export async function ValidarNombreorganismo(dato){
     
     const Options={
@@ -796,6 +796,86 @@ export async function ValidarNombreorganismo(dato){
         }
     }
     const respuesta = await fetch(`${URL}/validarnombre`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
+
+//esta es mi funcion es para validar el nombre
+export async function ValidarNombreconvenio(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validarconvenio`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
+
+//esta es mi funcion es para validar el nombre
+export async function ValidarNumeroResolucion(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validarresolucion`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
+
+//esta es mi funcion es para validar el nombre
+export async function ValidarTipoOrganismo(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validatipoorganismo`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
+
+//esta es mi funcion es para validar el nombre
+export async function ValidarTipoConvenio(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validartipoconvenio`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
+
+//esta es mi funcion es para validar el nombre
+export async function ValidarResponsable(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validarresponsable`, Options);
     const data= await respuesta.json();
     console.log('respuesta', data)
     return data

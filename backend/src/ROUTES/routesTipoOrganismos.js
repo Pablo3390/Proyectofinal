@@ -177,6 +177,30 @@ router.delete('/tipo_organismos/:id_tipo_organismo',bodyParser.json(), verificaT
   })
  })
 
+ router.post('/validatipoorganismo', bodyParser.json() , (req , res)=>{
+    const { nombre } = req.body;
+    console.log(nombre)
+            mysqlConect.query('SELECT * FROM tipo_organismos WHERE nombre=?', [nombre], (error, registros)=>{
+                if(error){
+                    console.log('Error en la base de datos', error)
+                }else{
+
+                    if(registros.length>0){
+                        res.json({
+                            status:true,
+                            mensaje:"El nombre de tipo de organismo ya existe" 
+                        })
+                    }else{
+                        res.json({
+                            status:false,
+                           
+                        })
+                    }
+                }
+            })
+       
+})
+
     function verificaToken(req, res, next){
         const bearer= req.headers['authorization'];
         if(typeof bearer!=='undefined'){

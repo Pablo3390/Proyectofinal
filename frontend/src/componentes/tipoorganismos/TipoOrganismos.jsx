@@ -14,6 +14,8 @@ export function TipoOrganismos(){
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
 
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
+
  
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
@@ -124,6 +126,27 @@ export function TipoOrganismos(){
             setIdTipoorganismos('')
         }
 
+        const validarNombre = async(event)=>{
+            // event.preventDefault();
+            
+            const validacion = await API.ValidarTipoOrganismo({nombre})
+            console.log(validacion)
+              if(validacion.status){
+                setMensajeAlertaNombre(validacion.mensaje)
+                setNombre('')
+                setTimeout(()=>{
+                    setMensajeAlertaNombre('')
+                    setNombre('')
+                    
+                    }, 2000)
+                
+              }else{
+                
+                setNombre(nombre)
+              }
+           
+      }
+
 
 
     return(
@@ -199,7 +222,7 @@ export function TipoOrganismos(){
 
 
                     <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
-                    <div className="form-floating">
+                    {/* <div className="form-floating">
                       <input
                       type="text" 
                       value={nombre}
@@ -207,8 +230,34 @@ export function TipoOrganismos(){
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Nombre</label>
-                    </div>
-                  
+                    </div> */}
+                  <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={nombre}
+                  onChange={(event)=>setNombre(event.target.value)}
+                  onBlur={(event)=>validarNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  {
+                 nombre? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="tipo_organismo">Nombre</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
 
                     <button className="btn btn-primary" type="submit" >Guardar</button>
                     </div>         

@@ -16,6 +16,7 @@ export function TipoConvenios(){
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
     const [tipo_conveniocol, setTipoconveniocol] = useState('')
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
 
    
    
@@ -152,6 +153,28 @@ export function TipoConvenios(){
     }
 
 
+    const validarNombre = async(event)=>{
+        // event.preventDefault();
+        
+        const validacion = await API.ValidarTipoConvenio({nombre})
+        console.log(validacion)
+          if(validacion.status){
+            setMensajeAlertaNombre(validacion.mensaje)
+            setNombre('')
+            setTimeout(()=>{
+                setMensajeAlertaNombre('')
+                setNombre('')
+                
+                }, 2000)
+            
+          }else{
+            
+            setNombre(nombre)
+          }
+       
+  }
+
+
     return(
         <>
           <Menu/>
@@ -217,7 +240,7 @@ export function TipoConvenios(){
                 <div className="modal-body">
 
                 <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
-                    <div className="form-floating">
+                    {/* <div className="form-floating">
                       <input
                       type="text" 
                       value={nombre}
@@ -225,7 +248,35 @@ export function TipoConvenios(){
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Nombre</label>
-                    </div>
+                    </div> */}
+
+                    <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={nombre}
+                  onChange={(event)=>setNombre(event.target.value)}
+                  onBlur={(event)=>validarNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  {
+                 nombre? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="tipo_convenio">Nombre</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
 
                     <div className="form-floating">
                       <input
