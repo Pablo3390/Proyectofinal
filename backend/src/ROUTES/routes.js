@@ -242,7 +242,7 @@ router.put('/resetpass/:id_usuario', bodyParser.json(), (req , res)=>{
 //MODIFICAR USUARIO
 router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>{ 
     const { id_usuario } = req.params
-    const { nombre, apellido, correo }  = req.body
+    const { nombre, apellido, user, correo }  = req.body
 
     if(!nombre){
         res.json({
@@ -265,7 +265,7 @@ router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>
         
         }else{ // si no hay error que me devuelve lo siguiente:
             if(registro.length>0){
-                mysqlconect.query('UPDATE usuarios SET nombre = ?, apellido=?, correo = ? WHERE id_usuario = ?;', [nombre, apellido, correo, id_usuario], (error, registro) =>{
+                mysqlconect.query('UPDATE usuarios SET nombre = ?, apellido=?, user=?, correo = ? WHERE id_usuario = ?;', [nombre, apellido, user, correo, id_usuario], (error, registro) =>{
                     
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)

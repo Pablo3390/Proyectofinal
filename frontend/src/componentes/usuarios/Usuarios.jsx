@@ -31,7 +31,7 @@ export function Usuarios(){
     const guardarUsuario = async(event)=>{
         event.preventDefault();
         if(id_usuario){
-            const respuesta = await API.EditUsuario({nombre, apellido, correo}, id_usuario)
+            const respuesta = await API.EditUsuario({nombre, apellido, user, correo}, id_usuario)
     
             if(respuesta.status){
                 setMensaje(respuesta.mensaje)
@@ -277,6 +277,18 @@ export function Usuarios(){
                     />
                     <label htmlFor="floatingInput">apellido</label>
                     </div>
+
+                    <div className="mt-2 form-floating">
+                    <input 
+                    type="text" 
+                    value={user}
+                    onChange={(event)=>setUser(event.target.value)}
+                    className="form-control" 
+                    id="Nombre_Usuario" 
+                    />
+                    <label htmlFor="floatingInput">Correo</label>
+                    </div>
+                    
 
 
                     <div className="mt-2 form-floating">
