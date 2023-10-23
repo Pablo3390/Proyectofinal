@@ -242,7 +242,7 @@ router.put('/resetpass/:id_usuario', bodyParser.json(), (req , res)=>{
 //MODIFICAR USUARIO
 router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>{ 
     const { id_usuario } = req.params
-    const { nombre, apellido, user, correo }  = req.body
+    const { nombre, apellido, user, correo, id_rol }  = req.body
 
     if(!nombre){
         res.json({
@@ -257,6 +257,13 @@ router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>
             mensaje: "el apellido es un dato obligatorio"
         })
     }
+
+    if(!id_rol){
+        res.json({
+            status: false,
+            mensaje: "el id_rol es un dato obligatorio"
+        })
+    }
    
     //Si los demas datos están cargados correctamente, entonces:
     mysqlconect.query('SELECT * FROM usuarios WHERE id_usuario=?;', [id_usuario], (error, registro) =>{
@@ -265,7 +272,7 @@ router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>
         
         }else{ // si no hay error que me devuelve lo siguiente:
             if(registro.length>0){
-                mysqlconect.query('UPDATE usuarios SET nombre = ?, apellido=?, user=?, correo = ? WHERE id_usuario = ?;', [nombre, apellido, user, correo, id_usuario], (error, registro) =>{
+                mysqlconect.query('UPDATE usuarios SET nombre = ?, apellido=?, user=?, correo = ?, id_rol=? WHERE id_usuario = ?;', [nombre, apellido, user, correo, id_rol, id_usuario], (error, registro) =>{
                     
                     if(error){ // si hay un error entra acá
                                 console.log("Error en la base de datos", error)
@@ -365,6 +372,133 @@ router.post('/validarusuario', bodyParser.json() , (req , res)=>{
             })
        
 })
+
+//ROLES
+
+router.get('/roles', (req, res)=>{
+  
+    mysqlconect.query('select * from roles', (error, registro)=>{
+        if(error){
+            console.log('Hay un error en la base de datos', error)
+        }else{
+            res.json(registro)
+        }
+    })
+   }
+ )  
+
+
+ router.get('/roles/:id_rol', (req, res)=>{
+    const {id_rol}=req.params 
+   
+    mysqlconect.query('SELECT * FROM roles WHERE id_rol=?', [id_rol], (error, registro)=>{
+        if(error){
+            console.log('Hay un error en la base de datos', error)
+        }else{
+            res.json(registro)
+        }
+    })
+   }
+ )
+
+
+ router.post('/roles',bodyParser.json(), (req,res)=>{ 
+    const {nombre}=req.body
+   
+
+//datos obligatorios
+if(!nombre){
+    res.json({
+        status: false,
+        mensaje: "el nombre es un dato obligatorio"
+    })
+}
+
+//si lo datos están completos, entonces:
+mysqlconect.query('INSERT INTO roles (`nombre`) VALUES (?);', [nombre], (error, registro) =>{
+        if(error){ // si hay un error entra acá
+            res.json({
+                status:false,
+                mensaje: error
+            })
+        }else{ 
+            res.json({
+                status:true,
+                mensaje: "El registro se grabo correctamente"
+            })
+        }
+     })
+    }
+  )
+
+
+
+  router.put('/roles/:id_rol',bodyParser.json(), (req,res)=>{ 
+    const {id_rol}= req.params
+    const {nombre}=req.body
+  
+    if(!nombre){
+        res.json({
+            status: false,
+            mensaje: "el nombre es un dato obligatorio"
+        })
+    }
+    
+    
+
+    //Si los demas datos están cargados correctamente, entonces:
+    mysqlconect.query('SELECT * FROM roles WHERE id_rol=?;', [id_rol], (error, registro) =>{
+        if(error){ // si hay un error entra acá
+            console.log("Error en la base de datos", error)
+        
+        }else{ // si no hay error que me devuelve lo siguiente:
+            if(registro.length>0){
+                mysqlconect.query('UPDATE roles SET nombre=?WHERE id_rol = ?', [nombre, id_rol], (error, registro) =>{
+                    
+                    if(error){ // si hay un error entra acá
+                                console.log("Error en la base de datos", error)
+                    }else{ 
+                        res.json({
+                            status: true,
+                            mensaje: 'El registro se editó correctamente'
+                        })
+                                
+                    }
+                 })
+
+            }else{
+            res.json({
+                status:false,
+                mensaje: "El id del rol no existe"
+            })
+        }   
+        }
+    })
+   }
+ )
+
+ router.delete('/roles/:id_rol',bodyParser.json(),  (req,res)=>{ 
+    const {id_rol}= req.params
+    
+    mysqlconect.query('DELETE FROM roles WHERE id_rol = ?', [id_rol], (error, registro) =>{
+        if(error){ // si hay un error entra acá
+                    console.log("Error en la base de datos", error)
+        }else{ 
+                    res.json ('La eliminación del registro '+id_rol+ ' se realizó correctamente')
+        }
+     })
+    }
+  )
+
+
+
+
+
+
+
+
+
+
 
 
 

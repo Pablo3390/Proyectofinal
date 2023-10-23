@@ -912,3 +912,91 @@ const respuesta = await fetch(`${URL}/usuarios`, Options)
 const data= await respuesta.json()
 return data
 }
+
+
+//ROLES
+
+//lista
+export async function getRoles(){
+    
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+           
+        }
+    }
+    const respuesta = await fetch(`${URL}/roles`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+// agregar 
+export async function AddRoles(datos){
+  
+    const Options={
+        method:'POST',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+         
+        }
+    }
+    const respuesta = await fetch(`${URL}/roles`, Options)
+    const data= await respuesta.json()
+    return data
+}
+
+export async function getRolesByID(id_rol){
+    
+    const Options={
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            
+        }
+    }
+    const respuesta = await fetch(`${URL}/roles/${id_rol}`, Options)
+    const data= await respuesta.json();
+    return data[0];
+}
+
+
+export async function EditRoles(datos, id_rol){
+    
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+            
+        }
+    }
+    const respuesta = await fetch(`${URL}/roles/${id_rol}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+export async function deleteRoles(id_rol){
+    
+    const Options={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            
+        }
+    }
+    const respuesta = await fetch(`${URL}/roles/${id_rol}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
+
+
+

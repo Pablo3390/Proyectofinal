@@ -6,7 +6,7 @@ import * as API from '../../servicios/servicios'
 import { Menu } from "../../Menu";
 import Swal from 'sweetalert2' 
 
-
+ 
 export function Usuarios(){
     const [usuarios, setUsuarios]=useState([]);
     const [id_usuario, setIdUsuarios]=useState('')
@@ -15,6 +15,8 @@ export function Usuarios(){
     const [user, setUser] = useState('')
     const [apellido, setApellido] = useState('')
     const [correo, setCorreo] = useState('')
+    const [roles, setRoles] = useState([])
+    const [id_rol, setIdRol] = useState('')
     const [permisoDenegado, setPermisoDenegado] = useState(false)
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
@@ -67,6 +69,7 @@ export function Usuarios(){
         const datos_usuario = JSON.parse(localStorage.getItem('usuario'));
         ver_permisos(datos_usuario.id_rol);
         API.getUsuarios().then(setUsuarios);
+        API.getRoles().then(setRoles);
     }, []);
     
 
@@ -126,6 +129,8 @@ export function Usuarios(){
         setApellido(datos_usuario.apellido)
         setCorreo(datos_usuario.correo)
         setUser(datos_usuario.user)
+        setIdRol(datos_usuario.id_rol)
+
     }
 
     const resetPass = async (e, id_usuario)=>{
@@ -300,6 +305,18 @@ export function Usuarios(){
                     />
                     <label htmlFor="floatingInput">apellido</label>
                     </div>
+
+                    {/* <div className="form-floating">
+                    <input required
+                    type="text" 
+                    value={roles}
+                    onChange={(event)=>setRoles(event.target.value)}
+                    className="form-control" 
+                    
+                    id="Rol" 
+                    />
+                    <label htmlFor="floatingInput">rol</label>
+                    </div>  */}
 {/* 
                     <div className="mt-2 form-floating">
                     <input 
@@ -351,6 +368,15 @@ export function Usuarios(){
                     />
                     <label htmlFor="correo">Correo</label>
                     </div>
+
+                     <select onChange={(event)=>setIdRol(event.target.value)} className="form-control">
+                      <option selected value="">Seleccione un rol</option>
+                      {roles.map((roles)=>(
+                      
+                        <option selected={(roles.id_rol==id_rol)?`selected`:``}  value={roles.id_rol}>{roles.nombre}</option>
+
+                        ))}
+                      </select> 
                     
                 
 
