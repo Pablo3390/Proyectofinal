@@ -226,43 +226,16 @@ router.put('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
     const { id_usuario } = req.params
     const { nombre, correo }  = req.body
     
-//     mysqlconect.query('UPDATE usuarios SET nombre = ?, apellido = ?  WHERE id_usuario = ?', [nombre, apellido, id_usuario], (error, registros)=>{
-//        if(error){
-//            console.log('Error en la base de datos', error)
-//        }else{
-//         res.json({
-//             status:true,
-//             mensaje: "La edicion de registro se realizo correctamente"
-//             })
-//        }
-//    })
-   mysqlconect.query('SELECT * FROM usuarios WHERE id_usuario=?;', [id_usuario], (error, registro) =>{
-    if(error){ // si hay un error entra acá
-        console.log("Error en la base de datos", error)
-    
-    }else{ // si no hay error que me devuelve lo siguiente:
-        if(registro.length>0){
-            mysqlconect.query('UPDATE usuarios SET nombre=?, correo=?  WHERE id_usuario = ?', [nombre, correo, id_usuario], (error, registro) =>{
-                
-                if(error){ // si hay un error entra acá
-                            console.log("Error en la base de datos", error)
-                }else{ 
-                    res.json({
-                        status: true,
-                        mensaje: 'El registro '+id_usuario+ ' se editó correctamente'
-                    })
-                            
-                }
-             })
-
-        }else{
+    mysqlconect.query('UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?;', [nombre, correo, id_usuario], (error, registros)=>{
+       if(error){
+           console.log('Error en la base de datos', error)
+       }else{
         res.json({
-            status:false,
-            mensaje: "El id del usuario no existe"
-        })
-    }   
-    }
-})
+            status:true,
+            mensaje: "La edicion de registro se realizo correctamente"
+            })
+       }
+   })
 })
 
 router.delete('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{

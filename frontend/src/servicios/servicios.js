@@ -782,3 +782,21 @@ export async function EditUsuario(datos, id_usuario){
     console.log(data)
     return data
 }
+
+
+
+//esta es mi funcion es para validar el nick
+export async function ValidarNombreorganismo(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validarnombre`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}

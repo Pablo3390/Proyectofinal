@@ -18,6 +18,9 @@ export function Organismos(){
     const [tipo_organismos, setTipoorganismos] = useState([])
     const [id_tipo_organismo, setIdtipoorganismo] = useState('')
 
+    const [mensajeAlerta, setMensajeAlerta]= useState('')
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
+
    
    
     const toastTrigger = document.getElementById('liveToastBtn')
@@ -143,7 +146,26 @@ export function Organismos(){
     }
 
 
-
+    const validarNombre = async(event)=>{
+        // event.preventDefault();
+        
+        const validacion = await API.ValidarNombreorganismo({nombre})
+        console.log(validacion)
+          if(validacion.status){
+            setMensajeAlertaNombre(validacion.mensaje)
+            setNombre('')
+            setTimeout(()=>{
+                setMensajeAlertaNombre('')
+                setNombre('')
+                
+                }, 2000)
+            
+          }else{
+            
+            setNombre(nombre)
+          }
+       
+  }
 
 
     return(
@@ -219,7 +241,7 @@ export function Organismos(){
                     {mensaje}
                 </div>
              <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
-                    <div className="form-floating">
+                    {/* <div className="form-floating">
                       <input
                       type="text" 
                       value={nombre}
@@ -227,8 +249,37 @@ export function Organismos(){
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Nombre</label>
-                    </div>
+                    </div> */}
                     <div className="form-floating">
+
+
+                    <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={nombre}
+                  onChange={(event)=>setNombre(event.target.value)}
+                  onBlur={(event)=>validarNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  {
+                 nombre? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="organismo">Nombre</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
                       
                       <select onChange={(event)=>setIdtipoorganismo(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un tipo de organismo</option>

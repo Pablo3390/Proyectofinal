@@ -186,7 +186,7 @@ export function Usuarios(){
                 <button className="btn btn-primary btn-sm"   data-bs-toggle="modal"  data-bs-target="#exampleModal" ><i className="bi bi-database-add"></i>Agregar</button>
                 &nbsp;
                 
-                <input  type="checkbox"/>Solo Activos
+                {/* <input  type="checkbox"/>Solo Activos */}
                 </th>    
             </tr>
 
@@ -257,15 +257,15 @@ export function Usuarios(){
                     <label htmlFor="floatingInput">Nombre</label>
                     </div>
 
-                    <div className="form-floating">
-                    <input required
-                    type="text" 
+                    <div className="mt-2 form-floating">
+                    <input 
+                    type="email" 
                     value={correo}
                     onChange={(event)=>setCorreo(event.target.value)}
                     className="form-control" 
-                    placeholder="Nombre del usuarios"
+                    id="correo" 
                     />
-                    <label htmlFor="floatingInput">Correo</label>
+                    <label htmlFor="correo">Correo</label>
                     </div>
 
 
