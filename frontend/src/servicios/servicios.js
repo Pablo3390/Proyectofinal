@@ -881,6 +881,23 @@ export async function ValidarResponsable(dato){
     return data
 }
 
+
+//esta es mi funcion es para validar el nombre
+export async function ValidarUsuario(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validarusuario`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
+
 export async function AddUsuario(datos){
     
 const Options={

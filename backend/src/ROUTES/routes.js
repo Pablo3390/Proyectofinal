@@ -342,6 +342,30 @@ router.delete('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
 //     )
 
 
+router.post('/validarusuario', bodyParser.json() , (req , res)=>{
+    const { user } = req.body;
+    console.log(user)
+            mysqlconect.query('SELECT * FROM usuarios WHERE user=?', [user], (error, registros)=>{
+                if(error){
+                    console.log('Error en la base de datos', error)
+                }else{
+
+                    if(registros.length>0){
+                        res.json({
+                            status:true,
+                            mensaje:"El nombre de usuario ya existe" 
+                        })
+                    }else{
+                        res.json({
+                            status:false,
+                           
+                        })
+                    }
+                }
+            })
+       
+})
+
 
 
 //Verificacion de tokens

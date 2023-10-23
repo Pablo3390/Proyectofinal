@@ -19,6 +19,8 @@ export function Usuarios(){
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
 
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
+
 
     if (toastTrigger) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
@@ -174,6 +176,27 @@ export function Usuarios(){
         }
     }
 
+    const validarNombre = async(event)=>{
+        // event.preventDefault();
+        
+        const validacion = await API.ValidarUsuario({user})
+        console.log(validacion)
+          if(validacion.status){
+            setMensajeAlertaNombre(validacion.mensaje)
+            setUser('')
+            setTimeout(()=>{
+                setMensajeAlertaNombre('')
+                setUser('')
+                
+                }, 2000)
+            
+          }else{
+            
+            setUser(user)
+          }
+       
+  }
+
     return(
         <>
         
@@ -277,7 +300,7 @@ export function Usuarios(){
                     />
                     <label htmlFor="floatingInput">apellido</label>
                     </div>
-
+{/* 
                     <div className="mt-2 form-floating">
                     <input 
                     type="text" 
@@ -286,9 +309,36 @@ export function Usuarios(){
                     className="form-control" 
                     id="Nombre_Usuario" 
                     />
-                    <label htmlFor="floatingInput">Correo</label>
-                    </div>
+                    <label htmlFor="floatingInput">Usuario</label>
+                    </div> */}
                     
+                    <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={user}
+                  onChange={(event)=>setUser(event.target.value)}
+                  onBlur={(event)=>validarNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  {
+                 user? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="tipo_convenio">Usuario</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
 
 
                     <div className="mt-2 form-floating">
