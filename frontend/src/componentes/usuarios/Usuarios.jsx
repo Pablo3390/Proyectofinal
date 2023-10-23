@@ -12,20 +12,26 @@ export function Usuarios(){
     const [id_usuario, setIdUsuarios]=useState('')
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
+    const [user, setUser] = useState('')
+    const [apellido, setApellido] = useState('')
     const [correo, setCorreo] = useState('')
     const [permisoDenegado, setPermisoDenegado] = useState(false)
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
+
+
     if (toastTrigger) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
         toastTrigger.addEventListener('click', () => {
           toastBootstrap.show()
         })
       }
+
+
     const guardarUsuario = async(event)=>{
         event.preventDefault();
         if(id_usuario){
-            const respuesta = await API.EditUsuario({nombre}, id_usuario)
+            const respuesta = await API.EditUsuario({nombre, apellido, correo}, id_usuario)
     
             if(respuesta.status){
                 setMensaje(respuesta.mensaje)
@@ -39,7 +45,7 @@ export function Usuarios(){
             }
             return;
         }else{
-            const respuesta = await API.AddUsuario({nombre})
+            const respuesta = await API.AddUsuario({nombre, apellido, correo})
             if(respuesta.status){
                 setMensaje(respuesta.mensaje)
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
@@ -115,7 +121,9 @@ export function Usuarios(){
         const datos_usuario= await API.getUsuariosByID(id_usuario);
         console.log(datos_usuario)
         setNombre(datos_usuario.nombre)
+        setApellido(datos_usuario.apellido)
         setCorreo(datos_usuario.correo)
+        setUser(datos_usuario.user)
     }
 
     const resetPass = async (e, id_usuario)=>{
@@ -252,10 +260,24 @@ export function Usuarios(){
                     value={nombre}
                     onChange={(event)=>setNombre(event.target.value)}
                     className="form-control" 
-                    placeholder="Nombre del usuarios"
+                    // placeholder="Nombre del usuarios"
+                    id="Nombre" 
                     />
                     <label htmlFor="floatingInput">Nombre</label>
                     </div>
+
+                    <div className="form-floating">
+                    <input required
+                    type="text" 
+                    value={apellido}
+                    onChange={(event)=>setApellido(event.target.value)}
+                    className="form-control" 
+                    // placeholder="apellido del usuario"
+                    id="Apellido" 
+                    />
+                    <label htmlFor="floatingInput">apellido</label>
+                    </div>
+
 
                     <div className="mt-2 form-floating">
                     <input 
@@ -267,7 +289,8 @@ export function Usuarios(){
                     />
                     <label htmlFor="correo">Correo</label>
                     </div>
-
+                    
+                
 
                 </div>
                 <div className="modal-footer">

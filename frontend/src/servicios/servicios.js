@@ -880,3 +880,18 @@ export async function ValidarResponsable(dato){
     console.log('respuesta', data)
     return data
 }
+
+export async function AddUsuario(datos){
+    
+const Options={
+method:'POST',
+body: JSON.stringify(datos),
+headers: {
+'Content-Type': 'application/json',
+            
+ }
+}
+const respuesta = await fetch(`${URL}/usuarios`, Options)
+const data= await respuesta.json()
+return data
+}

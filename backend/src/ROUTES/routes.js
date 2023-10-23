@@ -222,21 +222,75 @@ router.put('/resetpass/:id_usuario', bodyParser.json(), (req , res)=>{
    })
 })
 
-router.put('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
-    const { id_usuario } = req.params
-    const { nombre, correo }  = req.body
+// router.put('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
+//     const { id_usuario } = req.params
+//     const { nombre, correo }  = req.body
     
-    mysqlconect.query('UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?;', [nombre, correo, id_usuario], (error, registros)=>{
-       if(error){
-           console.log('Error en la base de datos', error)
-       }else{
+//     mysqlconect.query('UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?;', [nombre, correo, id_usuario], (error, registros)=>{
+//        if(error){
+//            console.log('Error en la base de datos', error)
+//        }else{
+//         res.json({
+//             status:true,
+//             mensaje: "La edicion de registro se realizo correctamente"
+//             })
+//        }
+//    })
+// })
+
+
+//MODIFICAR USUARIO
+router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>{ 
+    const { id_usuario } = req.params
+    const { nombre, apellido, correo }  = req.body
+
+    if(!nombre){
         res.json({
-            status:true,
-            mensaje: "La edicion de registro se realizo correctamente"
+            status: false,
+            mensaje: "el nombre del usuario es un dato obligatorio"
+        })
+    }
+    
+    if(!apellido){
+        res.json({
+            status: false,
+            mensaje: "el apellido es un dato obligatorio"
+        })
+    }
+   
+    //Si los demas datos están cargados correctamente, entonces:
+    mysqlconect.query('SELECT * FROM usuarios WHERE id_usuario=?;', [id_usuario], (error, registro) =>{
+        if(error){ // si hay un error entra acá
+            console.log("Error en la base de datos", error)
+        
+        }else{ // si no hay error que me devuelve lo siguiente:
+            if(registro.length>0){
+                mysqlconect.query('UPDATE usuarios SET nombre = ?, apellido=?, correo = ? WHERE id_usuario = ?;', [nombre, apellido, correo, id_usuario], (error, registro) =>{
+                    
+                    if(error){ // si hay un error entra acá
+                                console.log("Error en la base de datos", error)
+                    }else{ 
+                        res.json({
+                            status: true,
+                            mensaje: 'El registro '+id_usuario+ ' se editó correctamente'
+                        })
+                                
+                    }
+                 })
+
+            }else{
+            res.json({
+                status:false,
+                mensaje: "El id del usuario no existe"
             })
-       }
-   })
-})
+        }   
+        }
+    })
+     }
+    )  
+
+
+
 
 router.delete('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
     const { actualizar }  = req.body
@@ -252,6 +306,43 @@ router.delete('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
         }
     })
 })
+
+
+//INSERTAR USUARIO
+// router.post('/usuarios',bodyParser.json(), (req,res)=>{ 
+//     const {nombre, apellido, correo, user}=req.body
+   
+
+//     if(!nombre){
+//         res.json({
+//             status: false,
+//             mensaje: "el nombre del usuario es un dato obligatorio"
+//         })
+//     }
+    
+//     if(!apellido){
+//         res.json({
+//             status: false,
+//             mensaje: "el apellido es un dato obligatorio"
+//         })
+//     }
+
+//si lo datos están completos, entonces:
+// mysqlconect.query('INSERT INTO usuarios (`nombre`, `apellido`, `correo`, `user`) VALUES (?, ?, ?, ?);', [nombre, apellido, correo, user], (error, registro) =>{
+//         if(error){ // si hay un error entra acá
+//                     console.log("Error en la base de datos", error)
+//         }else{
+//             res.json({
+//                 status:true,
+//                 mensaje: "El usuario se grabo correctamente"
+//             })
+//             }
+//      })
+//             }
+//     )
+
+
+
 
 //Verificacion de tokens
 
