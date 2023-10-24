@@ -46,6 +46,10 @@ export function Convenios(){
         API.getOrganismos().then(setOrganismos)
         API.getConvenios().then(setConvenios)}, [])
 
+        const organismosActivos = organismos.filter((o)=> o.estado === 'A');
+        const tipoDeConvenioActivos = tipo_convenio.filter((t)=> t.estado === 'A');
+        const resolucionActivos = resolucion.filter((r)=> r.estado === 'A');
+
 
         const guardaConvenio = async(event)=>{
             event.preventDefault();
@@ -385,9 +389,9 @@ export function Convenios(){
                       
                       <select required onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un organismo</option>
-                      {organismos.map((o)=>(
+                      {organismosActivos.map((o)=>(
                       
-                        <option selected={(o.id_organismo==id_organismo)?`selected`:``} value={o.id_organismo}>{o.nombre}</option>
+                        <option key={o.id_organismo} value={o.id_organismo}>{o.nombre} </option>
 
                         ))}
                       </select>
@@ -397,11 +401,11 @@ export function Convenios(){
                       
                       <select required onChange={(event)=>setIdtipoconvenio(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un tipo de convenio</option>
-                      {tipo_convenio.map((t)=>(
+                      {tipoDeConvenioActivos.map((t)=>(
                       
-                        <option selected={(t.id_tipo_convenio==id_tipo_convenio)?`selected`:``} value={t.id_tipo_convenio}>{t.nombre}</option>
+                      <option key={t.id_tipo_convenio} value={t.id_tipo_convenio}>{t.nombre} </option>
 
-                        ))}
+                      ))}
                       </select>
                     </div>
 
@@ -409,9 +413,9 @@ export function Convenios(){
                       
                       <select required onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">
                       <option selected value="">Seleccione una resolucion</option>
-                      {resolucion.map((r)=>(
+                      {resolucionActivos.map((r)=>(
                       
-                        <option selected={(r.id_resolucion==id_resolucion)?`selected`:``} value={r.id_resolucion}>{r.numero}</option>
+                        <option key={r.id_resolucion} value={r.id_resolucion}>{r.numero}</option>
 
                         ))}
                       </select>
