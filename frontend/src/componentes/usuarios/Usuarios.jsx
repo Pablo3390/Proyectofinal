@@ -35,7 +35,7 @@ export function Usuarios(){
     const guardarUsuario = async(event)=>{
         event.preventDefault();
         if(id_usuario){
-            const respuesta = await API.EditUsuario({nombre, apellido, user, correo}, id_usuario)
+            const respuesta = await API.EditUsuario({nombre, apellido, user, correo, id_rol}, id_usuario)
     
             if(respuesta.status){
                 setMensaje(respuesta.mensaje)
@@ -49,7 +49,7 @@ export function Usuarios(){
             }
             return;
         }else{
-            const respuesta = await API.AddUsuario({nombre, apellido, correo})
+            const respuesta = await API.AddUsuario({nombre, apellido, correo, id_rol})
             if(respuesta.status){
                 setMensaje(respuesta.mensaje)
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
