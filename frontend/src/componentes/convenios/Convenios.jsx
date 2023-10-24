@@ -391,7 +391,7 @@ export function Convenios(){
                       <option selected value="">Seleccione un organismo</option>
                       {organismosActivos.map((o)=>(
                       
-                        <option key={o.id_organismo} value={o.id_organismo}>{o.nombre} </option>
+                        <option selected={(o.id_organismo==id_organismo)?`selected`:``} value={o.id_organismo}key={o.id_organismo}>{o.nombre} </option>
 
                         ))}
                       </select>
@@ -403,7 +403,7 @@ export function Convenios(){
                       <option selected value="">Seleccione un tipo de convenio</option>
                       {tipoDeConvenioActivos.map((t)=>(
                       
-                      <option key={t.id_tipo_convenio} value={t.id_tipo_convenio}>{t.nombre} </option>
+                      <option selected={(t.id_tipo_convenio==id_tipo_convenio)?`selected`:``} value={t.id_tipo_convenio}key={t.id_tipo_convenio} >{t.nombre} </option>
 
                       ))}
                       </select>
@@ -414,8 +414,7 @@ export function Convenios(){
                       <select required onChange={(event)=>setIdresolucion(event.target.value)} className="form-control">
                       <option selected value="">Seleccione una resolucion</option>
                       {resolucionActivos.map((r)=>(
-                      
-                        <option key={r.id_resolucion} value={r.id_resolucion}>{r.numero}</option>
+                      <><option selected={(r.id_resolucion == id_resolucion) ? `selected` : ``} value={r.id_resolucion}key={r.id_resolucion} >{r.numero} </option></>
 
                         ))}
                       </select>
