@@ -79,13 +79,13 @@ export function Usuarios(){
         const mjs = (estado_actual=="A")?"dar de baja":"dar de alta";
         Swal.fire({
             title: 'Esta seguro?',
-            text: "Usted esta a punto de "+mjs+" a un usuario!",
+            text: "Usted esta por "+mjs+" a un usuario!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            cancelButtonText: 'No, deja nomas',
-            confirmButtonText: 'Si, ya te dije que si!'
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Aceptar'
           }).then((result) => {
             if (result.isConfirmed) {
                 
