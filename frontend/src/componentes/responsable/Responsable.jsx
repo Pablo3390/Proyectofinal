@@ -8,7 +8,7 @@ import * as API from '../../servicios/servicios'
 import { Menu } from "../../Menu";
 import Swal from 'sweetalert2'
 
-
+ 
 
 export function Responsable(){
     const [responsable, setResponsable] = useState([])
@@ -36,6 +36,8 @@ export function Responsable(){
     useEffect(()=>{
         API.getOrganismos().then(setOrganismos)
         API.getResponsable().then(setResponsable)}, [])
+
+        const organismosActivos = organismos.filter((o)=> o.estado === 'A');
 
     
     
@@ -290,10 +292,9 @@ export function Responsable(){
                     </div> */}
 
 
-                  
-                       <select onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
+                       <select required onChange={(event)=>setIdorganismo(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un organismo</option>
-                      {organismos.map((o)=>(
+                      {organismosActivos.map((o)=>(
                       
                         <option selected={(o.id_organismo==id_organismo)?`selected`:``}  value={o.id_organismo}>{o.nombre}</option>
 

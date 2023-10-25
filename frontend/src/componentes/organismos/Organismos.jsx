@@ -39,7 +39,7 @@ export function Organismos(){
         API.getOrganismos().then(setOrganismos)}, [])
 
 
-
+        const tipoDeOrganismosActivos = tipo_organismos.filter((t)=> t.estado === 'A');
 
 
         // const cambiar_estado = async (e, id_organismo, estado_actual)=>{
@@ -281,9 +281,9 @@ export function Organismos(){
                 :<></>
                   }
                       
-                      <select onChange={(event)=>setIdtipoorganismo(event.target.value)} className="form-control">
+                      <select required onChange={(event)=>setIdtipoorganismo(event.target.value)} className="form-control">
                       <option selected value="">Seleccione un tipo de organismo</option>
-                      {tipo_organismos.map((o)=>(
+                      {tipoDeOrganismosActivos.map((o)=>(
                       
                         <option selected={(o.id_tipo_organismo==id_tipo_organismo)?`selected`:``} value={o.id_tipo_organismo}>{o.nombre}</option>
 
