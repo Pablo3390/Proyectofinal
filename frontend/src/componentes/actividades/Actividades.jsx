@@ -23,6 +23,9 @@ export function Actividades(){
     const toastTrigger = document.getElementById('liveToastBtn')
     const toastLiveExample = document.getElementById('liveToast')
 
+
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
+
     if (toastTrigger) {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
     toastTrigger.addEventListener('click', () => {
@@ -70,6 +73,7 @@ export function Actividades(){
         API.getActividades().then(setActividades)
         API.getConvenios().then(setConvenios)}, [])
         
+        const conveniosActivos = convenios.filter((c)=> c.estado === 'A');
 
    /* CAMBIAR ESTADO DE ACTIVIDADES*/ 
 
@@ -150,6 +154,26 @@ export function Actividades(){
 
         }
 
+        const validarNombre = async(event)=>{
+            // event.preventDefault();
+            
+            const validacion = await API.ValidarNombreactividad({nombre})
+            console.log(validacion)
+              if(validacion.status){
+                setMensajeAlertaNombre(validacion.mensaje)
+                setNombre('')
+                setTimeout(()=>{
+                    setMensajeAlertaNombre('')
+                    setNombre('')
+                    
+                    }, 2000)
+                
+              }else{
+                
+                setNombre(nombre)
+              }
+           
+      }
  
 
         
@@ -232,7 +256,7 @@ export function Actividades(){
                     {/* {mensaje} */}
                 </div>
              <h1 className="h3 mb-3 fw-normal">Por favor completar los datos </h1>
-                    <div className="form-floating">
+                    {/* <div className="form-floating">
                       <input
                       required
                       type="text" 
@@ -241,7 +265,36 @@ export function Actividades(){
                       className="form-control" 
                       placeholder="nombre"/>
                       <label htmlFor="floatingInput">Nombre</label>
-                    </div>
+                    </div> */}
+
+
+                    <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" 
+                  value={nombre}
+                  onChange={(event)=>setNombre(event.target.value)}
+                  onBlur={(event)=>validarNombre(event.target.value)}
+                  className="form-control" 
+                  id="nombre" 
+                  />
+                  {
+                 nombre? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="actividades">Nombre</label>
+                </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
                   
                     <div className="form-floating">
                       <input
@@ -282,10 +335,10 @@ export function Actividades(){
                     <select required onChange={(event)=>setIdconvenio(event.target.value)} className="form-control">
                     
                     <option selected value="">Seleccione un convenio</option>
-                      {convenios.map((a)=>(
+                      {conveniosActivos.map((c)=>(
                       
                       
-                        <option selected={(a.id_convenio==id_convenio)?`selected`:``} value={a.id_convenio}>{a.nombre}</option>
+                        <option selected={(c.id_convenio==id_convenio)?`selected`:``} value={c.id_convenio}key={c.id_convenio}>{c.nombre}</option>
 
                         ))}
                     </select>

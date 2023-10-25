@@ -44,6 +44,24 @@ export async function Registro(datos){
     return data
 }
 
+//Esta es mi funcion para cambiar de contraseña
+export async function EditPass(datos, id_usuario){
+    const token = JSON.parse(localStorage.getItem('token'));
+    const Options={
+        method:'PUT',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        }
+    }
+    const respuesta = await fetch(`${URL}/editpass/${id_usuario}`, Options)
+    const data= await respuesta.json()
+    console.log(data)
+    return data
+}
+
+
 //FUNCIONES DE ACTIVIDADES
 //Esta es mi funcion para listar las actividades
 export async function getActividades(){
@@ -783,6 +801,21 @@ export async function EditUsuario(datos, id_usuario){
     return data
 }
 
+//esta es mi funcion es para validar el nombre
+export async function ValidarNombreactividad(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validaractividad`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
 
 
 //esta es mi funcion es para validar el nombre
@@ -996,21 +1029,6 @@ export async function deleteRoles(id_rol){
     return data
 }
 
-export async function EditPass(datos, id_usuario){
-    const token = JSON.parse(localStorage.getItem('token'));
-    const Options={
-        method:'PUT',
-        body: JSON.stringify(datos),
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        }
-    }
-    const respuesta = await fetch(`${URL}/editpass/${id_usuario}`, Options)
-    const data= await respuesta.json()
-    console.log(data)
-    return data
-}
 
 
 

@@ -228,8 +228,8 @@ export function Convenios(){
                   <th>Nombre</th>
                   <th>Utilidad $</th>
                   <th>Objeto</th>
-                  <th>Fecha de inicio</th>
-                  <th>Fecha de fin</th>
+                  <th>Fecha inicio</th>
+                  <th>Fecha fin</th>
                   <th>Clausula peas</th>
                   <th>Organismo</th>
                   <th>Tipo de convenio</th>
@@ -288,7 +288,7 @@ export function Convenios(){
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos del Responsable </h1>
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos del Convenio</h1>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -324,7 +324,7 @@ export function Convenios(){
                 
                 :<></>
                   }
-                  <label htmlFor="organismo">Nombre</label>
+                  <label htmlFor="convenios">Nombre</label>
                 </div>
 
                 {

@@ -220,6 +220,31 @@ router.delete('/actividades/:id_actividad',bodyParser.json(), verificaToken, (re
     })
     })
 
+
+    router.post('/validaractividad', bodyParser.json() , (req , res)=>{
+        const { nombre } = req.body;
+        console.log(nombre)
+                mysqlConect.query('SELECT * FROM actividades WHERE nombre=?', [nombre], (error, registros)=>{
+                    if(error){
+                        console.log('Error en la base de datos', error)
+                    }else{
+    
+                        if(registros.length>0){
+                            res.json({
+                                status:true,
+                                mensaje:"El nombre del convenio ya existe" 
+                            })
+                        }else{
+                            res.json({
+                                status:false,
+                               
+                            })
+                        }
+                    }
+                })
+           
+    })
+
     function verificaToken(req, res, next){
         const bearer= req.headers['authorization'];
         if(typeof bearer!=='undefined'){
