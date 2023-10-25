@@ -757,12 +757,14 @@ export async function ResetUsuariosByID(id_usuario){
     return data;
 }
 
-export async function ActualizarEstadoUsuario(id_usuario, actualizar){
+export async function EliminarUsuario(id_usuario, actualizar){
+    const token = JSON.parse(localStorage.getItem('token'));
     const Options={
         method:'DELETE',
         body: JSON.stringify(actualizar),
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
         }
     }
     const respuesta = await fetch(`${URL}/usuarios/${id_usuario}`, Options)

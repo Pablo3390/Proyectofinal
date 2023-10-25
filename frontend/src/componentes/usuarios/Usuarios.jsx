@@ -72,52 +72,32 @@ export function Usuarios(){
         API.getRoles().then(setRoles);
     }, []);
     
-
-    const cambiar_estado = async (e, id_usuario, estado_actual)=>{
+    const eliminar = (e, id_usuario) => {
         e.preventDefault();
-        const actualizar = (estado_actual=="A")?"B":"A";
-        const mjs = (estado_actual=="A")?"dar de baja":"dar de alta";
+
         Swal.fire({
-            title: 'Esta seguro?',
-            text: "Usted esta a punto de "+mjs+" a un usuario!",
+            title: '¿Está seguro que desea eliminar este usuario?',
+            text: "¡No podrás revertir esta acción!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Cancelar!',
-            confirmButtonText: 'Confirmar!'
-          }).then((result) => {
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: '¡Confirmar!',
+            cancelButtonText: '¡Cancelar!',
+        }).then((result) => {
             if (result.isConfirmed) {
-                
-                API.ActualizarEstadoUsuario(id_usuario, {actualizar})
-                .then((respuesta) => {
-                    if(respuesta.status){
-                        setMensaje(respuesta.mensaje)
-                        console.log('actualizar', actualizar)
-                        const datos_usuario = JSON.parse(localStorage.getItem('usuario'));
-                        console.log('user', datos_usuario.id_usuario)
-                        console.log('usuario', id_usuario)
-                        if(id_usuario==datos_usuario.id_usuario && actualizar=="B"){
-
-                            localStorage.removeItem('usuario');
-                            window.location.href='/';
-                        }else{
-                            API.getUsuarios().then(setUsuarios)
-                            Swal.fire(
-                                'Correcto!',
-                                mensaje,
-                                'success'
-                              )   
-                        }
-                        
-                    }
-             
-                })
+                API.EliminarUsuario(id_usuario);
+                API.getUsuarios().then(setUser);
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El Usuario ha sido eliminado.',
+                    'Exito',
+                    window.location.href='/usuarios'
+                );
             }
-        })
-        
-        
-    }
+        });
+    };
+
 
     const editar_registro = async (e, id_usuario)=>{
         e.preventDefault();
@@ -253,13 +233,15 @@ export function Usuarios(){
                 : 
                 <button disabled className="btn btn-warning btn-sm">Editar</button>
                 } </td>
-                <td >
+
+                <td><button className="btn btn-danger btn-sm" onClick={(e) => eliminar(e, usuario.id_usuario)}>Eliminar</button></td>
+                {/* <td >
                 {(usuario.estado=="A")?
                 <button className="btn btn-danger btn-sm" onClick={(event)=>cambiar_estado(event, usuario.id_usuario, usuario.estado )} ><i className="bi bi-hand-thumbs-down-fill"></i>Desactivar</button>
                 :
                 <button className="btn btn-success btn-sm" onClick={(event)=>cambiar_estado(event, usuario.id_usuario, usuario.estado )} ><i className="bi bi-hand-thumbs-up-fill"></i>Activar</button>
                 
-                }</td>
+                }</td> */}
                 <td >
                 <button onClick={(event)=>resetPass(event, usuario.id_usuario)} className="btn btn-dark btn-sm"><i className="bi bi-arrow-clockwise"></i>Reset Password </button>
                 </td>
