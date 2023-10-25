@@ -315,7 +315,7 @@ export function Convenios(){
                   onChange={(event)=>setNombre(event.target.value)}
                   onBlur={(event)=>validarNombre(event.target.value)}
                   className="form-control" 
-                  id="nombre" 
+                  placeholder="nombre"
                   />
                   {
                  nombre? 

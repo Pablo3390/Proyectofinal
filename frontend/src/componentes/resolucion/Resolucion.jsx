@@ -178,7 +178,7 @@ export function Resolucion(){
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos la resolucion </h1>
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Datos de Resolucion </h1>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -206,7 +206,7 @@ export function Resolucion(){
                   onChange={(event) => {setNumero((event.target.value < 0)?event.target.value * -1:event.target.value); }}
                   onBlur={(event)=>validarNumero(event.target.value)}
                   className="form-control" 
-                  id="numero" 
+                  placeholder="numero"
                   />
                   {
                  numero? 
