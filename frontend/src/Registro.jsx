@@ -22,6 +22,8 @@ export function Registro(){
     // eslint-disable-next-line no-unused-vars
     const [id_rol, setIdRol]= useState('1')
 
+    const [mensajeAlertaNombre, setMensajeAlertaNombre]= useState('')
+
 
 
     const registro = async(event)=>{
@@ -68,6 +70,28 @@ export function Registro(){
          
     }
 
+
+    const validarDni = async(event)=>{
+      // event.preventDefault();
+      
+      const validacion = await API.ValidarDni({dni})
+      console.log(validacion)
+        if(validacion.status){
+          setMensajeAlertaNombre(validacion.mensaje)
+          setDni('')
+          setTimeout(()=>{
+              setMensajeAlertaNombre('')
+              setDni('')
+              
+              }, 2000)
+          
+        }else{
+          
+          setDni(dni)
+        }
+     
+}
+
     return(
         <>
         <main className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -83,7 +107,7 @@ export function Registro(){
                   value={apellido}
                   onChange={(event)=>setApellido(event.target.value)}
                   className="form-control" 
-                  id="apellido" 
+                  placeholder="apellido" 
                   />
                   <label htmlFor="apellido">Apellido</label>
                 </div>
@@ -93,31 +117,67 @@ export function Registro(){
                   value={nombre}
                   onChange={(event)=>setNombre(event.target.value)}
                   className="form-control" 
-                  id="nombre" 
+                  placeholder="nombre"
                   />
                   <label htmlFor="nombre">Nombre</label>
                 </div>
 
-                <div className="mt-2 form-floating">
+                {/* <div className="mt-2 form-floating">
                   <input 
                   required
-                  type="number" 
+                  type="text" id="dni" name="dni" pattern="[0-9]{8}" title="El DNI debe contener 8 dígitos numéricos" 
                   value={dni}
                   onChange={(event) => {
                     setDni((event.target.value < 0)?event.target.value * -1:event.target.value);
                   }}
                   className="form-control" 
-                  id="dni" 
+                  placeholder="documento"
                   />
                   <label htmlFor="dni">DNI</label>
+                </div> */}
+
+                <div className="mt-2 form-floating">
+                  <input 
+                  required
+                  type="text" id="dni" name="dni" pattern="[0-9]{8}" title="El DNI debe contener 8 dígitos numéricos"  
+                  value={dni}
+                  onChange={(event) => {
+                    setDni((event.target.value < 0)?event.target.value * -1:event.target.value);
+                  }}
+                  onBlur={(event)=>validarDni(event.target.value)}
+                  className="form-control" 
+                  placeholder="nombre"
+                  />
+                  {
+                 nombre? 
+                
+                 <i className="bi bi-check-circle"></i>
+                
+                :<></>
+                  }
+                  <label htmlFor="actividades">DNI:</label>
                 </div>
+
+                {
+                 mensajeAlertaNombre? 
+                <div className="alert alert-danger" role="alert">
+                 {mensajeAlertaNombre}
+                </div>
+                :<></>
+                  }
+
+
+
+
+
+
                 <div className="mt-2 form-floating">
                 <input 
                   type="email" 
                   value={correo}
                   onChange={(event)=>setCorreo(event.target.value)}
                   className="form-control" 
-                  id="correo" 
+                  placeholder="documento" 
                   />
                   <label htmlFor="correo">Correo</label>
                 </div>
@@ -130,7 +190,7 @@ export function Registro(){
                   onChange={(event)=>setUser(event.target.value)}
                   onBlur={(event)=>validarNick(event.target.value)}
                   className="form-control" 
-                  id="user" 
+                  placeholder="documento" 
                   />
                   {
                  nick? 
@@ -155,7 +215,7 @@ export function Registro(){
                   value={pass}
                   onChange={(event)=>setPass(event.target.value)}
                   className="form-control" 
-                  id="pass" 
+                  placeholder="documento" 
                   />
                   <label htmlFor="password">Contraseña</label>
                 </div>
@@ -175,7 +235,7 @@ export function Registro(){
                     setPassDos((event.target.value < 0)?event.target.value * -1:event.target.value);
                   }}
                   className="form-control" 
-                  id="pass2" 
+                  placeholder="documento"
                   />
                   <label htmlFor="password">Repita Contraseña</label>
                 </div>

@@ -516,7 +516,29 @@ mysqlconect.query('INSERT INTO roles (`nombre`) VALUES (?);', [nombre], (error, 
         } })}
     })})
 
+    router.post('/validaradni', bodyParser.json() , (req , res)=>{
+        const { dni } = req.body;
+        console.log(dni)
+                mysqlconect.query('SELECT * FROM usuarios WHERE dni=?', [dni], (error, registros)=>{
+                    if(error){
+                        console.log('Error en la base de datos', error)
+                    }else{
     
+                        if(registros.length>0){
+                            res.json({
+                                status:true,
+                                mensaje:"El DNI del uduario ya existe" 
+                            })
+                        }else{
+                            res.json({
+                                status:false,
+                               
+                            })
+                        }
+                    }
+                })
+           
+    })
 
 
 

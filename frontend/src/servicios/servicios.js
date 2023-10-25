@@ -1031,7 +1031,21 @@ export async function deleteRoles(id_rol){
     return data
 }
 
-
+//esta es mi funcion es para validar el nombre
+export async function ValidarDni(dato){
+    
+    const Options={
+        method:'POST',
+        body: JSON.stringify(dato),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const respuesta = await fetch(`${URL}/validaradni`, Options);
+    const data= await respuesta.json();
+    console.log('respuesta', data)
+    return data
+}
 
 
 
