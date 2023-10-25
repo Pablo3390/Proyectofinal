@@ -139,7 +139,7 @@ export function Registro(){
                 <div className="mt-2 form-floating">
                   <input 
                   required
-                  type="text" id="dni" name="dni" pattern="[0-9]{8}" title="El DNI debe contener 8 dígitos numéricos"  
+                  type="text" id="dni" name="dni" pattern="[0-9]{8}" title="El DNI debe contener 8 dígitos numericos"  
                   value={dni}
                   onChange={(event) => {
                     setDni((event.target.value < 0)?event.target.value * -1:event.target.value);
@@ -165,10 +165,6 @@ export function Registro(){
                 </div>
                 :<></>
                   }
-
-
-
-
 
 
                 <div className="mt-2 form-floating">

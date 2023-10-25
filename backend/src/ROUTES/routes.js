@@ -295,26 +295,39 @@ router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>
     })
      }
     )  
-
-
-
-
-    router.delete('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>{ 
-        const {id_usuario}= req.params
-         jwt.verify(req.token, 'silicon', (error, valido)=>{
+    router.delete('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
+        const { actualizar }  = req.body
+        const { id_usuario } = req.params
+        mysqlconect.query('UPDATE usuarios SET estado = ?  WHERE id_usuario = ?', [actualizar, id_usuario], (error, registros)=>{
             if(error){
-                res.sendStatus(403);
+                console.log('Error en la base de datos', error)
             }else{
-        mysqlconect.query('DELETE FROM usuarios WHERE id_usuario = ?', [id_usuario], (error, registro) =>{
-            if(error){ // si hay un error entra acá
-                        console.log("Error en la base de datos", error)
-            }else{ 
-                        res.json ('La eliminación del registro '+id_usuario+ ' se realizó correctamente')
+                res.json({
+                    status:true,
+                    mensaje: "El cambio de estado se realizo correctamente"
+                    })
             }
-         })
-        }
-      })
-     })
+        })
+    })
+
+
+
+    // router.delete('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>{ 
+    //     const {id_usuario}= req.params
+    //      jwt.verify(req.token, 'silicon', (error, valido)=>{
+    //         if(error){
+    //             res.sendStatus(403);
+    //         }else{
+    //     mysqlconect.query('DELETE FROM usuarios WHERE id_usuario = ?', [id_usuario], (error, registro) =>{
+    //         if(error){ // si hay un error entra acá
+    //                     console.log("Error en la base de datos", error)
+    //         }else{ 
+    //                     res.json ('La eliminación del registro '+id_usuario+ ' se realizó correctamente')
+    //         }
+    //      })
+    //     }
+    //   })
+    //  })
 
 
 //INSERTAR USUARIO
