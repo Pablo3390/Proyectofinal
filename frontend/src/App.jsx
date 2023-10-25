@@ -32,6 +32,9 @@ import { EditResponsable } from './componentes/responsable/EditResponsable'
 import { Usuarios } from './componentes/usuarios/Usuarios'
 import { EditResolucion } from './componentes/resolucion/EditResolucion'
 import { Roles } from './componentes/roles/Roles'
+import { EditContraseña } from './Editpass'
+
+
 
 
 
@@ -71,6 +74,7 @@ function App() {
         <Route path='/Usuarios' element={<Usuarios/>}></Route>
         <Route path='/editresolucion/:id_resolucion' element={<EditResolucion/>}></Route>
         <Route path='/roles' element={<Roles/>}></Route>
+        <Route path='/editpass/:id_usuario' element={<EditContraseña/>}></Route>
       </Routes>
       </div>  
       

@@ -15,12 +15,26 @@ const [mitoken, setToken]= useState('')
 const ingresar = async(event)=>{
 event.preventDefault();
 const usuario = await API.Login({user, pass})  
+
+
+
 if(usuario.status){
   setToken(usuario.token)
   window.localStorage.setItem('usuario',JSON.stringify(usuario.datos[0]) )
   window.localStorage.setItem('token', JSON.stringify(usuario.token))
+  //Si la contraseña es igual a ADMIN lleva a editar
+  if (pass === 'admin'){
+    window.location.href=(`/editpass/${usuario.datos[0].id_usuario}`);
+ } 
+}
+//Si la contraseña es distinta a ADMIN lleva  a principal
+if (pass !== 'admin'){
   window.location.href='/principal';
- }else{
+}
+
+
+else{
+  
   setMensaje(usuario.mensaje)
   setTimeout(()=>{
       setMensaje('')

@@ -492,6 +492,30 @@ mysqlconect.query('INSERT INTO roles (`nombre`) VALUES (?);', [nombre], (error, 
 
 
 
+  router.put("/editpass/:id_usuario",verificaToken, bodyParser.json(), (req, res)=>{
+
+    jwt.verify(req.token, "silicon", (error, valido)=>{
+        if(error){
+            res.send("ups hubo un error en el token")}
+            else{
+    const{pass}= req.body
+    const {id_usuario} = req.params
+    let hash= bcrypt.hashSync(pass, 10);
+    mysqlconect.query( "UPDATE usuarios SET  pass=? WHERE id_usuario =? ",[hash, id_usuario],(error,registro)=>{
+        if(error){
+            console.log("el error es",error)
+        }
+        else{
+            res.json({
+                status: true,
+                mensaje: "la edicion del registro  " +id_usuario+ " se realizo correctamente "
+                         })
+            
+        } })}
+    })})
+
+    
+
 
 
 
