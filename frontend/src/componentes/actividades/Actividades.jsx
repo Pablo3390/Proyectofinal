@@ -125,7 +125,7 @@ export function Actividades(){
             const datos_actividades= await API.getActividadesByID(id_actividad);
             console.log(datos_actividades)
             setNombre(datos_actividades.nombre)
-            setFecha(datos_actividades.fecha)
+            setFecha(datos_actividades.fecha_sin_formato)
             setLugar(datos_actividades.lugar)
             setParticipante(datos_actividades.participante)
             setIdconvenio(datos_actividades.id_convenio)
@@ -216,7 +216,7 @@ export function Actividades(){
             {actividades.map((actividades)=>(
                     <tr>
                     <td>{actividades.nombre}</td>
-                    <td>{actividades.fecha}</td>
+                    <td>{actividades.fecha_formateada}</td>
                     <td>{actividades.lugar}</td>
                     <td>{actividades.participante}</td>
                     <td>{actividades.convenio}</td>

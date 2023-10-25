@@ -160,9 +160,9 @@ export function Convenios(){
             setNombre(datos_convenios.nombre)
             setUtilidad(datos_convenios.utilidad)
             setObjeto(datos_convenios.objeto)
-            setFechainicio(datos_convenios.fecha_inicio)
-            setFechafin(datos_convenios.fecha_fin)
-            setFechafin(datos_convenios.fecha_fin)
+            setFechainicio(datos_convenios.fecha_inicio_sin_formato)
+            setFechafin(datos_convenios.fecha_fin_sin_formato)
+            // setFechafin(datos_convenios.fecha_fin)
             setClausulapeas(datos_convenios.clausula_peas)
             setIdorganismo(datos_convenios.id_organismo)
             setIdtipoconvenio(datos_convenios.id_tipo_convenio)
@@ -246,8 +246,8 @@ export function Convenios(){
                   <td>{convenios.nombre}</td>
                   <td >{convenios.utilidad}</td>
                   <td>{convenios.objeto}</td>
-                  <td>{convenios.fecha_inicio}</td>
-                  <td >{convenios.fecha_fin}</td>
+                  <td>{convenios.fecha_inicio_formateada}</td>
+                  <td >{convenios.fecha_fin_formateada}</td>
                   <td >{convenios.clausula_peas}</td>
                   <td >{convenios.organismos}</td>
                   <td >{convenios.tipo_convenios}</td>

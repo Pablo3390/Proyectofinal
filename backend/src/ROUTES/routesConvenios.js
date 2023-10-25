@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const bcrypt= require('bcrypt')
 const jwt= require('jsonwebtoken')
 
+
+
 //Listar de convenios
 
 router.get('/convenios', verificaToken, (req , res)=>{
@@ -12,7 +14,7 @@ router.get('/convenios', verificaToken, (req , res)=>{
         if(error){
             res.sendStatus(403);
         }else{
-  mysqlConect.query('SELECT  c.id_convenio, c.nombre, c.utilidad, c.objeto, c.fecha_inicio, c.fecha_fin, c.clausula_peas, o.nombre organismos, tc.nombre tipo_convenios, r.numero resolucion, c.estado  FROM convenios AS c INNER JOIN organismos AS o ON o.id_organismo=c.id_organismo LEFT JOIN tipo_convenios AS tc ON tc.id_tipo_convenio=c.id_tipo_convenio LEFT JOIN resolucion AS r ON r.id_resolucion=c.id_resolucion', (error, registros)=>{
+  mysqlConect.query('SELECT  c.id_convenio, c.nombre, c.utilidad, c.objeto, DATE_FORMAT(c.fecha_inicio, "%d-%m-%Y") fecha_inicio_formateada,DATE_FORMAT(c.fecha_fin, "%d-%m-%Y") fecha_fin_formateada, c.clausula_peas, o.nombre organismos, tc.nombre tipo_convenios, r.numero resolucion, c.estado  FROM convenios AS c INNER JOIN organismos AS o ON o.id_organismo=c.id_organismo LEFT JOIN tipo_convenios AS tc ON tc.id_tipo_convenio=c.id_tipo_convenio LEFT JOIN resolucion AS r ON r.id_resolucion=c.id_resolucion', (error, registros)=>{
       if(error){
           console.log('Error en la base de datos', error)
       }else{
@@ -96,7 +98,7 @@ router.get('/convenios/:id_convenio', verificaToken, (req , res)=>{
     if(error){
         res.sendStatus(403);
     }else{
-  mysqlConect.query('SELECT * FROM convenios WHERE id_convenio=?', [id_convenio], (error, registros)=>{
+  mysqlConect.query('SELECT c.*, DATE_FORMAT(c.fecha_inicio, "%Y-%m-%d") fecha_inicio_sin_formato, DATE_FORMAT(c.fecha_fin, "%Y-%m-%d") fecha_fin_sin_formato FROM convenios c  WHERE c.id_convenio=?', [id_convenio], (error, registros)=>{
       if(error){
           res.json({
               status:false

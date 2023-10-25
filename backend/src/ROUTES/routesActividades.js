@@ -15,7 +15,7 @@ router.get('/actividades', verificaToken, (req, res)=>{
         if(error){
             res.sendStatus(403);
         }else{
-            mysqlConect.query('SELECT a.id_actividad, a.nombre, a.fecha, a.lugar, a.participante, c.nombre convenio, a.estado FROM actividades AS a INNER JOIN convenios AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
+            mysqlConect.query('SELECT a.id_actividad, a.nombre, DATE_FORMAT(a.fecha, "%d-%m-%Y") fecha_formateada, a.lugar, a.participante, c.nombre convenio, a.estado FROM actividades AS a INNER JOIN convenios AS c ON c.id_convenio=a.id_convenio', (error, registro)=>{
                 if(error){
                     console.log('Hay un error en la base de datos', error)
                 }else{
@@ -39,7 +39,7 @@ router.get('/actividades/:id_actividad', verificaToken, (req, res)=>{
             res.sendStatus(403);
         }else{
 
-    mysqlConect.query('SELECT * FROM actividades WHERE id_actividad=?', [id_actividad], (error, registro)=>{
+    mysqlConect.query('SELECT a. *, DATE_FORMAT(a.fecha, "%Y-%m-%d") fecha_sin_formato FROM actividades a WHERE a.id_actividad=?', [id_actividad], (error, registro)=>{
         if(error){
             console.log('Hay un error en la base de datos', error)
         }else{
