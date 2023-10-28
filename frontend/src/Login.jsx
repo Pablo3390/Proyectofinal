@@ -25,13 +25,10 @@ if(usuario.status){
   //Si la contraseña es igual a ADMIN lleva a editar
   if (pass === 'admin'){
     window.location.href=(`/editpass/${usuario.datos[0].id_usuario}`);
- } 
-}
-//Si la contraseña es distinta a ADMIN lleva  a principal
-if (pass !== 'admin'){
+ } else{
   window.location.href='/principal';
+ }
 }
-
 
 else{
   

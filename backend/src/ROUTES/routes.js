@@ -122,7 +122,8 @@ router.post('/login', bodyParser.json(), (req,res)=>{
             console.log('Error en la base de datos', error)
         }else{
             if(usuario.length>0){
-                console.log('estado de la comparacion', usuario[0].pass)
+                if(usuario[0].estado=='A'){
+                    console.log('estado de la comparacion', usuario[0].pass)
                  const comparacion= bcrypt.compareSync(pass, usuario[0].pass)   
                  console.log('estado de la comparacion', comparacion)
                  if(comparacion)  {
@@ -144,6 +145,14 @@ router.post('/login', bodyParser.json(), (req,res)=>{
                         mensaje:"La contraseña es incorrecta" 
                     }) 
                  }
+
+                }else{
+                    res.json({
+                        status:false,
+                        mensaje:"EL USUARIO FUE DADO DE BAJA" 
+                    })
+                }
+                
             }else{
                 res.json({
                     status:false,
@@ -222,21 +231,7 @@ router.put('/resetpass/:id_usuario', bodyParser.json(), (req , res)=>{
    })
 })
 
-// router.put('/usuarios/:id_usuario', bodyParser.json(), (req , res)=>{
-//     const { id_usuario } = req.params
-//     const { nombre, correo }  = req.body
-    
-//     mysqlconect.query('UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?;', [nombre, correo, id_usuario], (error, registros)=>{
-//        if(error){
-//            console.log('Error en la base de datos', error)
-//        }else{
-//         res.json({
-//             status:true,
-//             mensaje: "La edicion de registro se realizo correctamente"
-//             })
-//        }
-//    })
-// })
+
 
 
 //MODIFICAR USUARIO
@@ -310,58 +305,6 @@ router.put('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>
         })
     })
 
-
-
-    // router.delete('/usuarios/:id_usuario',bodyParser.json(), verificaToken, (req,res)=>{ 
-    //     const {id_usuario}= req.params
-    //      jwt.verify(req.token, 'silicon', (error, valido)=>{
-    //         if(error){
-    //             res.sendStatus(403);
-    //         }else{
-    //     mysqlconect.query('DELETE FROM usuarios WHERE id_usuario = ?', [id_usuario], (error, registro) =>{
-    //         if(error){ // si hay un error entra acá
-    //                     console.log("Error en la base de datos", error)
-    //         }else{ 
-    //                     res.json ('La eliminación del registro '+id_usuario+ ' se realizó correctamente')
-    //         }
-    //      })
-    //     }
-    //   })
-    //  })
-
-
-//INSERTAR USUARIO
-// router.post('/usuarios',bodyParser.json(), (req,res)=>{ 
-//     const {nombre, apellido, correo, user}=req.body
-   
-
-//     if(!nombre){
-//         res.json({
-//             status: false,
-//             mensaje: "el nombre del usuario es un dato obligatorio"
-//         })
-//     }
-    
-//     if(!apellido){
-//         res.json({
-//             status: false,
-//             mensaje: "el apellido es un dato obligatorio"
-//         })
-//     }
-
-//si lo datos están completos, entonces:
-// mysqlconect.query('INSERT INTO usuarios (`nombre`, `apellido`, `correo`, `user`) VALUES (?, ?, ?, ?);', [nombre, apellido, correo, user], (error, registro) =>{
-//         if(error){ // si hay un error entra acá
-//                     console.log("Error en la base de datos", error)
-//         }else{
-//             res.json({
-//                 status:true,
-//                 mensaje: "El usuario se grabo correctamente"
-//             })
-//             }
-//      })
-//             }
-//     )
 
 
 router.post('/validarusuario', bodyParser.json() , (req , res)=>{
